@@ -1,0 +1,21 @@
+.brand-details{
+    .heading{
+        display: flex;
+        align-items: center;
+        margin : 1em 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width : 10em;
+            @media (max-width : 420px){
+                width: 8em;
+            }
+        }
+        h1{
+            font-family: $nunito;
+            text-transform: uppercase;
+            @include gradient_text($green,$yellow);
+        }
+    }
+}

@@ -1,0 +1,147 @@
+.your-orders{
+    margin : 3em 0;
+    .heading{
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width : 100px;
+        }
+        h1{
+            text-transform: uppercase;
+            font-size: 2em;
+            font-family: $nunito;
+            @include gradient_text($green,$yellow);
+        }
+    }
+
+    .filters{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin : 1em 0;
+        h4{
+            font-family: $oswald;
+            font-size: 1.1em;
+            @media (max-width : 420px){
+                font-size: 0.9em;
+                margin: 0 0.1em;
+                padding : 0 0.4em;
+            }
+            margin : 0 0.2em;
+            border-right: 1px solid rgba($blue,0.5);
+            padding : 0 0.7em;
+            user-select: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            color: $green;
+            font-weight : 400;
+            &:last-child{
+                border: none;
+            }
+            &:hover{
+                color: darken($yellow,15%);
+            }
+        }
+    }
+
+    .order-list{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        .single-order{
+            width : 300px;
+            margin : 1em;
+            .info{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding : 0.5em;
+                background-color: rgba($green, 0.5);
+                margin-bottom: 5px;
+                h4{
+                    font-family: $oswald;
+                    text-transform: uppercase;
+                    color: $green;
+                    font-weight: 500;
+                }
+            }
+            .meds{
+                display: flex;
+                align-items: stretch;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                .single-med{    
+                    margin : 5px 0;
+                    
+                    width : 145px;
+                    background-color: rgba($green , 0.2);
+                    display: grid;
+                    grid-template-rows: 2fr 1fr;
+                    h4{
+                        padding : 8px;
+                        font-family: $oswald;
+                        font-size: 0.7em;
+                        font-weight: 400;
+                        color: $green;
+                    }
+                    .quantity{
+                        background-color: $green;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        margin-top: 5px;
+                        padding : 0.1em;
+                        p{
+                            font-family: $oswald;
+                            font-size: 0.7em;
+                            color: white;
+                        }
+                        
+                    }
+                }
+                
+            }
+            .order-status{
+                width : 300px;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                button{
+                    
+                    outline: none;
+                    padding : 5px 0;
+                    color : white;
+                    font-family: $oswald;
+                    text-transform: uppercase;
+                    border: none;
+                    transition: all 0.3s;
+                    
+                    &:first-child{
+                        background-color: $blue;
+                    }
+                    &:nth-child(2){
+                        background-color: darken($yellow,20%);
+                    }
+                    &:last-child{
+                        background-color: $green;
+                    }
+                }
+            }
+            .cancel-order{
+                width : 300px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding : 5px 0;
+                background-color: $red;
+                color: white;
+                font-family: $oswald;
+                transition: all 0.3s;
+                @include click_1;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

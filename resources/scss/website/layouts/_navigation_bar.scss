@@ -1,0 +1,264 @@
+
+.navigation-2{
+    background-color: $blue;
+    @include bar_shadow(darken($blue,10%));
+    position: sticky;
+    top : 0;
+    z-index: 19;
+    width : 100%;
+    .search-bar{
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+        @media (max-width : 420px){
+            flex-flow: column;
+            justify-content: center;
+            
+        }
+        .brand{
+            
+            img{
+                width : 250px;
+                @media (max-width : 420px){
+                    width : 90%px;
+                    
+                }
+                height: 50px;
+                object-fit: cover;
+            }
+            @media (max-width : 420px){
+                padding-bottom: 10px;
+            }
+        }
+        .search{
+            display: flex;
+            align-items: center;
+            
+            @media (max-width : 420px){
+                margin-bottom: 1em;
+            }
+            input{
+                width : 600px;
+                @media (max-width : 1024px){
+                    width : 400px;
+                }
+                @media (max-width : 420px){
+                    width : 350px;
+                }
+                @media (max-width : 375px){
+                    width : 320px;
+                }
+                @media (max-width : 360px){
+                    width : 300px;
+                }
+                @media (max-width : 320px){
+                    width : 250px;
+                }
+                height : 40px;
+                border-radius: 5px 0 0 5px;
+                color: $blue;
+            }
+            button{
+                cursor: pointer;
+                border: none;
+                padding : 10px;
+                border-radius: 0 5px 5px 0;
+                background-color: white;
+                outline-color: $green;
+                @include click_1;
+                transition:  all 0.3s;
+                i{
+                    font-size: 20px;
+                    color: $blue;
+                }
+            }
+        }
+        .options{
+            width : 100%;
+            @media (max-width : 768px){
+                display: none;
+            }
+            ul{
+                width : 90%;
+                display: flex;
+                list-style-type: none;
+                justify-content: space-around;
+                align-items: center;
+                user-select: none;
+                li{
+                    font-family: $oswald;
+                    font-size: 0.9em;
+                    @media (max-width : 1024px){
+                        font-size: 0.8em;
+                    }
+                    color: white;
+                    cursor: pointer;
+                    a{
+                        text-decoration: none;
+                        color : white;
+                    }
+                }
+                .cart-toggle , .pincode-toggle{
+                    padding : 0.2em;
+                    border-radius: 3px;
+                    transition: all 0.2s;
+                    &:active{
+                        background-color: white;
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+    .main-menu{
+        padding-bottom: 5px;
+        ul{
+            display: flex;
+            list-style-type: none;
+            justify-content: space-around;
+            li{
+                font-family: $nunito;
+                text-transform: uppercase;
+                font-size: 0.9em;
+                @media (max-width : 420px){
+                    font-size: 0.7em;
+                }
+                @media (max-width : 375px){
+                    font-size: 0.65em;
+                }
+                @media (max-width : 360px){
+                    font-size: 0.65em;
+                }
+                @media (max-width : 320px){
+                    font-size: 0.55em;
+                }
+                a{
+                    text-decoration: none;
+                    color: white;
+                    transition: all 0.5s;
+                }
+                transition: all 0.5s;
+                &:hover{
+                    a{
+                        color: lighten($green,10%);
+                        
+                    }
+                }
+            }
+        }
+    }
+    .side-menu{
+        position: fixed;
+        right : -230px;
+        bottom : 0;
+        background-color: $black;
+        height: 100vh;
+        padding : 1em;
+        z-index : 99;
+        width : 220px;
+        transition: all 0.4s;
+        @include left_shadow($black);
+        
+        .hamburger{
+            position: absolute;
+            right : 250px;
+            bottom : 20px;
+            cursor: pointer;
+            transition: all 0.4s;
+            @include click_1;
+            span{
+                display: block;
+                height : 5px;
+                width : 30px;
+                margin : 5px 0;
+                background-color: $black;
+            }
+           
+        }
+        ul{
+            font-family: $oswald;
+            display: flex;
+            flex-flow: column;
+            
+            justify-content: flex-end;
+            list-style-type: none;
+            height: 100%;
+            
+            li{
+                margin : 0.5em;
+                transition: all 0.45s;
+                border-radius: 5px;
+                padding : 0.4em;
+                user-select: none;
+                color : white;
+                a{
+                    text-decoration: none;
+                    color : white;
+                }
+                &:hover{
+                    background-color: white; 
+                    transform: translateY(-5px); 
+                    color: $green;
+                    a{
+                        color: $green;
+                    }  
+                }
+                &:active{
+                    transform: translateY(5px);
+                }
+            }
+            .pincode-toggle{
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                i{
+                    margin-right: 5px;
+                }
+            }
+            .small-screen{
+                display: none;
+                
+                a{
+                    color: white;
+                }
+                @media (max-width : 768px){
+                    display: block;
+                    &:first-child{
+                    
+                        display: flex;
+                        justify-content: space-between;
+            
+                    }
+                }
+            }
+        }
+        .enter-pincode-mobile{
+            margin-top : 0.2em;
+            width : 100%;
+           
+            .input-box{
+                
+                display: flex;
+                justify-self: start;
+                input{
+                    width : 70%;
+                    border-radius: 5px 0 0 5px;
+                }
+                button{
+                    font-family: $nunito;
+                    padding : 0.3em 0.9em;
+                    border: none;
+                    background-color: $green;
+                    color: white;
+                    transition: all 0.3s;
+                    @include click_1;
+                    outline: none;
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+        }
+    }
+    .active{
+        right : -1px;
+    }
+}

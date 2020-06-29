@@ -1,0 +1,211 @@
+@layout('admin-master')
+
+@section('title')
+    <title>
+        @if(add_mode)
+            Add New Medicine | Singh & Singh
+        @endif
+
+        @if(edit_mode)
+            {{ medicine.name }} | Edit | Singh & Singh
+        @endif
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container form-body">
+        <h2>
+            @if(add_mode)
+                Add New Medicine
+            @endif
+
+            @if(edit_mode)
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a href="{{ route( 'medicine.details' , { id : medicine.id }) }}">{{ medicine.name }}</a>
+            @endif
+        </h2>
+        <form 
+            @if(add_mode)
+                action="/admin/medicine/{{ categoryId }}/add"
+            @endif
+
+            @if(edit_page)
+                action="{{ route( 'medicine.edit' , { id : medicine.id } ) }}"
+            @endif
+            novalidate
+            method = "POST"
+        >
+            {{ csrfField() }}
+            @if(flashMessage( 'medicineCreateErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'medicineCreateErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'medicineUpdateErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'medicineUpdateErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                <input 
+                    type="text"
+                    placeholder="Name of Medicine"
+                    name='name'
+                    @if(hasErrorFor('name'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('name') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('name') || medicine.name }}"
+                    @endif
+                >
+                @if(hasErrorFor('name'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('name') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="number"
+                    placeholder="Selling Price"
+                    name='selling_price'
+                    
+                    @if(hasErrorFor('selling_price'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('selling_price') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('selling_price') || medicine.selling_price }}"
+                    @endif
+                >
+                @if(hasErrorFor('selling_price'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('selling_price') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="number"
+                    placeholder="Market Price"
+                    name='market_price'
+                    
+                    @if(hasErrorFor('market_price'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('market_price') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('market_price') || medicine.market_price }}"
+                    @endif
+                >
+                @if(hasErrorFor('market_price'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('market_price') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <textarea 
+                    rows="10"
+                    name='description'
+                    placeholder="Describe your category"
+                    style="resize: none;"
+                    @if(hasErrorFor('description'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    
+                >{{ old('description') || medicine.description || '' }}</textarea>
+                @if(hasErrorFor('description'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('description') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="active">Status</label>
+                </div>
+                <select class="custom-select" id="active" name='active'>
+                    @if(add_mode)
+                        <option value="1" selected>Active</option>
+                        <option value="0">Not Active</option>
+                    @endif
+                    
+                    @if(edit_mode)
+                        <option 
+                            value="1" 
+                            @if(medicine.active)
+                                selected
+                            @endif
+                        >Active</option>
+                        <option 
+                            value="0"
+                            @if(!medicine.active)
+                                selected
+                            @endif
+                        >Not Active</option>
+                    @endif
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <select class="custom-select" id="prescription-required" name="prescription_required">
+                    
+                    @if(add_mode)
+                        <option value="1">Need Prescription</option>
+                        <option value="0" selected>Does not need prescription</option>
+                    @endif
+
+                    @if(edit_mode)
+                        <option 
+                            value="1" 
+                            @if(medicine.prescription_required)
+                                selected
+                            @endif
+                        >Need Prescription</option>
+                        <option 
+                            value="0"
+                            @if(!medicine.prescription_required)
+                                selected
+                            @endif
+                        >Does not need prescription</option>
+                    @endif
+                </select>
+                <div class="input-group-append">
+                    <label class="input-group-text" for="prescription-required">Prescription</label>
+                </div>
+            </div>
+            <button class="btn btn-success btn-block">
+                @if(add_mode)
+                    &plus; Add Medicine
+                @endif
+
+                @if(edit_mode)
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ medicine.name  }}
+                @endif
+            </button>
+        </form>
+    </div>
+@endsection

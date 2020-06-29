@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singh & Singh</title>
+    {{ style( 'css/style' ) }}
+    {{ style( 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min' ) }}
+</head>
+<body>
+    
+    @include( 'website/partials/header' )
+
+    @!section( 'content' )
+
+    @include( 'website/partials/preloader' )
+
+    @include( 'website/partials/footer' )
+
+    <!-- ********************** LIBRARIES ******************************* -->
+    {{ script( 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js' ) }}
+    {{ script('scripts/lib/gsap-public/minified/gsap.min.js') }}
+
+    <!-- **************************************************************** -->
+    {{ script( 'scripts/animations.js' ) }}
+    {{ script( 'scripts/interaction.js' ) }}
+    {{ script( 'scripts/script.js' ) }}
+
+    @!section( 'vue' )
+</body>
+</html>

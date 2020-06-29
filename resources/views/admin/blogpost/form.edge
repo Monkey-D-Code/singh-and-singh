@@ -1,0 +1,134 @@
+@layout('admin-master')
+
+@section('title')
+    <title>
+        @if(add_mode)
+            Add New Post | Singh & Singh
+        @endif
+
+        @if(edit_mode)
+            {{ blogpost.title }} | Singh & Singh
+        @endif
+    </title>
+@endsection
+
+@section('content')
+    <div class="form-body">
+        <h4>
+            @if(add_mode)
+                Add New Blog Post
+            @endif
+
+            @if(end_mode)
+                <i class="fa fa-pencil" aria-hidden="true"></i> {{ blogpost.title }}
+            @endif
+        </h4>
+        <form 
+            @if(add_mode)
+                action="{{ route( 'blogpost.add' ) }}"
+            @endif
+            @if(edit_mode)
+                action="{{ route( 'blogpost.edit' , { id : blogpost.id } ) }}"
+            @endif
+            method="post"
+            enctype="multipart/form-data"
+        >
+            {{ csrfField() }}
+            @if(flashMessage( 'addBlogPostErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'addBlogPostErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'editBlogPostErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'editBlogPostErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                <input 
+                    type="text"
+                    name="title"
+                    placeholder="Give a post title"
+                    @if(hasErrorFor('title'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('title') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('title') || blogpost.title }}"
+                    @endif
+                >
+                @if(hasErrorFor('title'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('title') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                @if(edit_mode)
+                    <img 
+                        src="{{ blogpost.image_url }}" 
+                        style="width:100%;"
+                    >
+                @endif
+                <input 
+                    type="file"
+                    name="blogpost_image"
+                    placeholder="Give a post title"
+                    @if(hasErrorFor('blogpost_image'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                >
+                @if(hasErrorFor('blogpost_image'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('blogpost_image') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                <textarea 
+                    rows="15"
+                    name='post_body'
+                    placeholder="Content of the post"
+                    style="resize: none;"
+                    @if(hasErrorFor('post_body'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    
+                >{{ old('post_body') || blogpost.post_body || '' }}</textarea>
+                @if(hasErrorFor('post_body'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('post_body') }}
+                    </div>
+                @endif 
+            </div>
+
+            <button class="btn btn-success btn-block" type="submit">
+                @if(add_mode)
+                    &plus; Add new Blog Post
+                @endif
+                @if(edit_mode)
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ blogpost.title }}
+                @endif
+            </button>
+        </form>
+    </div>
+@endsection
+
+@section('extra_script')
+    {{ script( 'https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js' ) }}
+    <script>
+        CKEDITOR.replace( 'post_body' );
+        CKEDITOR.config.enterMode = 2;
+    </script>
+@endsection

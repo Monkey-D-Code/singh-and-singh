@@ -1,0 +1,111 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        {{ medicine.name }} | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .heading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container{
+            overflow: auto;
+            width : 50%;
+            height: 90vh;
+        }
+        .heading .image{
+            width : 100%;
+            display: flex;
+            
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: flex-start;
+            
+            
+        }
+        .image .card{
+            width : 33%;
+        }
+        
+        .heading .image .no-images{
+            width : 100%;
+            height: 90vh;
+            object-fit: cover;
+        }
+        .heading .info{
+            width : 50%;
+            padding-left: 1em;
+        }
+        .info h3{
+            width : 90%;
+        }
+        .info p{
+            width : 90%;
+            font-size: 0.75em;
+        }
+        .info .price{
+            display: flex;
+            align-items: center;
+        }
+    </style>
+@endsection
+
+
+@section('content')
+    <div class="heading">
+        <div class="image-container">
+            <div class="image">
+                @each(img in images)
+                    <div class="card">
+                        <img src="{{ img.image_url }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ img.caption }}</h5>
+                            <a href="{{ route( 'medicine_image.delete_page',{id:img.id} ) }}" class="btn btn-danger btn-block">&times; Trash</a>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route( 'medicine_image.add_page' ,{ medicine_id : medicine.id } ) }}">
+                        <img 
+                            src="https://via.placeholder.com/800/007bff/ffffff?text=Click+to+add+image" 
+                            alt=""
+                            class='no-images'
+                        >
+                    </a>
+                @endeach
+            </div>
+        </div>
+        <div class="info">
+            <h3>{{ medicine.name }}</h3>
+            <div class="price">
+                @if(medicine.active)
+                    <h5><span class="badge badge-success mr-1">Visible to Public</span></h5>
+                @else
+                    <h5><span class="badge badge-secondary mr-1">Not Visible to Public</span></h5>
+                @endif
+
+                @if(medicine.prescription_required)
+                    <h5><span class="badge badge-warning mr-1">Prescription Needed</span></h5>
+                @else
+                    <h5><span class="badge badge-secondary mr-1">No Prescription Needed</span></h5>
+                @endif
+                
+                <h5><span class="badge badge-danger mr-1"><i class="fa fa-inr" aria-hidden="true"></i> {{ medicine.market_price }}</span></h5>
+                <h5><span class="badge badge-success text-light"><i class="fa fa-inr" aria-hidden="true"></i> {{ medicine.selling_price }}</span></h5>
+            </div>
+            <div class="options mb-2">
+                <a href="{{ route( 'medicine_image.add_page' ,{ medicine_id : medicine.id } ) }}" class="btn btn-success">&plus; Image</a>
+                <a href="{{ route( 'medicine.edit_page',{id:medicine.id} ) }}" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                <a href="{{ route('medicine.delete_page',{id:medicine.id}) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
+            </div>
+            <p>
+                {{ medicine.description }}
+            </p>
+        </div>
+    </div>
+@endsection

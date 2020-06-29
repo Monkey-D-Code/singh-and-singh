@@ -1,0 +1,112 @@
+.navigation-2 .options .cart-popup{
+    position: absolute;
+    z-index: 9;
+    top : 5.8em;
+    right : 5px;
+    width : 300px;
+    height : 400px;
+    
+    background-color: $blue;
+    @include left_shadow($black);
+    border-radius: 5px;
+    padding : 10px;
+    .cart-content{
+        
+        h3{
+            font-family: $oswald;
+            color: white;
+            font-weight: 400;
+            border-bottom: 1px solid white;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button{
+                border : none;
+                height : 25px;
+                width : 25px;
+                border-radius: 50%;
+                background-color: lighten($red,10%);
+                color: white;
+                @include click_1;
+                outline: none;
+                cursor: pointer;
+                transition: all 0.4s;
+            }
+        }
+        .item-list{
+            height: 310px;
+            overflow: auto;
+            
+            &::-webkit-scrollbar {
+               display: none;
+            }
+            
+            .single-item{
+                display: flex;
+                align-items: stretch;
+                margin : 0.5em 0;
+                img{
+                    width : 60px;
+                    object-fit: cover;
+                    margin-right: 10px;
+                }
+                .info{
+                    h4{
+                        font-family: $oswald;
+                        width : 210px;
+                        font-size: 0.9em;
+                        color: white;
+                        font-weight: 200;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        .trash{
+                            border: none;
+                            padding : 5px;
+                            color: $red;
+                            border-radius: 2px;
+                            @include click_1;
+                            transition: all 0.3s;
+                            cursor: pointer;
+                        }
+                    }
+                    .price{
+                        font-family: $oswald;
+                        color: white;
+                    }
+                    .quantity{
+                        font-family: $nunito;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .cart-link{
+            padding-top: 6px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-between;
+            a{
+                text-align: right;
+                font-family: $oswald;
+                background-color: white;
+                color: $green;
+                box-sizing: content-box;
+                font-family: $oswald;
+                text-decoration: none;
+                padding : 5px 6px;
+                border-radius: 2px;
+                transition: all 0.3s;
+                @include click_1;
+                
+            }
+            .total{
+                font-family: $oswald;
+                font-size: 25px;
+                color: white;
+            }
+        }
+    }
+}

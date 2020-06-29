@@ -1,0 +1,129 @@
+.top-rated-products{
+    min-height: 70vh;
+    width : 100%;
+    margin : 2em auto;
+    @media (max-width : 768px){
+        margin-top : 4.5em;
+    }
+    @media (max-width : 420px){
+        margin-top : 6em;
+    }
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    padding-bottom: 1em;
+    svg{
+        margin-top:  -2px;
+    }
+    .heading{
+        position: absolute;
+        top : 2em;
+        @media (max-width : 1280px){
+            top : 1.5em;
+        }
+        @media (max-width : 1024px){
+            top : -1em;
+        }
+        @media (max-width : 768px){
+            top : -3em;
+        }
+        @media (max-width : 420px){
+            top : -3.7em;
+        }
+        @media (max-width : 320px){
+            top : -4em;
+        }
+        left : 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width : 200px;
+            @media (max-width : 420px){
+                width : 120px;
+            }
+            @media (max-width : 320px){
+                width : 110px;
+            }
+        }
+        h1{
+            font-family: $nunito;
+            text-transform: uppercase;
+            color: transparent;
+            letter-spacing: -1px;
+            background-image: linear-gradient(
+                to right,
+                darken($green,5%),
+                darken($yellow,15%),
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            font-size: 2.2em;
+            @media (max-width : 1280px){
+                font-size: 2em;
+            }
+            @media (max-width : 768px){
+                font-size: 1.5em;
+            }
+            @media (max-width : 420px){
+                font-size: 1em;
+            }
+            
+
+        }
+    }
+    .product-list{
+        width : 85%;
+        @media (max-width : 1280px){
+            width : 90%;
+        }
+        @media (max-width : 420px){
+            width : 95%;
+            justify-content: center;
+        }
+        margin : 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        .single-product{
+            width : 200px;
+            @media (max-width : 420px){
+                width : 140px;
+            }
+            margin : 0.8em;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            @include card_shadow($black);
+            img{
+                width : 200px;
+                height : 230px;
+                object-fit: contain;
+                @media (max-width : 420px){
+                    width : 140px;
+                    height : 200px;
+                }
+            }
+            h4{
+                padding : 0.5em;
+                transition: all 0.4s;
+                a{
+                    text-decoration: none;
+                    font-family: $oswald;
+                    font-size: 0.8em;
+                    color : lighten($red,3%);
+                    font-weight: 400;
+                    transition: all 0.5s;
+                }
+                &:hover{
+                
+                    a{
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+}

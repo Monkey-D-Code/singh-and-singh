@@ -1,0 +1,34 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ category.category_name }} ?
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .container{
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            width : 60%;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="container mb-3">
+        <img src="{{ category.cover_image }}" alt="">
+        <h2>Confirm delete <a href="{{ route('category.details',{id : category.id}) }}">{{ category.category_name }}</a> ?</h2>
+        <p class='alert alert-warning'>This will permanently delete this ! All Medicines inside will be gone.</p>
+        <form method='POST' to=''>
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</button>
+        </form>
+    </div>
+@endsection

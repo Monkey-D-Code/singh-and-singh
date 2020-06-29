@@ -1,0 +1,12 @@
+input{
+    padding : 0.5em 0.8em;
+    border-radius: 5px;
+    border : 0;
+    width : 300px;
+    @media (max-width : 320px){
+        width : 260px;
+    }
+    font-family: $oswald;
+    color: $green;
+    outline-color: $green;
+}

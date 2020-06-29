@@ -1,0 +1,2898 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth; }
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../../font/Nunito/Nunito-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../../font/Nunito/Nunito-Light.ttf") format("ttf");
+  font-weight: light;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Oswald";
+  src: url("../../font/Oswald/Oswald-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+input {
+  padding: 0.5em 0.8em;
+  border-radius: 5px;
+  border: 0;
+  width: 300px;
+  font-family: "Oswald";
+  color: #4d8b31;
+  outline-color: #4d8b31; }
+  @media (max-width: 320px) {
+    input {
+      width: 260px; } }
+
+.btn-search {
+  width: 300px;
+  border-radius: 5px;
+  margin: 0.5em 0;
+  font-family: "Oswald";
+  transition: all 0.35s;
+  background-color: #43782a;
+  border: 0;
+  padding: 0.4em 0;
+  color: white;
+  cursor: pointer;
+  outline-color: #ffc800; }
+  @media (max-width: 320px) {
+    .btn-search {
+      width: 260px; } }
+  .btn-search:hover {
+    transform: translateY(-5px); }
+  .btn-search:active {
+    transform: translateY(5px); }
+
+.navigation .options .cart-btn span {
+  color: white;
+  cursor: pointer;
+  user-select: none; }
+  .navigation .options .cart-btn span:hover {
+    transform: translateY(-5px); }
+  .navigation .options .cart-btn span:active {
+    transform: translateY(5px); }
+
+.navigation .options .cart-btn .cart-popup {
+  height: 0px;
+  width: 0px;
+  background-color: #4d8b31;
+  position: absolute;
+  right: 3px;
+  top: 49px;
+  z-index: 6;
+  border-radius: 5px;
+  transition: all 0.4s;
+  overflow: auto; }
+  @media (max-width: 420px) {
+    .navigation .options .cart-btn .cart-popup {
+      top: 90px;
+      right: 5px; } }
+  .navigation .options .cart-btn .cart-popup::-webkit-scrollbar {
+    display: none; }
+  .navigation .options .cart-btn .cart-popup .cart-content {
+    position: relative;
+    padding-bottom: 1em;
+    display: none;
+    padding: 1em;
+    width: 100%; }
+    .navigation .options .cart-btn .cart-popup .cart-content h4 {
+      text-transform: uppercase;
+      color: white;
+      font-weight: 400;
+      border-bottom: 1px solid white;
+      padding-bottom: 0.5em; }
+    .navigation .options .cart-btn .cart-popup .cart-content .items {
+      margin: 0.5em 0; }
+      .navigation .options .cart-btn .cart-popup .cart-content .items .single-item {
+        display: flex;
+        margin: 0.4em 0;
+        justify-content: space-between;
+        align-items: center; }
+        .navigation .options .cart-btn .cart-popup .cart-content .items .single-item img {
+          width: 80px; }
+        .navigation .options .cart-btn .cart-popup .cart-content .items .single-item .info {
+          width: 180px; }
+          .navigation .options .cart-btn .cart-popup .cart-content .items .single-item .info h5 {
+            font-weight: 400; }
+          .navigation .options .cart-btn .cart-popup .cart-content .items .single-item .info .price {
+            font-size: 0.9em;
+            background-color: white;
+            color: #4d8b31;
+            width: fit-content;
+            margin: 0.4em 0;
+            padding: 0.3em 0.6em;
+            border-radius: 4px; }
+          .navigation .options .cart-btn .cart-popup .cart-content .items .single-item .info .quantity {
+            font-size: 0.7em;
+            color: white; }
+    .navigation .options .cart-btn .cart-popup .cart-content .go-to-cart {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 0.8em; }
+
+.navigation .options .cart-btn .active {
+  height: 400px;
+  width: 300px; }
+  .navigation .options .cart-btn .active .cart-content {
+    display: block; }
+
+.pre-loader {
+  height: 100vh;
+  width: 100%;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+  background-color: white; }
+  .pre-loader img {
+    width: 50%;
+    margin-left: 50%;
+    transform: translateX(-50%); }
+    @media (max-width: 1024px) {
+      .pre-loader img {
+        width: 100%;
+        margin-left: 0;
+        transform: translateX(0%);
+        margin-top: 25%; } }
+
+.navigation-2 {
+  background-color: #0D59A3;
+  -webkit-box-shadow: 3px 4px 5px 0px rgba(9, 63, 116, 0.42);
+  -moz-box-shadow: 3px 4px 5px 0px rgba(9, 63, 116, 0.42);
+  box-shadow: 3px 4px 5px 0px rgba(9, 63, 116, 0.42);
+  position: sticky;
+  top: 0;
+  z-index: 19;
+  width: 100%; }
+  .navigation-2 .search-bar {
+    padding-top: 10px;
+    display: flex;
+    align-items: center; }
+    @media (max-width: 420px) {
+      .navigation-2 .search-bar {
+        flex-flow: column;
+        justify-content: center; } }
+    .navigation-2 .search-bar .brand img {
+      width: 250px;
+      height: 50px;
+      object-fit: cover; }
+      @media (max-width: 420px) {
+        .navigation-2 .search-bar .brand img {
+          width: 90%px; } }
+    @media (max-width: 420px) {
+      .navigation-2 .search-bar .brand {
+        padding-bottom: 10px; } }
+    .navigation-2 .search-bar .search {
+      display: flex;
+      align-items: center; }
+      @media (max-width: 420px) {
+        .navigation-2 .search-bar .search {
+          margin-bottom: 1em; } }
+      .navigation-2 .search-bar .search input {
+        width: 600px;
+        height: 40px;
+        border-radius: 5px 0 0 5px;
+        color: #0D59A3; }
+        @media (max-width: 1024px) {
+          .navigation-2 .search-bar .search input {
+            width: 400px; } }
+        @media (max-width: 420px) {
+          .navigation-2 .search-bar .search input {
+            width: 350px; } }
+        @media (max-width: 375px) {
+          .navigation-2 .search-bar .search input {
+            width: 320px; } }
+        @media (max-width: 360px) {
+          .navigation-2 .search-bar .search input {
+            width: 300px; } }
+        @media (max-width: 320px) {
+          .navigation-2 .search-bar .search input {
+            width: 250px; } }
+      .navigation-2 .search-bar .search button {
+        cursor: pointer;
+        border: none;
+        padding: 10px;
+        border-radius: 0 5px 5px 0;
+        background-color: white;
+        outline-color: #4d8b31;
+        transition: all 0.3s; }
+        .navigation-2 .search-bar .search button:hover {
+          transform: translateY(-5px); }
+        .navigation-2 .search-bar .search button:active {
+          transform: translateY(5px); }
+        .navigation-2 .search-bar .search button i {
+          font-size: 20px;
+          color: #0D59A3; }
+    .navigation-2 .search-bar .options {
+      width: 100%; }
+      @media (max-width: 768px) {
+        .navigation-2 .search-bar .options {
+          display: none; } }
+      .navigation-2 .search-bar .options ul {
+        width: 90%;
+        display: flex;
+        list-style-type: none;
+        justify-content: space-around;
+        align-items: center;
+        user-select: none; }
+        .navigation-2 .search-bar .options ul li {
+          font-family: "Oswald";
+          font-size: 0.9em;
+          color: white;
+          cursor: pointer; }
+          @media (max-width: 1024px) {
+            .navigation-2 .search-bar .options ul li {
+              font-size: 0.8em; } }
+          .navigation-2 .search-bar .options ul li a {
+            text-decoration: none;
+            color: white; }
+        .navigation-2 .search-bar .options ul .cart-toggle, .navigation-2 .search-bar .options ul .pincode-toggle {
+          padding: 0.2em;
+          border-radius: 3px;
+          transition: all 0.2s; }
+          .navigation-2 .search-bar .options ul .cart-toggle:active, .navigation-2 .search-bar .options ul .pincode-toggle:active {
+            background-color: white;
+            color: #4d8b31; }
+  .navigation-2 .main-menu {
+    padding-bottom: 5px; }
+    .navigation-2 .main-menu ul {
+      display: flex;
+      list-style-type: none;
+      justify-content: space-around; }
+      .navigation-2 .main-menu ul li {
+        font-family: "Nunito";
+        text-transform: uppercase;
+        font-size: 0.9em;
+        transition: all 0.5s; }
+        @media (max-width: 420px) {
+          .navigation-2 .main-menu ul li {
+            font-size: 0.7em; } }
+        @media (max-width: 375px) {
+          .navigation-2 .main-menu ul li {
+            font-size: 0.65em; } }
+        @media (max-width: 360px) {
+          .navigation-2 .main-menu ul li {
+            font-size: 0.65em; } }
+        @media (max-width: 320px) {
+          .navigation-2 .main-menu ul li {
+            font-size: 0.55em; } }
+        .navigation-2 .main-menu ul li a {
+          text-decoration: none;
+          color: white;
+          transition: all 0.5s; }
+        .navigation-2 .main-menu ul li:hover a {
+          color: #62b13e; }
+  .navigation-2 .side-menu {
+    position: fixed;
+    right: -230px;
+    bottom: 0;
+    background-color: #1e212b;
+    height: 100vh;
+    padding: 1em;
+    z-index: 99;
+    width: 220px;
+    transition: all 0.4s;
+    -webkit-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+    -moz-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+    box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51); }
+    .navigation-2 .side-menu .hamburger {
+      position: absolute;
+      right: 250px;
+      bottom: 20px;
+      cursor: pointer;
+      transition: all 0.4s; }
+      .navigation-2 .side-menu .hamburger:hover {
+        transform: translateY(-5px); }
+      .navigation-2 .side-menu .hamburger:active {
+        transform: translateY(5px); }
+      .navigation-2 .side-menu .hamburger span {
+        display: block;
+        height: 5px;
+        width: 30px;
+        margin: 5px 0;
+        background-color: #1e212b; }
+    .navigation-2 .side-menu ul {
+      font-family: "Oswald";
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-end;
+      list-style-type: none;
+      height: 100%; }
+      .navigation-2 .side-menu ul li {
+        margin: 0.5em;
+        transition: all 0.45s;
+        border-radius: 5px;
+        padding: 0.4em;
+        user-select: none;
+        color: white; }
+        .navigation-2 .side-menu ul li a {
+          text-decoration: none;
+          color: white; }
+        .navigation-2 .side-menu ul li:hover {
+          background-color: white;
+          transform: translateY(-5px);
+          color: #4d8b31; }
+          .navigation-2 .side-menu ul li:hover a {
+            color: #4d8b31; }
+        .navigation-2 .side-menu ul li:active {
+          transform: translateY(5px); }
+      .navigation-2 .side-menu ul .pincode-toggle {
+        display: flex;
+        align-items: center;
+        margin-right: 10px; }
+        .navigation-2 .side-menu ul .pincode-toggle i {
+          margin-right: 5px; }
+      .navigation-2 .side-menu ul .small-screen {
+        display: none; }
+        .navigation-2 .side-menu ul .small-screen a {
+          color: white; }
+        @media (max-width: 768px) {
+          .navigation-2 .side-menu ul .small-screen {
+            display: block; }
+            .navigation-2 .side-menu ul .small-screen:first-child {
+              display: flex;
+              justify-content: space-between; } }
+    .navigation-2 .side-menu .enter-pincode-mobile {
+      margin-top: 0.2em;
+      width: 100%; }
+      .navigation-2 .side-menu .enter-pincode-mobile .input-box {
+        display: flex;
+        justify-self: start; }
+        .navigation-2 .side-menu .enter-pincode-mobile .input-box input {
+          width: 70%;
+          border-radius: 5px 0 0 5px; }
+        .navigation-2 .side-menu .enter-pincode-mobile .input-box button {
+          font-family: "Nunito";
+          padding: 0.3em 0.9em;
+          border: none;
+          background-color: #4d8b31;
+          color: white;
+          transition: all 0.3s;
+          outline: none;
+          border-radius: 0 5px 5px 0; }
+          .navigation-2 .side-menu .enter-pincode-mobile .input-box button:hover {
+            transform: translateY(-5px); }
+          .navigation-2 .side-menu .enter-pincode-mobile .input-box button:active {
+            transform: translateY(5px); }
+  .navigation-2 .active {
+    right: -1px; }
+
+.hero-area {
+  width: 100%;
+  height: 80vh;
+  position: relative; }
+  @media (max-width: 1024px) {
+    .hero-area {
+      height: 100vh; } }
+  .hero-area .overlay-gradient {
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-image: linear-gradient(to right, rgba(77, 139, 49, 0.4), rgba(255, 200, 0, 0.4)); }
+    @media (max-width: 1024px) {
+      .hero-area .overlay-gradient {
+        height: 95vh; } }
+  .hero-area video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+    @media (max-width: 1024px) {
+      .hero-area video {
+        height: 95%; } }
+  .hero-area .hero-form {
+    position: absolute;
+    background-color: rgba(30, 33, 43, 0.6);
+    padding: 1em;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 30vw;
+    border-radius: 0.3em;
+    display: flex;
+    flex-flow: column;
+    align-items: center; }
+    @media (max-width: 1024px) {
+      .hero-area .hero-form {
+        width: 60%; } }
+    @media (max-width: 420px) {
+      .hero-area .hero-form {
+        width: 95%; } }
+    @media (max-width: 320px) {
+      .hero-area .hero-form {
+        width: 95%; }
+        .hero-area .hero-form .pincode {
+          margin: 0.2em auto; } }
+    .hero-area .hero-form h1 {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      color: white;
+      font-weight: 300; }
+      @media (max-width: 400px) {
+        .hero-area .hero-form h1 {
+          font-size: 1.7em; } }
+    .hero-area .hero-form .contact-info {
+      font-family: "Nunito";
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center; }
+      .hero-area .hero-form .contact-info div {
+        margin: 0.4em;
+        font-size: 0.7em;
+        color: white; }
+    .hero-area .hero-form .pincode {
+      display: flex;
+      align-items: center;
+      margin: 0.5em auto;
+      font-family: "Oswald"; }
+    .hero-area .hero-form .search {
+      display: flex;
+      align-items: center;
+      font-family: "Oswald";
+      font-size: 1.5em;
+      display: flex;
+      flex-flow: column;
+      align-items: center; }
+
+.our-services {
+  width: 80vw;
+  overflow: hidden;
+  margin: 2em auto;
+  display: flex;
+  align-items: center; }
+  @media (max-width: 768px) {
+    .our-services {
+      width: 87vw; } }
+  @media (max-width: 320px) {
+    .our-services {
+      width: 95vw; } }
+  .our-services .lead-img {
+    margin-right: 1em;
+    position: relative; }
+    @media (max-width: 768px) {
+      .our-services .lead-img {
+        display: none; } }
+    .our-services .lead-img img {
+      width: 25vw; }
+    .our-services .lead-img h3 {
+      position: absolute;
+      top: 45%;
+      left: 0;
+      font-family: "Nunito";
+      font-size: 2.5em;
+      background-image: linear-gradient(to right, #ffc800, green);
+      width: 25vw;
+      margin: 0.5em auto;
+      text-align: center;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 400;
+      transform: translateY(-50%); }
+      @media (max-width: 1024px) {
+        .our-services .lead-img h3 {
+          font-size: 2em; } }
+  .our-services .services .list {
+    display: flex;
+    flex-wrap: wrap; }
+    @media (max-width: 420px) {
+      .our-services .services .list {
+        justify-content: center; } }
+    .our-services .services .list .service {
+      position: relative;
+      margin: 0.3em;
+      border-radius: 10px;
+      height: 150px;
+      overflow: hidden;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+      @media (max-width: 420px) {
+        .our-services .services .list .service {
+          height: 100px; } }
+      .our-services .services .list .service img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover; }
+        @media (max-width: 420px) {
+          .our-services .services .list .service img {
+            width: 140px;
+            height: 100px; } }
+      .our-services .services .list .service h4 {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        font-family: "Oswald";
+        background-color: white;
+        width: 200px;
+        text-align: center;
+        transform: translateY(-50%); }
+        @media (max-width: 420px) {
+          .our-services .services .list .service h4 {
+            top: 50px; } }
+        @media (max-width: 420px) {
+          .our-services .services .list .service h4 {
+            width: 140px; } }
+        .our-services .services .list .service h4 a {
+          text-decoration: none;
+          color: #4d8b31;
+          font-weight: 400;
+          padding: 0.3em 0;
+          font-size: 1.3em; }
+          @media (max-width: 420px) {
+            .our-services .services .list .service h4 a {
+              font-size: 1em; } }
+
+.top-rated-products {
+  min-height: 70vh;
+  width: 100%;
+  margin: 2em auto;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-bottom: 1em; }
+  @media (max-width: 768px) {
+    .top-rated-products {
+      margin-top: 4.5em; } }
+  @media (max-width: 420px) {
+    .top-rated-products {
+      margin-top: 6em; } }
+  .top-rated-products svg {
+    margin-top: -2px; }
+  .top-rated-products .heading {
+    position: absolute;
+    top: 2em;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media (max-width: 1280px) {
+      .top-rated-products .heading {
+        top: 1.5em; } }
+    @media (max-width: 1024px) {
+      .top-rated-products .heading {
+        top: -1em; } }
+    @media (max-width: 768px) {
+      .top-rated-products .heading {
+        top: -3em; } }
+    @media (max-width: 420px) {
+      .top-rated-products .heading {
+        top: -3.7em; } }
+    @media (max-width: 320px) {
+      .top-rated-products .heading {
+        top: -4em; } }
+    .top-rated-products .heading img {
+      width: 200px; }
+      @media (max-width: 420px) {
+        .top-rated-products .heading img {
+          width: 120px; } }
+      @media (max-width: 320px) {
+        .top-rated-products .heading img {
+          width: 110px; } }
+    .top-rated-products .heading h1 {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      color: transparent;
+      letter-spacing: -1px;
+      background-image: linear-gradient(to right, #43782a, #b38c00);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      font-size: 2.2em; }
+      @media (max-width: 1280px) {
+        .top-rated-products .heading h1 {
+          font-size: 2em; } }
+      @media (max-width: 768px) {
+        .top-rated-products .heading h1 {
+          font-size: 1.5em; } }
+      @media (max-width: 420px) {
+        .top-rated-products .heading h1 {
+          font-size: 1em; } }
+  .top-rated-products .product-list {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start; }
+    @media (max-width: 1280px) {
+      .top-rated-products .product-list {
+        width: 90%; } }
+    @media (max-width: 420px) {
+      .top-rated-products .product-list {
+        width: 95%;
+        justify-content: center; } }
+    .top-rated-products .product-list .single-product {
+      width: 200px;
+      margin: 0.8em;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+      @media (max-width: 420px) {
+        .top-rated-products .product-list .single-product {
+          width: 140px; } }
+      .top-rated-products .product-list .single-product img {
+        width: 200px;
+        height: 230px;
+        object-fit: contain; }
+        @media (max-width: 420px) {
+          .top-rated-products .product-list .single-product img {
+            width: 140px;
+            height: 200px; } }
+      .top-rated-products .product-list .single-product h4 {
+        padding: 0.5em;
+        transition: all 0.4s; }
+        .top-rated-products .product-list .single-product h4 a {
+          text-decoration: none;
+          font-family: "Oswald";
+          font-size: 0.8em;
+          color: #b83d34;
+          font-weight: 400;
+          transition: all 0.5s; }
+        .top-rated-products .product-list .single-product h4:hover a {
+          color: #4d8b31; }
+
+.featured-brands {
+  margin: 4em 0; }
+  .featured-brands h1 {
+    font-family: "Nunito";
+    font-size: 2em;
+    background-image: linear-gradient(to right, #4d8b31, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    margin: 1em auto; }
+    @media (max-width: 420px) {
+      .featured-brands h1 {
+        font-size: 1.5em;
+        font-weight: 500; } }
+  .featured-brands .brand-list {
+    width: 80%;
+    margin: 1em auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+    @media (max-width: 768px) {
+      .featured-brands .brand-list {
+        width: 90%; } }
+    .featured-brands .brand-list .brand-card {
+      margin: 2em;
+      position: relative;
+      width: 400px;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(77, 139, 49, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(77, 139, 49, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(77, 139, 49, 0.35); }
+      @media (max-width: 420px) {
+        .featured-brands .brand-list .brand-card {
+          margin: 1em; } }
+      @media (max-width: 1024px) {
+        .featured-brands .brand-list .brand-card {
+          width: 300px; } }
+      @media (max-width: 768px) {
+        .featured-brands .brand-list .brand-card {
+          width: 250px; } }
+      .featured-brands .brand-list .brand-card img {
+        width: 400px;
+        height: 200px;
+        object-fit: cover;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 63% 84%, 0 84%);
+        object-position: top; }
+        @media (max-width: 1024px) {
+          .featured-brands .brand-list .brand-card img {
+            width: 300px;
+            height: 150px; } }
+        @media (max-width: 768px) {
+          .featured-brands .brand-list .brand-card img {
+            width: 250px;
+            height: 100px;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 63% 74%, 0 74%); } }
+      .featured-brands .brand-list .brand-card h4 {
+        font-family: "Oswald";
+        text-transform: uppercase;
+        position: absolute;
+        left: 10px;
+        bottom: 3px;
+        font-size: 1.3em; }
+        @media (max-width: 1024px) {
+          .featured-brands .brand-list .brand-card h4 {
+            font-size: 1em;
+            bottom: 2px; } }
+        .featured-brands .brand-list .brand-card h4 a {
+          text-decoration: none;
+          color: #4d8b31;
+          font-weight: 400;
+          transition: all 0.4s; }
+          .featured-brands .brand-list .brand-card h4 a:hover {
+            color: #ac3931; }
+
+.health-articles {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 1em;
+  margin-bottom: 2em; }
+  .health-articles svg {
+    margin-bottom: 2em;
+    margin-top: -2px; }
+  .health-articles h1 {
+    position: absolute;
+    top: 2.5em;
+    left: 1em;
+    font-family: "Nunito";
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #ac3931, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent; }
+    @media (max-width: 1024px) {
+      .health-articles h1 {
+        top: 2em; } }
+    @media (max-width: 768px) {
+      .health-articles h1 {
+        top: 0.8em; } }
+    @media (max-width: 420px) {
+      .health-articles h1 {
+        top: -0.5em;
+        font-size: 1.5em;
+        left: 1.5em; } }
+  .health-articles .article-list {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; }
+    @media (max-width: 1024px) {
+      .health-articles .article-list {
+        width: 95%; } }
+    .health-articles .article-list .article-card {
+      width: 280px;
+      margin: 1em; }
+      .health-articles .article-list .article-card img {
+        width: 280px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px; }
+      .health-articles .article-list .article-card .timestamp {
+        margin: 0.3em 0;
+        font-family: "Oswald";
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        border-left: 2px solid white;
+        border-right: 2px solid white; }
+      .health-articles .article-list .article-card .details {
+        background-color: #ffffff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='216' height='216' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%2320b31d' stroke-width='1' stroke-opacity='0.23'%3E%3Crect x='-40' y='40' width='75' height='75'/%3E%3Crect x='-35' y='45' width='65' height='65'/%3E%3Crect x='-30' y='50' width='55' height='55'/%3E%3Crect x='-25' y='55' width='45' height='45'/%3E%3Crect x='-20' y='60' width='35' height='35'/%3E%3Crect x='-15' y='65' width='25' height='25'/%3E%3Crect x='-10' y='70' width='15' height='15'/%3E%3Crect x='-5' y='75' width='5' height='5'/%3E%3Crect width='35' height='35'/%3E%3Crect x='5' y='5' width='25' height='25'/%3E%3Crect x='10' y='10' width='15' height='15'/%3E%3Crect x='15' y='15' width='5' height='5'/%3E%3Crect x='40' width='75' height='75'/%3E%3Crect x='45' y='5' width='65' height='65'/%3E%3Crect x='50' y='10' width='55' height='55'/%3E%3Crect x='55' y='15' width='45' height='45'/%3E%3Crect x='60' y='20' width='35' height='35'/%3E%3Crect x='65' y='25' width='25' height='25'/%3E%3Crect x='70' y='30' width='15' height='15'/%3E%3Crect x='75' y='35' width='5' height='5'/%3E%3Crect x='40' y='80' width='35' height='35'/%3E%3Crect x='45' y='85' width='25' height='25'/%3E%3Crect x='50' y='90' width='15' height='15'/%3E%3Crect x='55' y='95' width='5' height='5'/%3E%3Crect x='120' y='-40' width='75' height='75'/%3E%3Crect x='125' y='-35' width='65' height='65'/%3E%3Crect x='130' y='-30' width='55' height='55'/%3E%3Crect x='135' y='-25' width='45' height='45'/%3E%3Crect x='140' y='-20' width='35' height='35'/%3E%3Crect x='145' y='-15' width='25' height='25'/%3E%3Crect x='150' y='-10' width='15' height='15'/%3E%3Crect x='155' y='-5' width='5' height='5'/%3E%3Crect x='120' y='40' width='35' height='35'/%3E%3Crect x='125' y='45' width='25' height='25'/%3E%3Crect x='130' y='50' width='15' height='15'/%3E%3Crect x='135' y='55' width='5' height='5'/%3E%3Crect y='120' width='75' height='75'/%3E%3Crect x='5' y='125' width='65' height='65'/%3E%3Crect x='10' y='130' width='55' height='55'/%3E%3Crect x='15' y='135' width='45' height='45'/%3E%3Crect x='20' y='140' width='35' height='35'/%3E%3Crect x='25' y='145' width='25' height='25'/%3E%3Crect x='30' y='150' width='15' height='15'/%3E%3Crect x='35' y='155' width='5' height='5'/%3E%3Crect x='200' y='120' width='75' height='75'/%3E%3Crect x='40' y='200' width='75' height='75'/%3E%3Crect x='80' y='80' width='75' height='75'/%3E%3Crect x='85' y='85' width='65' height='65'/%3E%3Crect x='90' y='90' width='55' height='55'/%3E%3Crect x='95' y='95' width='45' height='45'/%3E%3Crect x='100' y='100' width='35' height='35'/%3E%3Crect x='105' y='105' width='25' height='25'/%3E%3Crect x='110' y='110' width='15' height='15'/%3E%3Crect x='115' y='115' width='5' height='5'/%3E%3Crect x='80' y='160' width='35' height='35'/%3E%3Crect x='85' y='165' width='25' height='25'/%3E%3Crect x='90' y='170' width='15' height='15'/%3E%3Crect x='95' y='175' width='5' height='5'/%3E%3Crect x='120' y='160' width='75' height='75'/%3E%3Crect x='125' y='165' width='65' height='65'/%3E%3Crect x='130' y='170' width='55' height='55'/%3E%3Crect x='135' y='175' width='45' height='45'/%3E%3Crect x='140' y='180' width='35' height='35'/%3E%3Crect x='145' y='185' width='25' height='25'/%3E%3Crect x='150' y='190' width='15' height='15'/%3E%3Crect x='155' y='195' width='5' height='5'/%3E%3Crect x='160' y='40' width='75' height='75'/%3E%3Crect x='165' y='45' width='65' height='65'/%3E%3Crect x='170' y='50' width='55' height='55'/%3E%3Crect x='175' y='55' width='45' height='45'/%3E%3Crect x='180' y='60' width='35' height='35'/%3E%3Crect x='185' y='65' width='25' height='25'/%3E%3Crect x='190' y='70' width='15' height='15'/%3E%3Crect x='195' y='75' width='5' height='5'/%3E%3Crect x='160' y='120' width='35' height='35'/%3E%3Crect x='165' y='125' width='25' height='25'/%3E%3Crect x='170' y='130' width='15' height='15'/%3E%3Crect x='175' y='135' width='5' height='5'/%3E%3Crect x='200' y='200' width='35' height='35'/%3E%3Crect x='200' width='35' height='35'/%3E%3Crect y='200' width='35' height='35'/%3E%3C/g%3E%3C/svg%3E");
+        border-radius: 5px;
+        padding: 1em;
+        display: flex;
+        flex-flow: column;
+        justify-content: start;
+        align-items: center; }
+        .health-articles .article-list .article-card .details h4 {
+          font-family: "Oswald";
+          margin: 0.3em 0;
+          font-size: 0.95em;
+          color: #4d8b31;
+          font-weight: 400; }
+        .health-articles .article-list .article-card .details p {
+          font-family: "Nunito";
+          font-size: 0.7em;
+          line-height: 15px;
+          letter-spacing: -0.5px;
+          margin: 0.3em 0;
+          color: #333849; }
+        .health-articles .article-list .article-card .details a {
+          text-decoration: none;
+          background-color: #4d8b31;
+          width: fit-content;
+          font-family: "Oswald";
+          padding: 0.3em 0.5em;
+          font-size: 0.6em;
+          border-radius: 3px;
+          margin-top: 0.3em;
+          color: white; }
+
+.who-we-are {
+  margin: 2em 0; }
+  .who-we-are h1 {
+    background-image: linear-gradient(to right, #4d8b31, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+    font-family: "Nunito";
+    text-transform: uppercase;
+    margin: 0.5em auto; }
+  .who-we-are .point-list {
+    width: 80%;
+    margin: 1em auto; }
+    .who-we-are .point-list .one-point {
+      border: 1px solid #4d8b31;
+      margin: 1em 0;
+      padding: 1em;
+      border-radius: 5px;
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='216' height='216' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%2320b31d' stroke-width='1' stroke-opacity='0.23'%3E%3Crect x='-40' y='40' width='75' height='75'/%3E%3Crect x='-35' y='45' width='65' height='65'/%3E%3Crect x='-30' y='50' width='55' height='55'/%3E%3Crect x='-25' y='55' width='45' height='45'/%3E%3Crect x='-20' y='60' width='35' height='35'/%3E%3Crect x='-15' y='65' width='25' height='25'/%3E%3Crect x='-10' y='70' width='15' height='15'/%3E%3Crect x='-5' y='75' width='5' height='5'/%3E%3Crect width='35' height='35'/%3E%3Crect x='5' y='5' width='25' height='25'/%3E%3Crect x='10' y='10' width='15' height='15'/%3E%3Crect x='15' y='15' width='5' height='5'/%3E%3Crect x='40' width='75' height='75'/%3E%3Crect x='45' y='5' width='65' height='65'/%3E%3Crect x='50' y='10' width='55' height='55'/%3E%3Crect x='55' y='15' width='45' height='45'/%3E%3Crect x='60' y='20' width='35' height='35'/%3E%3Crect x='65' y='25' width='25' height='25'/%3E%3Crect x='70' y='30' width='15' height='15'/%3E%3Crect x='75' y='35' width='5' height='5'/%3E%3Crect x='40' y='80' width='35' height='35'/%3E%3Crect x='45' y='85' width='25' height='25'/%3E%3Crect x='50' y='90' width='15' height='15'/%3E%3Crect x='55' y='95' width='5' height='5'/%3E%3Crect x='120' y='-40' width='75' height='75'/%3E%3Crect x='125' y='-35' width='65' height='65'/%3E%3Crect x='130' y='-30' width='55' height='55'/%3E%3Crect x='135' y='-25' width='45' height='45'/%3E%3Crect x='140' y='-20' width='35' height='35'/%3E%3Crect x='145' y='-15' width='25' height='25'/%3E%3Crect x='150' y='-10' width='15' height='15'/%3E%3Crect x='155' y='-5' width='5' height='5'/%3E%3Crect x='120' y='40' width='35' height='35'/%3E%3Crect x='125' y='45' width='25' height='25'/%3E%3Crect x='130' y='50' width='15' height='15'/%3E%3Crect x='135' y='55' width='5' height='5'/%3E%3Crect y='120' width='75' height='75'/%3E%3Crect x='5' y='125' width='65' height='65'/%3E%3Crect x='10' y='130' width='55' height='55'/%3E%3Crect x='15' y='135' width='45' height='45'/%3E%3Crect x='20' y='140' width='35' height='35'/%3E%3Crect x='25' y='145' width='25' height='25'/%3E%3Crect x='30' y='150' width='15' height='15'/%3E%3Crect x='35' y='155' width='5' height='5'/%3E%3Crect x='200' y='120' width='75' height='75'/%3E%3Crect x='40' y='200' width='75' height='75'/%3E%3Crect x='80' y='80' width='75' height='75'/%3E%3Crect x='85' y='85' width='65' height='65'/%3E%3Crect x='90' y='90' width='55' height='55'/%3E%3Crect x='95' y='95' width='45' height='45'/%3E%3Crect x='100' y='100' width='35' height='35'/%3E%3Crect x='105' y='105' width='25' height='25'/%3E%3Crect x='110' y='110' width='15' height='15'/%3E%3Crect x='115' y='115' width='5' height='5'/%3E%3Crect x='80' y='160' width='35' height='35'/%3E%3Crect x='85' y='165' width='25' height='25'/%3E%3Crect x='90' y='170' width='15' height='15'/%3E%3Crect x='95' y='175' width='5' height='5'/%3E%3Crect x='120' y='160' width='75' height='75'/%3E%3Crect x='125' y='165' width='65' height='65'/%3E%3Crect x='130' y='170' width='55' height='55'/%3E%3Crect x='135' y='175' width='45' height='45'/%3E%3Crect x='140' y='180' width='35' height='35'/%3E%3Crect x='145' y='185' width='25' height='25'/%3E%3Crect x='150' y='190' width='15' height='15'/%3E%3Crect x='155' y='195' width='5' height='5'/%3E%3Crect x='160' y='40' width='75' height='75'/%3E%3Crect x='165' y='45' width='65' height='65'/%3E%3Crect x='170' y='50' width='55' height='55'/%3E%3Crect x='175' y='55' width='45' height='45'/%3E%3Crect x='180' y='60' width='35' height='35'/%3E%3Crect x='185' y='65' width='25' height='25'/%3E%3Crect x='190' y='70' width='15' height='15'/%3E%3Crect x='195' y='75' width='5' height='5'/%3E%3Crect x='160' y='120' width='35' height='35'/%3E%3Crect x='165' y='125' width='25' height='25'/%3E%3Crect x='170' y='130' width='15' height='15'/%3E%3Crect x='175' y='135' width='5' height='5'/%3E%3Crect x='200' y='200' width='35' height='35'/%3E%3Crect x='200' width='35' height='35'/%3E%3Crect y='200' width='35' height='35'/%3E%3C/g%3E%3C/svg%3E"); }
+      .who-we-are .point-list .one-point h4 {
+        font-family: "Oswald";
+        margin-bottom: 0.5em;
+        font-size: 1.3em;
+        color: #386524;
+        font-weight: 400; }
+      .who-we-are .point-list .one-point p {
+        font-family: "Nunito";
+        font-size: 0.8em;
+        color: #767f9f;
+        line-height: 15px; }
+
+footer {
+  padding-bottom: 1.5em;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  footer svg {
+    margin-top: -2px; }
+  footer .information {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center; }
+    @media (max-width: 420px) {
+      footer .information {
+        flex-flow: column; } }
+    footer .information div {
+      margin: 0.5em 0; }
+    footer .information .company {
+      background-color: rgba(30, 33, 43, 0.6);
+      padding: 0.6em;
+      border-radius: 5px; }
+      footer .information .company h3 {
+        font-family: "Oswald";
+        text-transform: uppercase;
+        color: white; }
+      footer .information .company div {
+        font-family: "Nunito";
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.8); }
+    footer .information .policy, footer .information .need-help {
+      background-color: rgba(30, 33, 43, 0.6);
+      padding: 0.6em;
+      border-radius: 5px; }
+      footer .information .policy h3, footer .information .need-help h3 {
+        font-family: "Oswald";
+        color: white;
+        text-transform: uppercase; }
+      footer .information .policy ul, footer .information .need-help ul {
+        list-style-type: none; }
+        footer .information .policy ul li, footer .information .need-help ul li {
+          font-family: "Nunito"; }
+          footer .information .policy ul li a, footer .information .need-help ul li a {
+            text-decoration: none;
+            font-size: 0.8em;
+            color: white; }
+    footer .information .follow-us h3 {
+      font-family: "Oswald";
+      color: white;
+      text-transform: uppercase; }
+    footer .information .follow-us ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: space-between; }
+      footer .information .follow-us ul li {
+        font-family: "Nunito"; }
+        footer .information .follow-us ul li a {
+          text-decoration: none;
+          font-size: 1.2em;
+          color: white; }
+  footer .copyright {
+    width: 80%;
+    margin: 1em auto; }
+    footer .copyright h4 {
+      text-align: center;
+      font-family: "Oswald";
+      color: white; }
+
+.hero-slider {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden; }
+  .hero-slider .slide-container {
+    display: flex;
+    height: 60vh; }
+    .hero-slider .slide-container .slide {
+      position: relative;
+      width: 98.7vw;
+      height: 60vh; }
+      @media (max-width: 1024px) {
+        .hero-slider .slide-container .slide {
+          width: 100vw; } }
+      .hero-slider .slide-container .slide img {
+        width: 98.7vw;
+        height: 60vh;
+        object-fit: cover; }
+        @media (max-width: 1024px) {
+          .hero-slider .slide-container .slide img {
+            width: 100vw; } }
+      .hero-slider .slide-container .slide .content {
+        position: absolute;
+        bottom: 50%;
+        transform: translateY(50%);
+        left: 0;
+        padding: 1em;
+        background-image: linear-gradient(to right, #4d8b31, #0D59A3);
+        clip-path: polygon(0% 0%, 80% 0, 100% 25%, 100% 100%, 0% 100%);
+        -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+        -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+        box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+        @media (max-width: 420px) {
+          .hero-slider .slide-container .slide .content {
+            bottom: 40%;
+            width: 70%; } }
+        .hero-slider .slide-container .slide .content h4 {
+          font-family: "Nunito";
+          font-size: 2.5em;
+          color: white;
+          text-transform: uppercase; }
+          @media (max-width: 420px) {
+            .hero-slider .slide-container .slide .content h4 {
+              font-size: 1.5em; } }
+          @media (max-width: 360px) {
+            .hero-slider .slide-container .slide .content h4 {
+              font-size: 1em; } }
+        .hero-slider .slide-container .slide .content p {
+          font-family: "Oswald";
+          color: white;
+          font-size: 1.1em;
+          font-weight: 400;
+          margin-bottom: 0.7em; }
+          @media (max-width: 420px) {
+            .hero-slider .slide-container .slide .content p {
+              font-size: 0.9em; } }
+          @media (max-width: 360px) {
+            .hero-slider .slide-container .slide .content p {
+              font-size: 0.8em; } }
+        .hero-slider .slide-container .slide .content a {
+          background-color: white;
+          padding: 0.5em;
+          border-radius: 3px;
+          margin-bottom: 0.6em;
+          text-decoration: none;
+          color: #0D59A3;
+          font-family: "Nunito";
+          transition: all 0.4s; }
+          .hero-slider .slide-container .slide .content a:hover {
+            transform: translateY(-5px); }
+          .hero-slider .slide-container .slide .content a:active {
+            transform: translateY(5px); }
+
+.navigation-2 .options .cart-popup {
+  position: absolute;
+  z-index: 9;
+  top: 5.8em;
+  right: 5px;
+  width: 300px;
+  height: 400px;
+  background-color: #0D59A3;
+  -webkit-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  -moz-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  border-radius: 5px;
+  padding: 10px; }
+  .navigation-2 .options .cart-popup .cart-content h3 {
+    font-family: "Oswald";
+    color: white;
+    font-weight: 400;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .navigation-2 .options .cart-popup .cart-content h3 button {
+      border: none;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      background-color: #ca4e46;
+      color: white;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.4s; }
+      .navigation-2 .options .cart-popup .cart-content h3 button:hover {
+        transform: translateY(-5px); }
+      .navigation-2 .options .cart-popup .cart-content h3 button:active {
+        transform: translateY(5px); }
+  .navigation-2 .options .cart-popup .cart-content .item-list {
+    height: 310px;
+    overflow: auto; }
+    .navigation-2 .options .cart-popup .cart-content .item-list::-webkit-scrollbar {
+      display: none; }
+    .navigation-2 .options .cart-popup .cart-content .item-list .single-item {
+      display: flex;
+      align-items: stretch;
+      margin: 0.5em 0; }
+      .navigation-2 .options .cart-popup .cart-content .item-list .single-item img {
+        width: 60px;
+        object-fit: cover;
+        margin-right: 10px; }
+      .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info h4 {
+        font-family: "Oswald";
+        width: 210px;
+        font-size: 0.9em;
+        color: white;
+        font-weight: 200;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; }
+        .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info h4 .trash {
+          border: none;
+          padding: 5px;
+          color: #ac3931;
+          border-radius: 2px;
+          transition: all 0.3s;
+          cursor: pointer; }
+          .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info h4 .trash:hover {
+            transform: translateY(-5px); }
+          .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info h4 .trash:active {
+            transform: translateY(5px); }
+      .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info .price {
+        font-family: "Oswald";
+        color: white; }
+      .navigation-2 .options .cart-popup .cart-content .item-list .single-item .info .quantity {
+        font-family: "Nunito";
+        color: white; }
+  .navigation-2 .options .cart-popup .cart-content .cart-link {
+    padding-top: 6px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between; }
+    .navigation-2 .options .cart-popup .cart-content .cart-link a {
+      text-align: right;
+      font-family: "Oswald";
+      background-color: white;
+      color: #4d8b31;
+      box-sizing: content-box;
+      font-family: "Oswald";
+      text-decoration: none;
+      padding: 5px 6px;
+      border-radius: 2px;
+      transition: all 0.3s; }
+      .navigation-2 .options .cart-popup .cart-content .cart-link a:hover {
+        transform: translateY(-5px); }
+      .navigation-2 .options .cart-popup .cart-content .cart-link a:active {
+        transform: translateY(5px); }
+    .navigation-2 .options .cart-popup .cart-content .cart-link .total {
+      font-family: "Oswald";
+      font-size: 25px;
+      color: white; }
+
+.enter-pincode {
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  background-color: #0D59A3;
+  top: 5.8em;
+  right: 380px;
+  z-index: 9;
+  -webkit-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  -moz-box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  box-shadow: -4px 2px 11px 1px rgba(30, 33, 43, 0.51);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+  align-items: center; }
+  .enter-pincode h4 {
+    font-family: "Oswald";
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    font-size: 1.15em;
+    margin-bottom: 10px; }
+  .enter-pincode .input-box {
+    display: flex; }
+    .enter-pincode .input-box input {
+      width: 218px;
+      border-radius: 5px 0 0 5px; }
+    .enter-pincode .input-box button {
+      font-family: "Oswald";
+      padding: 6px 8px;
+      border: none;
+      border-radius: 0px 5px 5px 0px;
+      transition: all 0.3s;
+      outline: none;
+      cursor: pointer;
+      background-color: white;
+      color: #4d8b31;
+      text-transform: uppercase; }
+      .enter-pincode .input-box button:hover {
+        transform: translateY(-5px); }
+      .enter-pincode .input-box button:active {
+        transform: translateY(5px); }
+
+.products-listing {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5em 0; }
+  .products-listing .single-product {
+    -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+    -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+    box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+    margin: 1em;
+    width: 450px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 0 0 60px 0; }
+    @media (max-width: 1024px) {
+      .products-listing .single-product {
+        margin: 0.5em; } }
+    @media (max-width: 768px) {
+      .products-listing .single-product {
+        width: 350px;
+        padding-bottom: 10px; } }
+    @media (max-width: 360px) {
+      .products-listing .single-product {
+        width: 320px;
+        padding-bottom: 8px; } }
+    @media (max-width: 320px) {
+      .products-listing .single-product {
+        width: 300px;
+        padding-bottom: 8px; } }
+    .products-listing .single-product img {
+      width: 200px;
+      margin-right: 3%; }
+      @media (max-width: 768px) {
+        .products-listing .single-product img {
+          width: 120px; } }
+      @media (max-width: 360px) {
+        .products-listing .single-product img {
+          width: 100px; } }
+      @media (max-width: 320px) {
+        .products-listing .single-product img {
+          width: 80px; } }
+    .products-listing .single-product .info {
+      padding-right: 10px; }
+      @media (max-width: 420px) {
+        .products-listing .single-product .info {
+          padding-right: 5px; } }
+      .products-listing .single-product .info h4 {
+        font-family: 1.1em; }
+        .products-listing .single-product .info h4 a {
+          text-decoration: none;
+          font-family: "Oswald";
+          color: #4d8b31;
+          font-weight: 500; }
+      .products-listing .single-product .info .price {
+        display: flex;
+        margin: 0.5em 0;
+        justify-content: flex-start;
+        align-items: center; }
+        .products-listing .single-product .info .price p {
+          font-family: "Nunito";
+          font-weight: bold;
+          text-transform: uppercase; }
+        .products-listing .single-product .info .price .selling-price {
+          margin-right: 15px;
+          font-size: 1.1em;
+          color: #4d8b31; }
+        .products-listing .single-product .info .price .mrp {
+          margin-right: 15px;
+          text-decoration: line-through;
+          color: #ac3931; }
+        .products-listing .single-product .info .price .offer {
+          font-size: 0.7em;
+          background-color: #0D59A3;
+          padding: 0.3em 0.4em 0.3em 1.5em;
+          color: white;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 20% 50%);
+          border-radius: 0 3px 3px 0; }
+      .products-listing .single-product .info .cart-controls {
+        display: flex;
+        align-items: center;
+        user-select: none; }
+        .products-listing .single-product .info .cart-controls button {
+          font-size: 1.5em;
+          border: none;
+          padding: 3px 10px;
+          border: none;
+          cursor: pointer;
+          outline: none;
+          color: white;
+          transition: all 0.3s; }
+          .products-listing .single-product .info .cart-controls button:hover {
+            transform: translateY(-5px); }
+          .products-listing .single-product .info .cart-controls button:active {
+            transform: translateY(5px); }
+        .products-listing .single-product .info .cart-controls input {
+          width: 60px;
+          text-align: center; }
+        .products-listing .single-product .info .cart-controls .plus {
+          background-color: #4d8b31;
+          border-radius: 4px 0 0 4px; }
+        .products-listing .single-product .info .cart-controls .minus {
+          background-color: #ac3931;
+          border-radius: 0 4px 4px 0; }
+
+.medicine-details {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; }
+  @media (max-width: 420px) {
+    .medicine-details {
+      flex-flow: column; } }
+  .medicine-details .product-image-gallery {
+    margin: 1em 0;
+    display: flex;
+    width: 48vw;
+    justify-content: space-between; }
+    @media (max-width: 420px) {
+      .medicine-details .product-image-gallery {
+        width: 90%;
+        flex-flow: column;
+        align-items: center; } }
+    .medicine-details .product-image-gallery .big-image {
+      width: 40vw;
+      overflow: hidden;
+      border: 1px solid #4d8b31;
+      border-radius: 10px; }
+      @media (max-width: 1024px) {
+        .medicine-details .product-image-gallery .big-image {
+          width: 38vw; } }
+      @media (max-width: 1024px) {
+        .medicine-details .product-image-gallery .big-image {
+          width: 35vw; } }
+      @media (max-width: 420px) {
+        .medicine-details .product-image-gallery .big-image {
+          width: 100%; } }
+      .medicine-details .product-image-gallery .big-image img {
+        width: 100%;
+        object-fit: contain; }
+    .medicine-details .product-image-gallery .thumbnails {
+      display: flex;
+      flex-flow: column; }
+      @media (max-width: 420px) {
+        .medicine-details .product-image-gallery .thumbnails {
+          width: 100%;
+          flex-flow: row;
+          flex-wrap: wrap;
+          justify-content: space-evenly; } }
+      .medicine-details .product-image-gallery .thumbnails img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border: 1px solid #62b13e;
+        border-radius: 5px;
+        margin: 0.5em 0; }
+        @media (max-width: 768px) {
+          .medicine-details .product-image-gallery .thumbnails img {
+            width: 70px;
+            height: 70px; } }
+        @media (max-width: 360px) {
+          .medicine-details .product-image-gallery .thumbnails img {
+            width: 52px;
+            height: 52px; } }
+  .medicine-details .product-information {
+    padding: 1em 0;
+    width: 40vw; }
+    @media (max-width: 420px) {
+      .medicine-details .product-information {
+        width: 100%; } }
+    .medicine-details .product-information .name-rating h1 {
+      font-family: "Oswald";
+      font-size: 1.5em;
+      color: #43782a;
+      font-weight: 500; }
+    .medicine-details .product-information .name-rating .brand {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      background-color: #4d8b31;
+      padding: 0.4em 0.6em;
+      margin: 0.3em 0;
+      width: fit-content;
+      border-radius: 5px;
+      color: white; }
+    .medicine-details .product-information .name-rating .write-review {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      font-size: 0.7em;
+      color: #62b13e;
+      text-align: left; }
+    .medicine-details .product-information .price {
+      margin: 0.5em 0; }
+      .medicine-details .product-information .price .selling-price {
+        font-size: 2.5em;
+        font-family: "Nunito"; }
+      .medicine-details .product-information .price .market-price {
+        font-family: "Nunito";
+        color: #43782a; }
+    .medicine-details .product-information .quantity {
+      margin: 0.5em 0;
+      display: flex;
+      align-items: center; }
+      .medicine-details .product-information .quantity input {
+        width: 120px;
+        height: 50px;
+        outline: none;
+        text-align: center; }
+      .medicine-details .product-information .quantity span {
+        font-size: 1.4em;
+        cursor: pointer;
+        padding: 0.4em;
+        color: white;
+        transition: all 0.4s; }
+        .medicine-details .product-information .quantity span:hover {
+          transform: translateY(-5px); }
+        .medicine-details .product-information .quantity span:active {
+          transform: translateY(5px); }
+        .medicine-details .product-information .quantity span:first-child {
+          background-color: #4d8b31;
+          border-radius: 5px 0px 0px 5px; }
+        .medicine-details .product-information .quantity span:last-child {
+          background-color: #ac3931;
+          border-radius: 0px 5px 5px 0px; }
+    .medicine-details .product-information .options {
+      width: 80%;
+      margin: 0.8em 0;
+      display: flex; }
+      .medicine-details .product-information .options a {
+        width: 200px;
+        padding: 0.4em 0.6em;
+        text-align: center;
+        font-family: "Oswald";
+        text-decoration: none;
+        color: white;
+        transition: all 0.5s; }
+        .medicine-details .product-information .options a:hover {
+          transform: translateY(-5px); }
+        .medicine-details .product-information .options a:active {
+          transform: translateY(5px); }
+      .medicine-details .product-information .options .add-to-cart {
+        background-color: #4d8b31;
+        border-radius: 5px 0px 0px 5px; }
+      .medicine-details .product-information .options .buy-now {
+        background-color: #0D59A3;
+        border-radius: 0px 5px 5px 0px; }
+
+.related-products {
+  position: relative;
+  margin: 2em 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 2em; }
+  .related-products svg {
+    margin-top: -2px; }
+  .related-products h1 {
+    background-image: linear-gradient(to right, #ac3931, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+    font-family: "Nunito";
+    text-transform: uppercase;
+    font-size: 2em;
+    position: absolute;
+    top: 2em;
+    left: 1em; }
+    @media (max-width: 768px) {
+      .related-products h1 {
+        top: 1em; } }
+    @media (max-width: 420px) {
+      .related-products h1 {
+        top: 0em;
+        font-size: 1.5em;
+        left: 0.5em; } }
+    @media (max-width: 420px) {
+      .related-products h1 {
+        top: -0.5em;
+        font-size: 1.2em;
+        left: 0.5em; } }
+  .related-products .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto; }
+    .related-products .product-list .product-card {
+      width: 200px;
+      margin: 1em;
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+      .related-products .product-list .product-card img {
+        width: 200px; }
+      .related-products .product-list .product-card h4 {
+        padding: 0.7em;
+        font-family: "Oswald";
+        line-height: 17px;
+        transition: all 0.4s;
+        font-weight: 400; }
+        .related-products .product-list .product-card h4 a {
+          text-decoration: none;
+          color: #4d8b31; }
+          .related-products .product-list .product-card h4 a:hover {
+            color: #1173d2; }
+      .related-products .product-list .product-card .price {
+        padding: 0.5em 0.7em;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .related-products .product-list .product-card .price p {
+          font-family: "Nunito";
+          font-size: 1.1em;
+          padding: 0.5em 0.6em;
+          color: white; }
+        .related-products .product-list .product-card .price .market-price {
+          background-color: #ac3931;
+          border-radius: 0px 5px 5px 0px;
+          text-decoration: line-through; }
+        .related-products .product-list .product-card .price .selling-price {
+          background-color: #4d8b31;
+          border-radius: 5px 0px 0px 5px; }
+
+.ratings h1 {
+  font-family: "Nunito";
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #4d8b31, #ffc800);
+  width: fit-content;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  color: transparent;
+  margin: 1em auto; }
+  @media (max-width: 420px) {
+    .ratings h1 {
+      font-size: 1.5em; } }
+
+.ratings .messages {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center; }
+  .ratings .messages .one-review {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1em;
+    border: 1px solid #ffc800;
+    padding: 1em;
+    border-radius: 10px; }
+    .ratings .messages .one-review:nth-child(even) {
+      flex-direction: row-reverse; }
+    @media (max-width: 420px) {
+      .ratings .messages .one-review {
+        flex-flow: column; }
+        .ratings .messages .one-review:nth-child(even) {
+          flex-direction: column; } }
+    .ratings .messages .one-review .user {
+      display: flex;
+      flex-flow: column;
+      justify-content: center; }
+      .ratings .messages .one-review .user img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%; }
+      .ratings .messages .one-review .user h4 {
+        font-family: "Oswald";
+        text-transform: uppercase;
+        font-size: 0.8em;
+        color: #4d8b31;
+        margin-top: 15px;
+        font-weight: 400; }
+    .ratings .messages .one-review .response {
+      width: 50%; }
+      @media (max-width: 420px) {
+        .ratings .messages .one-review .response {
+          width: 100%; } }
+      .ratings .messages .one-review .response p {
+        font-family: "Nunito";
+        line-height: 18px;
+        color: #4d8b31; }
+        .ratings .messages .one-review .response p::first-letter {
+          font-size: 2em; }
+      .ratings .messages .one-review .response .timestamp {
+        border-top: 1px solid #0D59A3;
+        border-bottom: 1px solid #0D59A3;
+        width: fit-content;
+        margin-top: 1em;
+        font-family: "Oswald";
+        font-size: 0.8em;
+        color: #767f9f; }
+
+.cart-body {
+  margin: 2em 0; }
+  .cart-body .heading {
+    margin: 0.4em auto;
+    width: fit-content;
+    display: flex;
+    align-items: center; }
+    .cart-body .heading img {
+      width: 6em;
+      height: 9em;
+      object-fit: cover; }
+    .cart-body .heading h1 {
+      background-image: linear-gradient(to right, #4d8b31, #ffc800);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent;
+      font-family: "Oswald";
+      font-size: 2.3em; }
+      @media (max-width: 360px) {
+        .cart-body .heading h1 {
+          font-size: 2em; } }
+  .cart-body .offers {
+    width: 80%;
+    margin: 0.4em auto; }
+    @media (max-width: 420px) {
+      .cart-body .offers {
+        width: 95%; } }
+    .cart-body .offers .single-offer {
+      border: 1px solid #62b13e;
+      padding: 1em;
+      border-radius: 5px;
+      font-family: "Nunito";
+      background-color: #9bd382;
+      color: #386524;
+      margin: 0.6em 0; }
+  .cart-body .cart-items .item-list {
+    width: 80%;
+    margin: 0.5em auto; }
+    @media (max-width: 420px) {
+      .cart-body .cart-items .item-list {
+        width: 95%; } }
+    .cart-body .cart-items .item-list .single-item {
+      margin: 1.5em 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid rgba(13, 89, 163, 0.4); }
+      @media (max-width: 320px) {
+        .cart-body .cart-items .item-list .single-item {
+          flex-direction: column; } }
+      .cart-body .cart-items .item-list .single-item .product {
+        display: flex;
+        align-items: center; }
+        .cart-body .cart-items .item-list .single-item .product img {
+          width: 9em; }
+          @media (max-width: 768px) {
+            .cart-body .cart-items .item-list .single-item .product img {
+              width: 7em; } }
+          @media (max-width: 420px) {
+            .cart-body .cart-items .item-list .single-item .product img {
+              width: 5em; } }
+        .cart-body .cart-items .item-list .single-item .product .info {
+          width: 70%; }
+          @media (max-width: 768px) {
+            .cart-body .cart-items .item-list .single-item .product .info {
+              width: 60%; } }
+          .cart-body .cart-items .item-list .single-item .product .info h4 {
+            font-family: "Oswald";
+            font-weight: 400; }
+            @media (max-width: 420px) {
+              .cart-body .cart-items .item-list .single-item .product .info h4 {
+                font-size: 0.95em; } }
+            .cart-body .cart-items .item-list .single-item .product .info h4 a {
+              text-decoration: none;
+              color: #0D59A3; }
+          .cart-body .cart-items .item-list .single-item .product .info .mrp {
+            color: #4d8b31;
+            font-size: 0.9em;
+            font-weight: 600;
+            font-family: "Nunito"; }
+      .cart-body .cart-items .item-list .single-item .options {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; }
+        @media (max-width: 420px) {
+          .cart-body .cart-items .item-list .single-item .options {
+            flex-flow: column;
+            align-items: flex-start;
+            justify-content: center; } }
+        @media (max-width: 320px) {
+          .cart-body .cart-items .item-list .single-item .options {
+            flex-direction: row;
+            align-items: center; } }
+        .cart-body .cart-items .item-list .single-item .options .quantity-controls {
+          margin-right: 2em;
+          display: flex;
+          align-items: center; }
+          @media (max-width: 320px) {
+            .cart-body .cart-items .item-list .single-item .options .quantity-controls {
+              margin-right: 1em; } }
+          .cart-body .cart-items .item-list .single-item .options .quantity-controls input {
+            width: 45px;
+            border: 1px solid #4d8b31;
+            outline: none;
+            border-radius: 0px; }
+            @media (max-width: 420px) {
+              .cart-body .cart-items .item-list .single-item .options .quantity-controls input {
+                width: 40px; } }
+          .cart-body .cart-items .item-list .single-item .options .quantity-controls button {
+            border: none;
+            font-size: 1.1em;
+            padding: 0.4em;
+            color: white;
+            transition: all 0.3s;
+            cursor: pointer; }
+            .cart-body .cart-items .item-list .single-item .options .quantity-controls button:hover {
+              transform: translateY(-5px); }
+            .cart-body .cart-items .item-list .single-item .options .quantity-controls button:active {
+              transform: translateY(5px); }
+          .cart-body .cart-items .item-list .single-item .options .quantity-controls .plus {
+            background-color: #4d8b31;
+            border-radius: 0 4px 4px 0; }
+          .cart-body .cart-items .item-list .single-item .options .quantity-controls .minus {
+            background-color: #ac3931;
+            border-radius: 4px 0px 0px 4px; }
+        .cart-body .cart-items .item-list .single-item .options .total {
+          font-family: "Oswald";
+          margin-right: 2.5em;
+          color: #4d8b31;
+          text-align: center; }
+          @media (max-width: 768px) {
+            .cart-body .cart-items .item-list .single-item .options .total {
+              margin-right: 2em;
+              width: 3em; } }
+          @media (max-width: 420px) {
+            .cart-body .cart-items .item-list .single-item .options .total {
+              font-size: 1.1em;
+              margin: 0.4em 0 0.4em 1em; } }
+          @media (max-width: 320px) {
+            .cart-body .cart-items .item-list .single-item .options .total {
+              font-size: 1.1em;
+              margin-left: 0.5em; } }
+        .cart-body .cart-items .item-list .single-item .options .trash button {
+          font-size: 1.1em;
+          padding: 0.4em;
+          background-color: #ac3931;
+          border: none;
+          border-radius: 4px;
+          color: white;
+          transition: all 0.4s;
+          cursor: pointer;
+          outline: none; }
+          .cart-body .cart-items .item-list .single-item .options .trash button:hover {
+            transform: translateY(-5px); }
+          .cart-body .cart-items .item-list .single-item .options .trash button:active {
+            transform: translateY(5px); }
+          @media (max-width: 420px) {
+            .cart-body .cart-items .item-list .single-item .options .trash button {
+              width: 95px; } }
+  .cart-body .grand-total {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0.5em auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, #4d8b31, #43782a); }
+    @media (max-width: 420px) {
+      .cart-body .grand-total {
+        width: 95%; } }
+    .cart-body .grand-total .text {
+      color: white; }
+      .cart-body .grand-total .text h4 {
+        font-family: "Nunito";
+        font-size: 1.4em; }
+        @media (max-width: 360px) {
+          .cart-body .grand-total .text h4 {
+            font-size: 1em; } }
+      .cart-body .grand-total .text p {
+        font-family: "Nunito"; }
+        @media (max-width: 360px) {
+          .cart-body .grand-total .text p {
+            font-size: 0.8em; } }
+    .cart-body .grand-total .info {
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white; }
+      @media (max-width: 768px) {
+        .cart-body .grand-total .info {
+          width: 35%; } }
+      @media (max-width: 420px) {
+        .cart-body .grand-total .info {
+          width: 45%; } }
+      @media (max-width: 360px) {
+        .cart-body .grand-total .info {
+          width: 50%; } }
+      .cart-body .grand-total .info .no-items {
+        font-family: "Nunito";
+        font-size: 1.1em; }
+      .cart-body .grand-total .info .total-price {
+        font-family: "Oswald";
+        font-size: 1.3em;
+        letter-spacing: 1px; }
+        @media (max-width: 360px) {
+          .cart-body .grand-total .info .total-price {
+            font-size: 1.1em; } }
+  .cart-body .checkout {
+    width: 80%;
+    margin: 1em auto;
+    text-align: right;
+    transition: all 0.8s; }
+    @media (max-width: 420px) {
+      .cart-body .checkout {
+        width: 95%; } }
+    .cart-body .checkout a {
+      text-decoration: none;
+      font-family: "Oswald";
+      font-size: 1.3em;
+      background-image: linear-gradient(to right, #4d8b31, #0D59A3);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.8s; }
+    .cart-body .checkout:hover a {
+      background-image: linear-gradient(to right, #ffc800, #ac3931);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent; }
+
+.order-medinices .heading {
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .order-medinices .heading img {
+    width: 10em; }
+    @media (max-width: 420px) {
+      .order-medinices .heading img {
+        width: 6em; } }
+  .order-medinices .heading h1 {
+    font-family: "Nunito";
+    text-transform: uppercase;
+    font-size: 2em;
+    background-image: linear-gradient(to right, #4d8b31, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent; }
+    @media (max-width: 420px) {
+      .order-medinices .heading h1 {
+        font-size: 1.1em; } }
+    @media (max-width: 320px) {
+      .order-medinices .heading h1 {
+        font-size: 0.9em; } }
+
+.order-medinices .search-medicine {
+  margin: 2em auto;
+  width: 80%;
+  padding: 1.5em;
+  border-radius: 5px;
+  border: 1px solid rgba(77, 139, 49, 0.5);
+  background-color: rgba(77, 139, 49, 0.2); }
+  @media (max-width: 420px) {
+    .order-medinices .search-medicine {
+      width: 95%; } }
+  .order-medinices .search-medicine .our-features {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; }
+    .order-medinices .search-medicine .our-features .one-feature {
+      display: flex;
+      align-items: center; }
+      .order-medinices .search-medicine .our-features .one-feature img {
+        width: 50px;
+        margin-right: 10px; }
+        @media (max-width: 420px) {
+          .order-medinices .search-medicine .our-features .one-feature img {
+            width: 25px;
+            margin-right: 4px; } }
+      .order-medinices .search-medicine .our-features .one-feature h5 {
+        font-family: "Nunito";
+        text-transform: uppercase;
+        color: rgba(77, 139, 49, 0.8); }
+        @media (max-width: 420px) {
+          .order-medinices .search-medicine .our-features .one-feature h5 {
+            font-size: 0.5em; } }
+  .order-medinices .search-medicine .search-input-container {
+    margin: 2em auto;
+    width: fit-content; }
+    .order-medinices .search-medicine .search-input-container h4 {
+      font-family: "Oswald";
+      font-size: 1.6em;
+      color: #4d8b31;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 0.5em; }
+      @media (max-width: 420px) {
+        .order-medinices .search-medicine .search-input-container h4 {
+          font-size: 1.1em; } }
+      @media (max-width: 320px) {
+        .order-medinices .search-medicine .search-input-container h4 {
+          font-size: 0.8em; } }
+    .order-medinices .search-medicine .search-input-container .search-field {
+      display: flex;
+      align-items: center; }
+      @media (max-width: 420px) {
+        .order-medinices .search-medicine .search-input-container .search-field {
+          flex-flow: column; } }
+      .order-medinices .search-medicine .search-input-container .search-field input {
+        font-size: 1.1em;
+        border-radius: 0;
+        outline: none; }
+        @media (max-width: 420px) {
+          .order-medinices .search-medicine .search-input-container .search-field input {
+            width: 100%;
+            border: none;
+            margin-bottom: 0.3em;
+            border-radius: 5px; } }
+        @media (max-width: 320px) {
+          .order-medinices .search-medicine .search-input-container .search-field input {
+            font-size: 0.9em; } }
+      .order-medinices .search-medicine .search-input-container .search-field .pincode {
+        width: 150px;
+        border-right: 2px solid rgba(77, 139, 49, 0.7);
+        border-radius: 5px 0 0 5px; }
+        @media (max-width: 420px) {
+          .order-medinices .search-medicine .search-input-container .search-field .pincode {
+            width: 100%;
+            border: none; } }
+      .order-medinices .search-medicine .search-input-container .search-field .search-med {
+        font-size: 1.1em;
+        padding: 10px 20px;
+        background-color: #4d8b31;
+        border: none;
+        outline: none;
+        transition: all 0.4s;
+        color: white;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0; }
+        .order-medinices .search-medicine .search-input-container .search-field .search-med:hover {
+          transform: translateY(-5px); }
+        .order-medinices .search-medicine .search-input-container .search-field .search-med:active {
+          transform: translateY(5px); }
+        @media (max-width: 420px) {
+          .order-medinices .search-medicine .search-input-container .search-field .search-med {
+            width: 100%;
+            border: none;
+            margin-bottom: 0.3em;
+            border-radius: 5px; } }
+  .order-medinices .search-medicine .order-by-prescription {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content; }
+    .order-medinices .search-medicine .order-by-prescription img {
+      width: 50px; }
+      @media (max-width: 420px) {
+        .order-medinices .search-medicine .order-by-prescription img {
+          width: 40px; } }
+    .order-medinices .search-medicine .order-by-prescription h4 a {
+      text-decoration: none;
+      font-family: "Nunito";
+      text-transform: uppercase;
+      font-size: 1.1em;
+      color: rgba(77, 139, 49, 0.8); }
+      @media (max-width: 420px) {
+        .order-medinices .search-medicine .order-by-prescription h4 a {
+          font-size: 0.9em; } }
+      @media (max-width: 320px) {
+        .order-medinices .search-medicine .order-by-prescription h4 a {
+          font-size: 0.8em; } }
+
+.testimonials {
+  margin: 3em 0; }
+  .testimonials .heading {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 1em auto; }
+    .testimonials .heading img {
+      width: 7em; }
+    .testimonials .heading h1 {
+      font-family: "Nunito";
+      font-size: 2em;
+      text-transform: uppercase;
+      background-image: linear-gradient(to right, #4d8b31, #ffc800);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent; }
+    @media (max-width: 420px) {
+      .testimonials .heading img {
+        width: 6em; }
+      .testimonials .heading h1 {
+        font-size: 1.3em; } }
+  .testimonials .testimonial-list {
+    width: 80%;
+    margin: 2em auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center; }
+    @media (max-width: 420px) {
+      .testimonials .testimonial-list {
+        width: 90%; } }
+    .testimonials .testimonial-list .single-testimonial {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5em 0; }
+      @media (max-width: 420px) {
+        .testimonials .testimonial-list .single-testimonial {
+          margin: 1em 0; } }
+      .testimonials .testimonial-list .single-testimonial:nth-child(odd) {
+        flex-flow: row-reverse; }
+      .testimonials .testimonial-list .single-testimonial .user {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 15px; }
+        .testimonials .testimonial-list .single-testimonial .user img {
+          width: 6em;
+          margin-bottom: 10px; }
+          @media (max-width: 420px) {
+            .testimonials .testimonial-list .single-testimonial .user img {
+              width: 5em; } }
+        .testimonials .testimonial-list .single-testimonial .user h4 {
+          font-family: "Oswald";
+          background-image: linear-gradient(to bottom, #0D59A3, #0b4c8b);
+          padding: 0.3em 0.4em;
+          border-radius: 4px;
+          color: white;
+          font-weight: 400; }
+          @media (max-width: 420px) {
+            .testimonials .testimonial-list .single-testimonial .user h4 {
+              font-size: 0.8em; } }
+          @media (max-width: 320px) {
+            .testimonials .testimonial-list .single-testimonial .user h4 {
+              font-size: 0.7em; } }
+      .testimonials .testimonial-list .single-testimonial .message {
+        width: 65%; }
+        .testimonials .testimonial-list .single-testimonial .message .text {
+          font-family: "Oswald";
+          font-weight: 400;
+          font-size: 0.9em;
+          margin-bottom: 10px;
+          color: #5ea93c; }
+          @media (max-width: 420px) {
+            .testimonials .testimonial-list .single-testimonial .message .text {
+              font-size: 0.8em; } }
+          @media (max-width: 420px) {
+            .testimonials .testimonial-list .single-testimonial .message .text {
+              font-size: 0.7em; } }
+        .testimonials .testimonial-list .single-testimonial .message .datetime {
+          font-family: "Nunito";
+          font-size: 0.8em;
+          font-weight: 600;
+          color: rgba(77, 139, 49, 0.6); }
+
+.search-results .search-box {
+  background-color: rgba(77, 139, 49, 0.5);
+  border-radius: 5px;
+  padding: 1em;
+  width: 80%;
+  margin: 1em auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 1024px) {
+    .search-results .search-box {
+      width: 90%; } }
+  @media (max-width: 768px) {
+    .search-results .search-box {
+      width: 95%; } }
+  @media (max-width: 420px) {
+    .search-results .search-box {
+      flex-flow: column; } }
+  .search-results .search-box .pincode input {
+    font-size: 1.1em;
+    border-radius: 5px 0 0 5px;
+    margin-bottom: 10px; }
+  .search-results .search-box .pincode .pincode-result {
+    font-family: "Nunito";
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #4d8b31; }
+    @media (max-width: 420px) {
+      .search-results .search-box .pincode .pincode-result {
+        margin-bottom: 10px; } }
+  .search-results .search-box .search-query input {
+    font-size: 1.1em;
+    border-radius: 0;
+    margin-bottom: 10px; }
+  .search-results .search-box .search-query .query-result {
+    font-family: "Nunito";
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #4d8b31; }
+  .search-results .search-box .search {
+    font-family: "Oswald";
+    padding: 0.5em 0.7em;
+    font-size: 1.11em;
+    transform: translateY(-14px);
+    border-radius: 0 5px 5px 0;
+    border: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-image: linear-gradient(to bottom, #4d8b31, #3c6d26);
+    color: white;
+    outline: none; }
+    .search-results .search-box .search:hover {
+      transform: translateY(-5px); }
+    .search-results .search-box .search:active {
+      transform: translateY(5px); }
+    @media (max-width: 420px) {
+      .search-results .search-box .search {
+        margin-top: 8px;
+        transform: translateY(0);
+        width: 85%;
+        border-radius: 5px; } }
+
+.search-results .results-container {
+  margin: 2em auto;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  @media (max-width: 1280px) {
+    .search-results .results-container {
+      width: 90%; } }
+  @media (max-width: 768px) {
+    .search-results .results-container {
+      width: 95%; } }
+  .search-results .results-container .single-result {
+    border: 1px solid #4d8b31;
+    display: flex;
+    align-items: center;
+    width: 47%;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 4px; }
+    @media (max-width: 1280px) {
+      .search-results .results-container .single-result {
+        width: 40%; } }
+    @media (max-width: 1024px) {
+      .search-results .results-container .single-result {
+        width: 48%;
+        margin: 0.5em; } }
+    @media (max-width: 768px) {
+      .search-results .results-container .single-result {
+        width: 60%;
+        margin: 0.5em; } }
+    @media (max-width: 420px) {
+      .search-results .results-container .single-result {
+        width: 100%;
+        margin: 0.5em; } }
+    .search-results .results-container .single-result img {
+      width: 150px;
+      margin-right: 8px;
+      height: 100%;
+      object-fit: contain; }
+      @media (max-width: 375px) {
+        .search-results .results-container .single-result img {
+          width: 100px; } }
+    .search-results .results-container .single-result .info h4 a {
+      text-decoration: none;
+      font-family: "Oswald";
+      font-size: 1.1em;
+      font-weight: 500;
+      color: #4d8b31; }
+      @media (max-width: 420px) {
+        .search-results .results-container .single-result .info h4 a {
+          font-size: 1em; } }
+      @media (max-width: 320px) {
+        .search-results .results-container .single-result .info h4 a {
+          font-size: 0.9em; } }
+    .search-results .results-container .single-result .info .prescription {
+      margin: 0.5em 0;
+      display: flex; }
+      .search-results .results-container .single-result .info .prescription div {
+        font-family: "Oswald";
+        font-size: 0.6em;
+        padding: 0.4em;
+        width: fit-content;
+        color: white;
+        border-radius: 3px; }
+      .search-results .results-container .single-result .info .prescription .yes {
+        background-color: #cca000; }
+      .search-results .results-container .single-result .info .prescription .no {
+        background-color: #579e38; }
+    .search-results .results-container .single-result .info .packet {
+      font-family: "Nunito";
+      font-size: 0.9em;
+      color: rgba(30, 33, 43, 0.4); }
+    .search-results .results-container .single-result .info .price {
+      display: flex;
+      margin: 0.5em 0;
+      align-items: center; }
+      .search-results .results-container .single-result .info .price div {
+        font-family: "Oswald"; }
+      .search-results .results-container .single-result .info .price .selling-price {
+        margin-right: 20px;
+        font-weight: bold;
+        color: #4d8b31;
+        font-size: 1.5em; }
+      .search-results .results-container .single-result .info .price .mrp {
+        margin-right: 10px;
+        color: rgba(172, 57, 49, 0.7);
+        text-decoration: line-through; }
+      .search-results .results-container .single-result .info .price .discount {
+        clip-path: polygon(100% 0, 100% 100%, 0% 100%, 30% 50%, 0% 0%);
+        background-color: #0D59A3;
+        padding: 5px 0;
+        padding-left: 30px;
+        padding-right: 8px;
+        border-radius: 0 3px 3px 0;
+        color: white;
+        font-size: 0.8em; }
+    .search-results .results-container .single-result .info .cart-controls {
+      display: flex;
+      justify-content: start; }
+      .search-results .results-container .single-result .info .cart-controls button {
+        font-size: 1.2em;
+        padding: 0.3em 0.5em;
+        color: white;
+        border: none;
+        transition: all 0.3s;
+        cursor: pointer;
+        outline: none; }
+        .search-results .results-container .single-result .info .cart-controls button:hover {
+          transform: translateY(-5px); }
+        .search-results .results-container .single-result .info .cart-controls button:active {
+          transform: translateY(5px); }
+      .search-results .results-container .single-result .info .cart-controls .plus {
+        background-color: #4d8b31; }
+      .search-results .results-container .single-result .info .cart-controls .minus {
+        background-color: #ac3931; }
+      .search-results .results-container .single-result .info .cart-controls .quantity {
+        width: 80px; }
+
+.brand-details .heading {
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .brand-details .heading img {
+    width: 10em; }
+    @media (max-width: 420px) {
+      .brand-details .heading img {
+        width: 8em; } }
+  .brand-details .heading h1 {
+    font-family: "Nunito";
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #4d8b31, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent; }
+
+.category-details .heading {
+  width: 100%;
+  position: relative;
+  height: 50vh; }
+  .category-details .heading img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover; }
+  .category-details .heading h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: #4d8b31;
+    font-family: "Nunito";
+    text-transform: uppercase;
+    padding: 0.5em 0.7em;
+    border-radius: 5px; }
+
+.category-list .heading {
+  width: 100%;
+  height: 50vh;
+  position: relative; }
+  .category-list .heading img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover; }
+  .category-list .heading h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Nunito";
+    text-transform: uppercase;
+    padding: 0.5em 0.8em;
+    background-color: white;
+    border-radius: 5px;
+    color: #4d8b31; }
+
+.category-list .all-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 1em auto; }
+  @media (max-width: 768px) {
+    .category-list .all-categories {
+      width: 95%; } }
+  .category-list .all-categories .single-category {
+    position: relative;
+    margin: 0.5em;
+    width: 300px;
+    height: 200px;
+    transition: all 0.3em; }
+    .category-list .all-categories .single-category img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+      filter: blur(0.5px); }
+    .category-list .all-categories .single-category h4 {
+      position: absolute;
+      top: 50%;
+      left: -2px;
+      padding: 0.5em 2em 0.5em 1em;
+      background-color: white;
+      font-family: "Oswald";
+      transform: translateY(-50%);
+      clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%); }
+      .category-list .all-categories .single-category h4 a {
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 500;
+        color: #4d8b31; }
+    .category-list .all-categories .single-category .offer {
+      position: absolute;
+      top: 0;
+      font-family: "Oswald";
+      background-color: #ac3931;
+      padding: 0.3em 0.8em;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      color: white;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+
+.login {
+  height: 80vh;
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative; }
+  .login .login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    display: flex;
+    flex-flow: column; }
+    .login .login-container h1 {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      font-size: 1.8em;
+      color: white; }
+    .login .login-container form {
+      display: flex;
+      flex-flow: column; }
+      .login .login-container form input {
+        margin: 0.2em 0;
+        width: 300px; }
+      .login .login-container form button {
+        padding: 0.5em 0.3em;
+        border-radius: 5px;
+        transition: all 0.3s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: "Oswald";
+        color: #4d8b31;
+        margin-top: 0.7em; }
+        .login .login-container form button:hover {
+          transform: translateY(-5px); }
+        .login .login-container form button:active {
+          transform: translateY(5px); }
+    .login .login-container .server-msg {
+      background-color: #e6e6e6;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      padding: 1em;
+      width: 300px;
+      min-height: 230px;
+      -webkit-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      -moz-box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35);
+      box-shadow: 2px 3px 5px 0px rgba(30, 33, 43, 0.35); }
+      .login .login-container .server-msg .heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-transform: uppercase; }
+        .login .login-container .server-msg .heading h3 {
+          font-family: "Oswald";
+          color: #ac3931;
+          user-select: none; }
+          .login .login-container .server-msg .heading h3:last-child {
+            cursor: pointer;
+            font-size: 2em;
+            transition: all 0.3s; }
+            .login .login-container .server-msg .heading h3:last-child:hover {
+              transform: translateY(-5px); }
+            .login .login-container .server-msg .heading h3:last-child:active {
+              transform: translateY(5px); }
+      .login .login-container .server-msg .msg {
+        font-family: "Nunito";
+        background-color: #ac3931;
+        color: white;
+        padding: 0.4em 0.5em;
+        margin: 0.5em 0; }
+
+.features {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em 0;
+  flex-wrap: wrap; }
+  .features .single-feature {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(77, 139, 49, 0.5);
+    padding: 1em;
+    border-radius: 5px;
+    width: 250px;
+    margin: 0.5em 0; }
+    .features .single-feature img {
+      width: 80px;
+      margin-bottom: 10px; }
+    .features .single-feature h4 {
+      color: #4d8b31;
+      font-family: "Nunito";
+      text-transform: uppercase; }
+
+.verify-otp {
+  height: 80vh;
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative; }
+  .verify-otp .verify-otp-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+    .verify-otp .verify-otp-container h1 {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      color: white; }
+    .verify-otp .verify-otp-container form {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 300px;
+      scale: 1.5; }
+      .verify-otp .verify-otp-container form input {
+        width: 150px;
+        border-radius: 5px 0 0 5px; }
+      .verify-otp .verify-otp-container form button {
+        font-family: "Oswald";
+        padding: 0.5em 0.5em;
+        border: 0;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #4d8b31;
+        background-color: white;
+        outline: #4d8b31; }
+        .verify-otp .verify-otp-container form button:hover {
+          transform: translateY(-5px); }
+        .verify-otp .verify-otp-container form button:active {
+          transform: translateY(5px); }
+    .verify-otp .verify-otp-container .message {
+      margin: 0.3em 0;
+      font-family: "Oswald";
+      display: flex;
+      align-items: center;
+      font-size: 0.8em;
+      color: #ac3931; }
+      .verify-otp .verify-otp-container .message button {
+        background-color: #ac3931;
+        color: white;
+        border: none;
+        padding: 0.2em 0.3em;
+        cursor: pointer;
+        transition: all 0.3s;
+        outline: none; }
+        .verify-otp .verify-otp-container .message button:hover {
+          transform: translateY(-5px); }
+        .verify-otp .verify-otp-container .message button:active {
+          transform: translateY(5px); }
+
+.profile {
+  margin: 2em 0; }
+  .profile .user {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .profile .user img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px; }
+    .profile .user h4 {
+      font-family: "Nunito";
+      font-size: 1.5em;
+      color: #4d8b31; }
+    .profile .user .info p {
+      font-family: "Oswald";
+      font-size: 0.8em;
+      color: #0D59A3; }
+  .profile .options {
+    margin: 1em 0;
+    display: flex;
+    justify-content: center; }
+    .profile .options a {
+      margin: 0 0.5em;
+      text-decoration: none;
+      font-family: "Oswald";
+      border: 1px solid #4d8b31;
+      padding: 0.2em 0.3em;
+      border-radius: 3px;
+      transition: all 0.3s;
+      color: #4d8b31; }
+      .profile .options a:hover {
+        transform: translateY(-5px); }
+      .profile .options a:active {
+        transform: translateY(5px); }
+  .profile .pages {
+    margin: 0.5em auto;
+    width: fit-content;
+    background-color: rgba(77, 139, 49, 0.4);
+    padding: 1em;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap; }
+    @media (max-width: 420px) {
+      .profile .pages {
+        width: 300px;
+        flex-flow: column; } }
+    .profile .pages a {
+      margin: 0 1em;
+      text-decoration: none;
+      font-family: "Nunito";
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #4d8b31;
+      transition: all 0.3s; }
+      @media (max-width: 420px) {
+        .profile .pages a {
+          border-bottom: 1px solid #4d8b31;
+          margin: 0.5em 0; } }
+      .profile .pages a:hover {
+        color: #b38c00; }
+
+.your-orders {
+  margin: 3em 0; }
+  .your-orders .heading {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .your-orders .heading img {
+      width: 100px; }
+    .your-orders .heading h1 {
+      text-transform: uppercase;
+      font-size: 2em;
+      font-family: "Nunito";
+      background-image: linear-gradient(to right, #4d8b31, #ffc800);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent; }
+  .your-orders .filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0; }
+    .your-orders .filters h4 {
+      font-family: "Oswald";
+      font-size: 1.1em;
+      margin: 0 0.2em;
+      border-right: 1px solid rgba(13, 89, 163, 0.5);
+      padding: 0 0.7em;
+      user-select: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      color: #4d8b31;
+      font-weight: 400; }
+      @media (max-width: 420px) {
+        .your-orders .filters h4 {
+          font-size: 0.9em;
+          margin: 0 0.1em;
+          padding: 0 0.4em; } }
+      .your-orders .filters h4:last-child {
+        border: none; }
+      .your-orders .filters h4:hover {
+        color: #b38c00; }
+  .your-orders .order-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; }
+    .your-orders .order-list .single-order {
+      width: 300px;
+      margin: 1em; }
+      .your-orders .order-list .single-order .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5em;
+        background-color: rgba(77, 139, 49, 0.5);
+        margin-bottom: 5px; }
+        .your-orders .order-list .single-order .info h4 {
+          font-family: "Oswald";
+          text-transform: uppercase;
+          color: #4d8b31;
+          font-weight: 500; }
+      .your-orders .order-list .single-order .meds {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        flex-wrap: wrap; }
+        .your-orders .order-list .single-order .meds .single-med {
+          margin: 5px 0;
+          width: 145px;
+          background-color: rgba(77, 139, 49, 0.2);
+          display: grid;
+          grid-template-rows: 2fr 1fr; }
+          .your-orders .order-list .single-order .meds .single-med h4 {
+            padding: 8px;
+            font-family: "Oswald";
+            font-size: 0.7em;
+            font-weight: 400;
+            color: #4d8b31; }
+          .your-orders .order-list .single-order .meds .single-med .quantity {
+            background-color: #4d8b31;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 5px;
+            padding: 0.1em; }
+            .your-orders .order-list .single-order .meds .single-med .quantity p {
+              font-family: "Oswald";
+              font-size: 0.7em;
+              color: white; }
+      .your-orders .order-list .single-order .order-status {
+        width: 300px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; }
+        .your-orders .order-list .single-order .order-status button {
+          outline: none;
+          padding: 5px 0;
+          color: white;
+          font-family: "Oswald";
+          text-transform: uppercase;
+          border: none;
+          transition: all 0.3s; }
+          .your-orders .order-list .single-order .order-status button:first-child {
+            background-color: #0D59A3; }
+          .your-orders .order-list .single-order .order-status button:nth-child(2) {
+            background-color: #997800; }
+          .your-orders .order-list .single-order .order-status button:last-child {
+            background-color: #4d8b31; }
+      .your-orders .order-list .single-order .cancel-order {
+        width: 300px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 5px 0;
+        background-color: #ac3931;
+        color: white;
+        font-family: "Oswald";
+        transition: all 0.3s;
+        text-transform: uppercase; }
+        .your-orders .order-list .single-order .cancel-order:hover {
+          transform: translateY(-5px); }
+        .your-orders .order-list .single-order .cancel-order:active {
+          transform: translateY(5px); }
+
+.your-prescription {
+  margin: 2em 0; }
+  .your-prescription .heading {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .your-prescription .heading img {
+      width: 80px;
+      margin-right: 10px; }
+    .your-prescription .heading h1 {
+      font-family: "Nunito";
+      text-transform: uppercase;
+      background-image: linear-gradient(to right, #4d8b31, #ffc800);
+      width: fit-content;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      color: transparent; }
+  .your-prescription .filters {
+    background-image: linear-gradient(to bottom, #4d8b31, #386524);
+    display: flex;
+    align-items: center;
+    margin: 0.5em auto;
+    width: fit-content;
+    justify-content: space-between;
+    border-radius: 5px; }
+    .your-prescription .filters h4 {
+      margin: 0 10px;
+      padding: 1em;
+      font-family: "Oswald";
+      color: white;
+      font-weight: 400;
+      user-select: none;
+      cursor: pointer;
+      transition: all 0.3s; }
+      @media (max-width: 420px) {
+        .your-prescription .filters h4 {
+          margin: 0 5px;
+          padding: 0.5em; } }
+      .your-prescription .filters h4:hover {
+        background-color: white;
+        color: #4d8b31; }
+      .your-prescription .filters h4:active {
+        transform: translateY(5px); }
+  .your-prescription .prescription-list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; }
+    .your-prescription .prescription-list .uploaded {
+      width: 300px;
+      display: flex;
+      align-items: center;
+      margin: 1em; }
+      .your-prescription .prescription-list .uploaded img {
+        width: 150px; }
+      .your-prescription .prescription-list .uploaded .info {
+        width: 150px; }
+        .your-prescription .prescription-list .uploaded .info .date {
+          background-color: #4d8b31;
+          color: white;
+          font-family: "Nunito";
+          text-transform: uppercase;
+          padding: 10px 0;
+          text-align: center;
+          font-weight: bold; }
+        .your-prescription .prescription-list .uploaded .info .delete {
+          background-color: #ac3931;
+          color: white;
+          border: none;
+          outline: none;
+          width: 150px;
+          font-family: "Oswald";
+          padding: 5px 0;
+          transition: all 0.3s;
+          cursor: pointer; }
+          .your-prescription .prescription-list .uploaded .info .delete:hover {
+            transform: translateY(-5px); }
+          .your-prescription .prescription-list .uploaded .info .delete:active {
+            transform: translateY(5px); }
+    .your-prescription .prescription-list .confirmed {
+      margin: 1em; }
+      .your-prescription .prescription-list .confirmed .details {
+        width: 300px;
+        display: flex;
+        align-items: center; }
+        .your-prescription .prescription-list .confirmed .details img {
+          width: 150px; }
+        .your-prescription .prescription-list .confirmed .details .info {
+          width: 150px;
+          text-align: center;
+          font-family: "Oswald"; }
+          .your-prescription .prescription-list .confirmed .details .info .date {
+            background-color: #4d8b31;
+            padding: 5px 0;
+            color: white;
+            text-transform: uppercase; }
+          .your-prescription .prescription-list .confirmed .details .info .total {
+            color: #4d8b31; }
+          .your-prescription .prescription-list .confirmed .details .info .quant {
+            background-color: #0D59A3;
+            padding: 5px 0;
+            color: white; }
+      .your-prescription .prescription-list .confirmed .meds {
+        width: 300px; }
+        .your-prescription .prescription-list .confirmed .meds .one-med {
+          display: flex;
+          align-items: stretch;
+          justify-content: space-between;
+          background-color: rgba(77, 139, 49, 0.3);
+          margin: 0.3em 0; }
+          .your-prescription .prescription-list .confirmed .meds .one-med h4 {
+            padding: 10px;
+            width: 240px;
+            font-family: "Oswald";
+            color: #4d8b31;
+            font-size: 0.9em;
+            font-weight: 450; }
+          .your-prescription .prescription-list .confirmed .meds .one-med .quantity {
+            padding: 10px;
+            background-color: #4d8b31; }
+            .your-prescription .prescription-list .confirmed .meds .one-med .quantity p {
+              font-family: "Oswald";
+              color: white; }
+      .your-prescription .prescription-list .confirmed .options {
+        width: 300px;
+        display: grid;
+        grid-template-columns: 1fr 1fr; }
+        .your-prescription .prescription-list .confirmed .options button {
+          padding: 5px 0;
+          border: 0;
+          outline: 0;
+          color: white;
+          font-family: "Oswald";
+          transition: all 0.3s;
+          cursor: pointer; }
+          .your-prescription .prescription-list .confirmed .options button:hover {
+            transform: translateY(-5px); }
+          .your-prescription .prescription-list .confirmed .options button:active {
+            transform: translateY(5px); }
+          .your-prescription .prescription-list .confirmed .options button:first-child {
+            background-color: #4d8b31; }
+          .your-prescription .prescription-list .confirmed .options button:last-child {
+            background-color: #ac3931; }
+
+.order-by-prescription .heading {
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .order-by-prescription .heading img {
+    width: 80px;
+    margin-right: 5px; }
+  .order-by-prescription .heading h1 {
+    font-family: "Nunito";
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #4d8b31, #ffc800);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    color: transparent; }
+    @media (max-width: 420px) {
+      .order-by-prescription .heading h1 {
+        font-size: 0.9em; } }
+
+.order-by-prescription .capture-container {
+  width: 40%;
+  margin: 0.5em auto;
+  position: relative; }
+  @media (max-width: 768px) {
+    .order-by-prescription .capture-container {
+      width: 80%; } }
+  @media (max-width: 360px) {
+    .order-by-prescription .capture-container {
+      width: 90%; } }
+  .order-by-prescription .capture-container .label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: white;
+    z-index: 2;
+    font-family: "Oswald";
+    user-select: none; }
+    @media (max-width: 360px) {
+      .order-by-prescription .capture-container .label {
+        font-size: 1.2em; } }
+  .order-by-prescription .capture-container .capture-prescription {
+    width: 100%;
+    background-color: #4d8b31;
+    height: 10em;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 0;
+    clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0% 100%, 0% 35%); }
+    .order-by-prescription .capture-container .capture-prescription::-webkit-file-upload-button {
+      display: none; }
+    .order-by-prescription .capture-container .capture-prescription:hover {
+      transform: translateY(-5px); }
+    .order-by-prescription .capture-container .capture-prescription:active {
+      transform: translateY(5px); }
+
+.order-by-prescription .upload-container {
+  width: 40%;
+  margin: 0.5em auto;
+  position: relative; }
+  @media (max-width: 768px) {
+    .order-by-prescription .upload-container {
+      width: 80%; } }
+  @media (max-width: 360px) {
+    .order-by-prescription .upload-container {
+      width: 90%; } }
+  .order-by-prescription .upload-container .label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    color: white;
+    z-index: 2;
+    font-family: "Oswald";
+    user-select: none; }
+    @media (max-width: 320px) {
+      .order-by-prescription .upload-container .label {
+        font-size: 1.2em; } }
+  .order-by-prescription .upload-container .upload-prescription {
+    width: 100%;
+    height: 10em;
+    background-color: #0D59A3;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #0D59A3;
+    border-radius: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 65%); }
+    .order-by-prescription .upload-container .upload-prescription:hover {
+      transform: translateY(-5px); }
+    .order-by-prescription .upload-container .upload-prescription:active {
+      transform: translateY(5px); }
+    .order-by-prescription .upload-container .upload-prescription::-webkit-file-upload-button {
+      display: none; }

@@ -1,0 +1,135 @@
+@layout( 'admin-master' )
+
+
+@section( 'title' )
+    <title>
+        @if(add_mode)
+            Add Category | Singh & Singh
+        @endif
+
+        @if(edit_mode)
+            {{ category.category_name }} | Singh & Singh
+        @endif
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .category-cover{
+            width : 100%;
+        }
+    </style>
+@endsection
+
+
+@section( 'content' )
+    <div class="container">
+        @if(add_mode)
+            <h2 class="text-center">Add Category</h2>
+        @endif
+
+        @if(edit_mode)
+            <h2 class="text-center"><i class="fa fa-pencil-square" aria-hidden="true"></i> <a href="/admin/category/{{category.id}}/details">{{ category.category_name }}</a></h2>
+        @endif
+
+        <div class="form-body">
+            <form 
+                method="POST"
+                @if(add_mode)
+                    to='/admin/category/add'
+                @endif
+
+                @if(edit_mode)
+                    to='/admin/category/{{category.id}}/edit'
+                @endif
+            >
+                {{ csrfField() }}
+                <div class="form-group">
+                    <input 
+                        type="text"
+                        placeholder="Name of Category"
+                        name='category_name'
+                        @if(hasErrorFor('category_name'))
+                            class="form-control is-invalid"
+                        @else
+                            class="form-control"
+                        @endif
+                        @if(add_mode)
+                            value="{{ old('category_name') }}"
+                        @endif
+
+                        @if(edit_mode)
+                            value="{{ old('category_name') || category.category_name }}"
+                        @endif
+                    >
+                    @if(hasErrorFor('category_name'))
+                        <div class="invalid-feedback">
+                            {{ getErrorFor('category_name') }}
+                        </div>
+                    @endif  
+                </div>
+                <div class="form-group">
+                    @if(edit_mode)
+                      <img 
+                        class="category-cover"
+                        src="{{ category.cover_image }}" 
+                        alt=""
+                      >
+                    @endif
+                    <input 
+                        type="text"
+                        placeholder="Paste image link here"
+                        name='cover_image'
+                        @if(hasErrorFor('cover_image'))
+                            class="form-control is-invalid"
+                        @else
+                            class="form-control"
+                        @endif
+                        @if(add_mode)
+                            value="{{ old('cover_image') }}"
+                        @endif
+                        @if(edit_mode)
+                            value="{{ old('cover_image') || category.cover_image }}"
+                        @endif  
+                    >
+                    @if(hasErrorFor('cover_image'))
+                        <div class="invalid-feedback">
+                            {{ getErrorFor('cover_image') }}
+                        </div>
+                    @endif 
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        rows="10"
+                        name='description'
+                        placeholder="Describe your category"
+                        style="resize: none;"
+                        @if(hasErrorFor('description'))
+                            class="form-control is-invalid"
+                        @else
+                            class="form-control"
+                        @endif
+                        
+                    >{{ old('description') || category.description || '' }}</textarea>
+                    @if(hasErrorFor('description'))
+                        <div class="invalid-feedback">
+                            {{ getErrorFor('description') }}
+                        </div>
+                    @endif 
+                </div>
+                <button 
+                    type="submit" 
+                    class="btn btn-success btn-block"
+                > 
+                    @if(add_mode)
+                        &plus; Add Category
+                    @endif
+
+                    @if(edit_mode)
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save {{ category.category_name }}
+                    @endif
+                </button>
+            </form>
+        </div>
+    </div>
+@endsection

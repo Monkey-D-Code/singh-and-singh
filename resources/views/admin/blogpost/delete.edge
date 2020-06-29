@@ -1,0 +1,39 @@
+@layout('admin-master')
+
+@section('title')
+    <title>
+        Delete {{ blogpost.title }} ? 
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .container{
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+@endsection
+
+
+@section('content')
+    <div class="container">
+        <img 
+            src="{{ blogpost.image_url }}" 
+            alt=""
+            style="height:50vh;"
+        >
+        <h1>{{ blogpost.title }}</h1>
+        @if(flashMessage( 'blogPostDeleteErr' ))
+            <h5 class="alert alert-danger">
+                {{ flashMessage( 'blogPostDeleteErr' ) }}
+            </h5>
+        @endif
+        <form action="{{ route( 'blogpost.delete',{id : blogpost.id} ) }}" method="POST">
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+@endsection

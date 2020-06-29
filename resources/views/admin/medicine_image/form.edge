@@ -1,0 +1,89 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        @if(add_mode)
+            Add New Medicine Image | Singh & Singh
+        @endif
+    </title>
+@endsection
+
+@section('extra_script')
+    <script type="text/javascript">
+        
+    </script>
+@endsection
+
+
+@section('content')
+    <div class="form-body" style="margin-top:10%;">
+        <h2>
+            @if(add_mode)
+                &plus; Add New Medicine
+            @endif
+        </h2>
+        <form 
+            @if(add_mode)
+                action="{{ route( 'medicine_image.add' , { medicine_id : medicine_id } )  }}"
+            @endif
+            enctype="multipart/form-data"
+            method="POST"
+        >
+            {{ csrfField() }}
+            @if(flashMessage( 'medImageUploadErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'medImageUploadErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'medImageSaveErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'medImageSaveErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                
+                <input 
+                    type="file"  
+                    name='medicine_image'
+                    @if(hasErrorFor('medicine_image'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    placeholder="Select an Image"
+                    
+                >
+                @if(hasErrorFor('medicine_image'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('medicine_image') }}
+                    </div>
+                @endif
+            </div>
+            
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    placeholder="Caption this image"
+                    name="caption"
+                    @if(hasErrorFor('caption'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    value="{{ old( 'caption' ) }}"
+                >
+                @if(hasErrorFor('caption'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('caption') }}
+                    </div>
+                @endif
+            </div>
+            <button class="btn btn-success btn-block" type='submit'>
+                @if(add_mode)
+                    &plus; Add Medicine Image
+                @endif
+            </button>
+        </form>
+    </div>
+@endsection

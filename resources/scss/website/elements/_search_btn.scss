@@ -1,0 +1,17 @@
+.btn-search{
+    width : 300px;
+    border-radius: 5px;
+    margin : 0.5em 0;
+    @media (max-width : 320px){
+        width : 260px;
+    }
+    font-family: $oswald;
+    transition: all 0.35s;
+    @include click_1;
+    background-color: darken($green, 5%);
+    border: 0;
+    padding : 0.4em 0;
+    color: white;
+    cursor: pointer;
+    outline-color: $yellow;
+}

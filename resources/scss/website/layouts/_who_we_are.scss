@@ -1,0 +1,33 @@
+.who-we-are{
+    margin : 2em 0;
+    h1{
+        @include gradient_text($green,$yellow);
+        font-family: $nunito;
+        text-transform: uppercase;
+        margin : 0.5em auto;
+    }
+    .point-list{
+        width : 80%;
+        margin : 1em auto;
+        .one-point{
+            border : 1px solid $green;
+            margin : 1em 0;
+            padding : 1em;
+            border-radius: 5px;
+            @include square_svg;
+            h4{
+                font-family: $oswald;
+                margin-bottom: 0.5em;
+                font-size: 1.3em;
+                color: darken($green,10%);
+                font-weight: 400;
+            }
+            p{
+                font-family: $nunito;
+                font-size: 0.8em;
+                color: lighten($black,40%);
+                line-height: 15px;
+            }
+        }
+    }
+}

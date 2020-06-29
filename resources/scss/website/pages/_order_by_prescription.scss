@@ -1,0 +1,101 @@
+.order-by-prescription{
+    .heading{
+        margin : 1em 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width : 80px;
+            margin-right: 5px;
+        }
+        h1{
+            font-family: $nunito;
+            text-transform: uppercase;
+            @include gradient_text($green,$yellow);
+            @media (max-width : 420px){
+                font-size: 0.9em;
+            }
+        }
+    }
+    .capture-container{
+        width : 40%;
+        @media (max-width : 768px){
+            width : 80%;
+        }
+        @media (max-width : 360px){
+            width: 90%;
+        }
+        margin : 0.5em auto;
+        position: relative;
+        .label{
+            position: absolute;
+            top : 50%;
+            left : 50%;
+            transform: translate(-50%,-50%);
+            font-size: 1.5em;
+            @media (max-width : 360px){
+                font-size: 1.2em;
+            }
+            color: white;
+            z-index: 2;
+            font-family: $oswald;
+            user-select: none;
+        }
+        .capture-prescription{
+            width : 100%;
+            &::-webkit-file-upload-button{
+                display: none;
+            }
+            background-color: $green;
+            height : 10em;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            @include click_1;
+            border-radius: 0;
+            clip-path: polygon(10% 0 , 100% 0%, 100% 100%, 0% 100%, 0% 35%);
+        }
+    }
+    .upload-container{
+        width : 40%;
+        @media (max-width : 768px){
+            width : 80%;
+        }
+        @media (max-width : 360px){
+            width: 90%;
+        }
+        margin : 0.5em auto;
+        position: relative;
+        .label{
+            position: absolute;
+            top : 50%;
+            left : 50%;
+            transform: translate(-50%,-50%);
+            font-size: 1.5em;
+            @media (max-width : 320px){
+                font-size: 1.2em;
+            }
+            color: white;
+            z-index: 2;
+            font-family: $oswald;
+            user-select: none;
+        }
+        .upload-prescription{
+            width : 100%;
+            height: 10em;
+            background-color: $blue;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            @include click_1;
+            &::-webkit-file-upload-button{
+                display: none;
+            }
+            color: $blue;
+            border-radius: 0;
+            clip-path: polygon(0% 0% , 100% 0%, 100% 100%, 10% 100%, 0% 65%);
+        }
+    }
+}

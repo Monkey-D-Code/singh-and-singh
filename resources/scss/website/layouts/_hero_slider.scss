@@ -1,0 +1,79 @@
+.hero-slider{
+    width : 100%;
+    height: 60vh;
+    overflow: hidden;
+    .slide-container{
+        display: flex;
+        height: 60vh;
+        .slide{
+            position: relative;
+            width : 98.7vw;
+            @media (max-width : 1024px){
+                width : 100vw;
+            }
+            height: 60vh;
+            img{
+                width : 98.7vw;
+                @media (max-width : 1024px){
+                    width : 100vw;
+                }
+                height: 60vh;
+                object-fit: cover;   
+            }
+            .content{
+                position: absolute;
+                bottom : 50%;
+                transform: translateY(50%);
+                @media (max-width : 420px){
+                    bottom: 40%;
+                    width : 70%;
+                }
+                left : 0;
+                padding : 1em;
+                background-image: linear-gradient(
+                    to right,
+                    $green,
+                    $blue,
+                );
+                clip-path: polygon(0% 0%, 80% 0, 100% 25%, 100% 100%, 0% 100%);
+                @include card_shadow($black);
+                h4{
+                    font-family: $nunito;
+                    font-size: 2.5em;
+                    @media (max-width : 420px){
+                        font-size: 1.5em;
+                    }
+                    @media (max-width : 360px){
+                        font-size: 1em;
+                    }
+                    color: white;
+                    text-transform: uppercase;
+                }
+                p{
+                    font-family: $oswald;
+                    color : white;
+                    font-size: 1.1em;
+                    @media (max-width : 420px){
+                        font-size: 0.9em;
+                    }
+                    @media (max-width : 360px){
+                        font-size: 0.8em;
+                    }
+                    font-weight: 400;
+                    margin-bottom: 0.7em;
+                }
+                a{
+                    background-color: white;
+                    padding : 0.5em;
+                    border-radius: 3px;
+                    margin-bottom : 0.6em;
+                    text-decoration: none;
+                    color: $blue;
+                    font-family: $nunito;
+                    transition: all 0.4s;
+                    @include click_1;
+                }
+            }
+        }
+    }
+}

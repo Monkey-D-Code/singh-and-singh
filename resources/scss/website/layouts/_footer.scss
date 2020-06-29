@@ -1,0 +1,89 @@
+footer{
+    padding-bottom: 1.5em;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    svg{
+        margin-top: -2px;
+    }
+    .information{
+        width : 80%;
+        margin : 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        align-items: center;
+        @media (max-width : 420px){
+            flex-flow: column;
+        }
+        div{
+            margin : 0.5em 0;
+        }
+        .company{
+            background-color: rgba($black,  0.6);
+            padding : 0.6em;
+            border-radius: 5px;
+            h3{
+                font-family: $oswald;
+                text-transform: uppercase;
+                color : white;
+            }
+            div{
+                font-family: $nunito;
+                font-size: 0.8em;
+                color: rgba(white,0.8);
+            }
+        }
+        .policy , .need-help{
+            background-color: rgba($black,  0.6);
+            padding : 0.6em;
+            border-radius: 5px;
+            h3{
+                font-family: $oswald;
+                color: white;
+                text-transform: uppercase;
+            }
+            ul{
+                list-style-type: none;
+                li{
+                    font-family: $nunito;
+                    a{
+                        text-decoration: none;
+                        font-size: 0.8em;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .follow-us{
+            h3{
+                font-family: $oswald;
+                color: white;
+                text-transform: uppercase; 
+            }
+            ul{
+                list-style-type: none;
+                display: flex;
+                justify-content: space-between;
+                li{
+                    font-family: $nunito;
+                    a{
+                        text-decoration: none;
+                        font-size: 1.2em;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+    }
+    .copyright{
+        width : 80%;
+        margin : 1em auto;
+        h4{
+            text-align: center;
+            font-family: $oswald;
+            color: white;
+        }
+    }
+}

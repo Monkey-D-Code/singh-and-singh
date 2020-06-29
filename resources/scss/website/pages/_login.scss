@@ -1,0 +1,167 @@
+.login{
+    height: 80vh;
+    width : 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    .login-container{
+        position: absolute;
+        top : 50%;
+        left : 50%;
+        transform: translate(-50%,-50%);
+        width : 300px;
+        display: flex;
+        flex-flow: column;
+        h1{
+            font-family: $nunito;
+            text-transform: uppercase;
+            font-size: 1.8em;
+            color: white;
+        }
+        form{
+            display: flex;
+            flex-flow: column;
+            input{
+                margin : 0.2em 0;
+                width : 300px;
+            }
+            button{
+                padding : 0.5em 0.3em;
+                border-radius: 5px;
+                @include click_1;
+                transition: all 0.3s;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                font-family: $oswald;
+                color : $green;
+                margin-top: 0.7em;
+            }
+        }
+        .server-msg{
+            background-color: darken(white,10%);
+            position: fixed;
+            top : 50%;
+            left : 50%;
+            transform: translate(-50%,-50%);
+            z-index: 5;
+            padding : 1em;
+            width : 300px;
+            min-height: 230px;
+            @include card_shadow($black);
+            .heading{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-transform: uppercase;
+                h3{
+                    font-family: $oswald;
+                    color: $red;
+                    user-select: none;
+                    &:last-child{
+                        cursor: pointer;
+                        font-size: 2em;
+                        @include click_1;
+                        transition: all 0.3s;
+                    }
+                }
+            }
+            .msg{
+                font-family: $nunito;
+                background-color: $red;
+                color: white;
+                padding : 0.4em 0.5em;
+                margin : 0.5em 0;
+            }
+        }
+    }
+}
+
+.features{
+    display: flex;
+    justify-content: space-evenly;
+    margin : 2em 0;
+    flex-wrap: wrap;
+    .single-feature{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($green,0.5);
+        padding : 1em;
+        border-radius: 5px;
+        width : 250px;
+        margin : 0.5em 0;
+        img{
+            width : 80px;
+            margin-bottom: 10px;
+        }
+        h4{
+            color: $green;
+            font-family: $nunito;
+            text-transform: uppercase;
+
+        }
+    }
+}
+
+
+.verify-otp{
+    height : 80vh;
+    width : 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    .verify-otp-container{
+        position: absolute;
+        top : 50%;
+        left : 50%;
+        transform: translate(-50%,-50%);
+        h1{
+            font-family: $nunito;
+            text-transform: uppercase;
+            color: white;
+        }
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width : 300px;
+            scale: 1.5;
+            input{
+                width : 150px;
+                border-radius: 5px 0 0 5px;
+            }
+            button{
+                font-family: $oswald;
+                padding : 0.5em 0.5em;
+                border: 0;
+                border-radius: 0 5px 5px 0;
+                cursor: pointer;
+                @include click_1;
+                transition: all 0.3s;
+                color: $green;
+                background-color: white;
+                outline: $green;
+            }
+        }
+        .message{
+            margin : 0.3em 0;
+            font-family: $oswald;
+            display: flex;
+            align-items: center;
+            font-size: 0.8em;
+            color: $red;
+            button{
+                background-color: $red;
+                color: white;
+                border: none;
+                padding : 0.2em 0.3em;
+                cursor: pointer;
+                transition: all 0.3s;
+                @include click_1;
+                outline: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@layout('admin-master')
+
+@section('title')
+    <title>
+        Delete {{ medicine.name }} ?
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mt-5">
+        <h2>Are you sure you want to delete <a href="{{ route( 'medicine.details',{id:medicine.id} ) }}">{{ medicine.name }} </a> ?</h2>
+        <p class="alert alert-warning">This will be permanent ! Will delete images related to it.</p>
+        @if(flashMessage( 'medicineDeleteErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'medicineDeleteErr' ) }}
+                </h5>
+        @endif
+        <form 
+            action="{{ route( 'medicine.delete' , { id : medicine.id } ) }}"
+            method="POST"
+        >   
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Confirm</button>
+
+        </form>
+    </div>
+@endsection

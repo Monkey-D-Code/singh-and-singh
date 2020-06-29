@@ -1,0 +1,66 @@
+@layout( 'admin-master' )
+
+
+@section( 'title' )
+    <title>{{ category.category_name }} | Singh & Singh</title>
+@endsection
+
+
+@section( 'extra_style' )
+    <style>
+        .heading{
+            display: flex;
+            align-items: center;
+        }
+        .heading img{
+            width : 50%;
+            height : 90vh;
+            object-fit: cover;
+            margin-right : 1em;
+        }
+        .info p{
+            width : 90%;
+            margin-top : 1em;
+        }
+    </style>
+@endsection
+
+
+@section( 'content' )
+    <div class="heading">
+        <img src="{{ category.cover_image }}" alt="">
+        <div class="info">
+            <h1>
+                {{ category.category_name }}
+            </h1>
+            <div class="options">
+                <a href="{{ route( 'category.edit' , { id : category.id } ) }}" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                <a href="{{ route( 'category.delete' , { id : category.id } ) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
+                <a href="/admin/medicine/{{category.id}}/add" class="btn btn-success">&plus; Add Medicine</a>
+            </div>
+            <p>
+                {{ category.description }}
+            </p>
+        </div>
+    </div>
+
+    <div class=" container medicine-list mt-5 mb-5">
+        <ul class="list-group">
+            @each(med in medicines)
+                <a href="{{ route( 'medicine.details' , { id : med.id } ) }}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ med.name }}</h5>
+                        <small><i class="fa fa-inr" aria-hidden="true"></i> {{ med.selling_price }}</small>
+                    </div>
+                    <p class="mb-1">{{ clip_words(med.description) }} ...</p>
+                    <small></small>
+                </a>
+            @else
+                <h6 class="alert alert-warning">
+                    No Medicines yet in {{ category.category_name }}
+                </h6>
+            @endeach
+        </ul>
+        
+    </div>
+@endsection

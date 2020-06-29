@@ -1,0 +1,98 @@
+.health-articles{
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    svg{
+        margin-bottom: 2em;
+        margin-top: -2px;
+    }
+    h1{
+        position: absolute;
+        top : 2.5em;
+        @media (max-width : 1024px){
+            top : 2em;
+        }
+        @media (max-width : 768px){
+            top : 0.8em;
+        }
+        @media (max-width : 420px){
+            top : -0.5em;
+            font-size: 1.5em;
+            left : 1.5em;
+        }
+        left : 1em;
+        font-family: $nunito;
+        text-transform: uppercase;
+        @include gradient_text($red,$yellow);
+    }
+    .article-list{
+        width : 80%;
+        @media (max-width : 1024px){
+            width : 95%;
+        }
+        margin : 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .article-card{
+            width : 280px;
+            margin : 1em;
+
+            img{
+                width : 280px;
+                height : 150px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+            .timestamp{
+                margin : 0.3em 0;
+                font-family: $oswald;
+                text-align: center;
+                color: white;
+                text-transform: uppercase;
+                border-left : 2px solid white;
+                border-right : 2px solid white;
+
+            }
+            .details{
+                @include square_svg;
+                border-radius: 5px;
+                padding : 1em;
+                display: flex;
+                flex-flow: column;
+                justify-content: start;
+                align-items: center;
+                h4{
+                    font-family: $oswald;
+                    margin : 0.3em 0;
+                    font-size: 0.95em;
+                    color: $green;
+                    font-weight: 400;
+                }
+                p{
+                    font-family: $nunito;
+                    font-size: 0.7em;
+                    line-height: 15px;
+                    letter-spacing: -0.5px;
+                    margin : 0.3em 0;
+                    color: lighten($black,10%);
+                }
+                a{
+                    text-decoration: none;
+                    background-color: $green;
+                    width : fit-content;
+                    font-family: $oswald;
+                    padding : 0.3em 0.5em;
+                    font-size: 0.6em;
+                    border-radius: 3px;
+                    margin-top: 0.3em;
+                    color: white;
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singh & Singh</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navigation-2">
+        <div class="search-bar">
+            <a href="./index.html" class="brand">
+                <img src="./assets/images/logo.png" alt="">
+            </a>
+            <div class="search">
+                <input type="text" placeholder="Search for a product or brand">
+                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+            <div class="options">
+                <ul>
+                    <li class='pincode-toggle'><i class="fa fa-map-marker" aria-hidden="true"></i> Pincode</li>
+                    <li><i class="fa fa-phone-square" aria-hidden="true"></i> 1122334455</li>
+                    <li><i class="fa fa-tags" aria-hidden="true"></i> Offers</li>
+                    <li><a href="./login.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+                    <li class='cart-toggle'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+                </ul>
+                <div class="enter-pincode">
+                    <h4>Where do you want the delivery ?</h4>
+                    <div class="input-box">
+                        <input type="number" min=0 placeholder="Enter Pincode">
+                        <button>Apply</button>
+                    </div>
+                </div>
+                <div class="cart-popup">
+                    <div class="cart-content">
+                        <h3>Recently Added Items <button>&times;</button></h3>
+                        <div class="item-list">
+                            <div class="single-item">
+                                <img src="https://res.sastasundar.com/incom/images/product/LOREAL-EXC-NATURAL-BROWN-1417516126-10006812.jpg" alt="">
+                                <div class="info">
+                                    <h4>Loreal Paris Excellence Creme Hair Colour 5 Natural Brown <button class="trash"><i class="fa fa-trash" aria-hidden="true"></i></button></h4>
+                                    <p class="price">MRP : <i class="fa fa-inr" aria-hidden="true"></i> 2500</p>
+                                    <p class="quantity">&times; 4</p>
+                                </div>
+                            </div>
+
+                            <div class="single-item">
+                                <img src="https://res.sastasundar.com/incom/images/product/Nivea-Freshcitrus--Care-Body-Deodorizer-1562395853-10033771-1.jpg" alt="">
+                                <div class="info">
+                                    <h4>Nivea Freshcitrus & Care Body Deodorizer 120 ml <button class="trash"><i class="fa fa-trash" aria-hidden="true"></i></button></h4>
+                                    <p class="price">MRP : <i class="fa fa-inr" aria-hidden="true"></i> 2500</p>
+                                    <p class="quantity">&times; 4</p>
+                                </div>
+                            </div>
+
+                            <div class="single-item">
+                                <img src="https://res.sastasundar.com/incom/images/product/Protinex-Original-Powder-1564656933-10004231-1.jpg" alt="">
+                                <div class="info">
+                                    <h4>Protinex Original Powder 400 g <button class="trash"><i class="fa fa-trash" aria-hidden="true"></i></button></h4>
+                                    <p class="price">MRP : <i class="fa fa-inr" aria-hidden="true"></i> 2500</p>
+                                    <p class="quantity">&times; 4</p>
+                                </div>
+                            </div>
+
+                            <div class="single-item">
+                                <img src="https://res.sastasundar.com/incom/images/product/Healthbuddy-Organic-Green-Tea-With-Herbs-Weight-Loss-Pure--Fresh-1519285480-10022834-1.jpg" alt="">
+                                <div class="info">
+                                    <h4>Healthbuddy Organic Green Tea With Herbs (Weight Loss) Pure & Fresh 100 gm <button class="trash"><i class="fa fa-trash" aria-hidden="true"></i></button></h4>
+                                    <p class="price">MRP : <i class="fa fa-inr" aria-hidden="true"></i> 2500</p>
+                                    <p class="quantity">&times; 4</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-link">
+                            <a href="./cart.html">View Cart &rarr;</a>
+                            <p class="total"><i class="fa fa-inr" aria-hidden="true"></i> 20000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu">
+            <ul>
+                <li><a href="./order-medicines.html">Order Medicine</a></li>
+                <li><a href="./order-by-prescription.html">Order By Prescription</a></li>
+                <li><a href="./category-list.html">Shop by Category</a></li>
+
+            </ul>
+        </div>
+        <div class="side-menu">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul>
+                
+                <li class='small-screen'>
+                    <span class="pincode-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Pincode</span>
+                    <div class="enter-pincode-mobile">
+                        <div class="input-box">
+                            <input type="number" min=0 placeholder="Enter Pincode">
+                            <button>&rarr;</button>
+                        </div>
+                    </div>
+                </li>
+                <li class='small-screen'><a href="#"><i class="fa fa-tags" aria-hidden="true"></i> Offers</a></li>
+                <li class='small-screen'><a href="./login.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+                <li class='small-screen'><a href="./cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
+                <hr>
+                <li><a href="./index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                <li><a href="./order-medicines.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> Order Medicine</a></li>
+                <li><a href="./category-list.html"><i class="fa fa-th-list" aria-hidden="true"></i> All Categories</a></li>
+                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> Our Blog</a></li>
+                <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i> Privacy Policy</a></li>
+                <li><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Terms & Conditions</a></li>
+                
+                
+
+            </ul>
+        </div>
+    </nav>
+    <!-- *********************************************************** -->
+
+    <!-- ********************* HERO SLIDER ************************** -->
+    <div class="hero-slider">
+        <div class="slide-container">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1585207693488-a903901c1274?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" alt="">
+                <div class="content">
+                    <h4>Slide 1</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, ipsam!
+                    </p>
+                    <a href="#">View More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1590061325064-949594457b1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80" alt="">
+                <div class="content">
+                    <h4>Slide 2</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, ipsam!
+                    </p>
+                    <a href="#">View More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/3689772/pexels-photo-3689772.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                <div class="content">
+                    <h4>Slide 3</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, ipsam!
+                    </p>
+                    <a href="#">View More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/4047111/pexels-photo-4047111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                <div class="content">
+                    <h4>Slide 4</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, ipsam!
+                    </p>
+                    <a href="#">View More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/3758765/pexels-photo-3758765.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                <div class="content">
+                    <h4>Slide 5</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, ipsam!
+                    </p>
+                    <a href="#">View More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ************************************************************ -->
+
+
+    <!--  ****************** OUR SERVICES **************************** -->
+    <div class="our-services">
+        <div class="lead-img">
+            <img src="./assets/images/meds-on-ladel.png" alt="">
+            <h3>What we Do</h3>
+        </div>
+        <div class="services">
+            
+            <div class="list">
+                <div class="service">
+                    <img src="https://media2.govtech.com/images/940*613/shutterstock-prescription-Rx.jpg" alt="">
+                    <h4><a href="./order-by-prescription.html">Order By Prescription</a></h4>
+                </div>
+                <div class="service">
+                    <img src="https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/323/323382/pills-in-the-shape-of-a-heart.jpg?w=1155&h=1562" alt="">
+                    <h4><a href="#">Special Offers</a></h4>
+                </div>
+                <div class="service">
+                    <img src="https://us.123rf.com/450wm/olegdudko/olegdudko1508/olegdudko150809663/43833281-shopping-.jpg?ver=6" alt="">
+                    <h4><a href="./category-list.html">Shop By Category</a></h4>
+                </div>
+                <div class="service">
+                    <img src="https://www.newshour.press/wp-content/uploads/2019/08/private_healthcare_AMRI.jpg" alt="">
+                    <h4><a href="#">Healthcare Products</a></h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- ******************************************************* -->
+
+    <!-- ********************** TOP RATED PRODUCTS*************** -->
+    <div class="top-rated-products" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) , url(https://www.indiafilings.com/learn/wp-content/uploads/2015/04/starting-a-pharmacy-business.jpg);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffff" fill-opacity="1" d="M0,192L120,192C240,192,480,192,720,165.3C960,139,1200,85,1320,58.7L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+        <div class="heading">
+            <img src="./assets/images/meds-in-container.png" alt="">
+            <h1>Top Rated Products</h1>
+        </div>
+        <div class="product-list">
+            <div class="single-product">
+                <img src="https://res.sastasundar.com/incom/images/product/OXY-Icy-Charcoal-Deep-Face-Wash-1566452501-10032218-1.jpg" alt="">
+                <h4><a href="./medicine-details.html">OXY Icy Charcoal Deep Face Wash 50 g</a></h4>
+            </div>
+            <div class="single-product">
+                <img src="https://res.sastasundar.com/incom/images/product/Lakme-Enrich-Satin-Lipstick-43-gm-1568099383-10030958-1.jpg" alt="">
+                <h4><a href="./medicine-details.html">Lakme Enrich Satin Lipstick 4.3 gm Shade (R356)</a></h4>
+            </div>
+            <div class="single-product">
+                <img src="https://res.sastasundar.com/incom/images/product/Deep-Heat-Rub-1574151043-10036205-1.jpg" alt="">
+                <h4><a href="./medicine-details.html">Deep Heat Rub 45 gm</a></h4>
+            </div>
+            <div class="single-product">
+                <img src="https://res.sastasundar.com/incom/images/product/Nicotex-Cinnamon--Flavour-Sugar-Free-Gum-1470832825-10026653.jpg" alt="">
+                <h4><a href="./medicine-details.html">Nicotex Cinnamon Flavour Sugar Free Chewing Gum 4 mg (9 Gums)</a></h4>
+            </div>
+            <div class="single-product">
+                <img src="https://res.sastasundar.com/incom/images/product/Rohto-Icy-Fresh-Eye-Drop-Dry-Aid-For-Dry--Tired-Eyes-1574151050-10051984-2.jpg" alt="">
+                <h4><a href="./medicine-details.html">Rohto Icy Fresh Eye Drop (Dry Aid, For Dry & Tired Eyes) 10 ml</a></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************************************** -->
+
+
+
+    <!-- *********************** FEATURED BRANDS ****************** -->
+    <div class="featured-brands">
+        <h1><i class="fa fa-certificate" aria-hidden="true"></i> Featured Brands</h1>
+        <div class="brand-list">
+            <div class="brand-card">
+                <img src="https://tradeclick.in/web/image/product.template/1063/image?unique=e6c3ab9" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Himalaya</a></h4>
+            </div>
+            <div class="brand-card">
+                <img src="https://s01.sgp1.cdn.digitaloceanspaces.com/article/105674-fffshxeuqk-1542260043.jpg" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Horlicks</a></h4>
+            </div>
+            <div class="brand-card">
+                <img src="https://assets.gadgets360cdn.com/pricee/assets/category/201811/emami_1541757732.jpg" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Emami</a></h4>
+            </div>
+            <div class="brand-card">
+                <img src="https://imaging.bracco.com/sites/braccoimaging.com/files/us-ProHance-Total-Products.jpg" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Prohance</a></h4>
+            </div>
+            <div class="brand-card">
+                <img src="https://www.parampara.online/wp-content/uploads/2016/05/body-care-banner.jpg" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Parampara</a></h4>
+            </div>
+            <div class="brand-card">
+                <img src="https://dygtyjqp7pi0m.cloudfront.net/i/39319/33824391_1.jpg?v=8D709914BD8ECB0" alt="">
+                <h4><a href="./brand-details.html"><i class="fa fa-tag" aria-hidden="true"></i> Oxy</a></h4>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *********************************************************** -->
+    
+    <!-- **************** HEALTH ARTICLES *************************** -->
+    <div class="health-articles" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) , url(https://cdn.pixabay.com/photo/2018/09/23/09/31/smoothie-3697014_960_720.jpg);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffff" fill-opacity="1" d="M0,288L120,250.7C240,213,480,139,720,117.3C960,96,1200,128,1320,144L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+        <h1>Health Articles</h1>
+        <div class="article-list">
+            <div class="article-card">
+                <img src="https://detwxg7gzm61n.cloudfront.net/2020/05/16142747/1589614121836_blog.jpg" alt="">
+                <div class="timestamp">20 May, 2020</div>
+                <div class="details">
+                    <h4>EverHerb HeartCare Capsules – Improving Heart Health Has Never Been This Easy!</h4>
+                    <hr/>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, 
+                        laudantium. Repellendus quibusdam deleniti enim? Consectetur......
+                    </p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://detwxg7gzm61n.cloudfront.net/2020/05/16154115/thank-you-02.jpg" alt="">
+                <div class="timestamp">20 May, 2020</div>
+                <div class="details">
+                    <h4>We Owe You A Heart-Felt Thank You!</h4>
+                    <hr/>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, 
+                        laudantium. Repellendus quibusdam deleniti enim? Consectetur......
+                    </p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://detwxg7gzm61n.cloudfront.net/2020/05/14153124/blog-02-1.jpg" alt="">
+                <div class="timestamp">20 May, 2020</div>
+                <div class="details">
+                    <h4>EverHerb Men’s Formula Capsules – Boost Your Sexual Health Naturally!</h4>
+                    <hr/>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, 
+                        laudantium. Repellendus quibusdam deleniti enim? Consectetur......
+                    </p>
+                   
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ************************************************************* -->
+
+
+    <!-- ********************* WHO WE ARE ***************************** -->
+    <div class="who-we-are">
+        <h1>Who we are</h1>
+        <div class="point-list">
+            <div class="one-point">
+                <h4>Say Goodbye to All Your Healthcare Worries With Singh & Singh!</h4>
+                <p>
+                    Singh & Singh is here to help you take it easy! We are amongst one of India's top online pharmacy 
+                    and health care platforms. It enables you to purchase medicines online by connecting you to 
+                    registered retail pharmacies and get them delivered to your home. 
+                    We make online medicine purchase easy, simple and affordable!
+                </p>
+            </div>
+            <div class="one-point">
+                <h4>How Are We Making Lives Simpler?</h4>
+                <p>
+                    Our doorstep medicine delivery service is available PAN-India. This online medicine portal also 
+                    allows you to choose from 1 lakh+ healthcare products, OTC products and medical equipment. 
+                    Singh & Singh is a one-stop platform where you can also book diagnostic tests including blood tests, 
+                    full-body checkups, and other preventive health check-ups at an affordable cost, right from the comfort 
+                    of your home. We have partnered with trusted & certified labs that arrange for a 
+                    sample pick-up from the convenience of your home. They also provide you with timely reports.
+                </p>
+            </div>
+            <div class="one-point">
+                <h4>Why Are We The Most Preferred Online Healthcare Platform?</h4>
+                <p>
+                    Lucrative offers on our platform allow you to make payment online and via various payment wallets at a 
+                    discounted price. Alternatively, you can also choose to pay cash on delivery as we deliver the medicines 
+                    at your doorstep. We cater to all your healthcare needs and also make ordering medicine online a hassle-free 
+                    experience for you. We connect you only with registered retail pharmacies & certified diagnostic labs. 
+                    We ensure that healthcare is affordable to all and make the process of ordering medicines simple.
+                </p>
+            </div>
+            <div class="one-point">
+                <h4>Sit Back & Relax While You Get Your Medicines Delivered Every Month!</h4>
+                <p>
+                    It’s tough to remember to refill your medicines every month, especially in the case of chronic diseases. 
+                    PharmEasy’s subscription service not only ensures that you are reminded of your refills but also makes 
+                    sure that you are never out on your prescription medicines. 
+                    You will get a reminder every month and your medicines will be delivered at your convenience!
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- *************************************************************** -->
+
+
+
+    <!-- *********************** PRE LOADER ******************************** -->
+    <div class="pre-loader">
+        <img src="./assets/images/pre-loader.gif" alt="">
+    </div>
+
+    <!-- ******************************************************************* -->
+
+
+    <!--  ************************ FOOTER ********************************** -->
+    <footer style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) , url(https://images.pexels.com/photos/826349/pexels-photo-826349.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffff" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,176C960,160,1200,96,1320,64L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+        <div class="information">
+            <div class="company">
+                <h3>Singh & Singh</h3>
+                <div class="phone"> +91 1122334455</div>
+                <div class="email">singh&singh@gmail.com</div>
+            </div>
+            <div class="policy">
+                <h3>Policy Info</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="need-help">
+                <h3>Need Help ?</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="follow-us">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <h4>&copy; Singh & Singh | All Rights Reserved</h4>
+        </div>
+    </footer>
+
+
+    <!-- **************************************************************** -->
+
+    <!-- ********************** LIBRARIES ******************************* -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="./scripts/lib/gsap-public/minified/gsap.min.js"></script>
+
+    <!-- **************************************************************** -->
+    <script src="./scripts/animations.js" type="text/javascript"></script>
+    <script src="./scripts/interaction.js" type="text/javascript"></script>
+    <script src="./scripts/script.js" type="text/javascript"></script>
+
+</body>
+</html>

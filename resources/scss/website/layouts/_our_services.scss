@@ -1,0 +1,102 @@
+.our-services{
+    width: 80vw;
+    overflow: hidden;
+    @media (max-width : 768px){
+        width: 87vw;
+    }
+    @media (max-width : 320px){
+        width: 95vw;
+    }
+    margin : 2em auto;
+    display: flex;
+    align-items: center;
+    .lead-img{
+        margin-right: 1em;
+        position: relative;
+        @media (max-width : 768px){
+            display: none;
+        }
+        img{
+            width : 25vw;
+        }
+        h3{
+            position: absolute;
+            top : 45%;
+            left : 0;
+            font-family: $nunito;
+            font-size: 2.5em;
+            @media (max-width : 1024px){
+                font-size: 2em;
+            }
+            background-image: linear-gradient(
+                to right,
+                $yellow,
+                green,
+            );
+            width : 25vw;
+            margin : 0.5em auto;
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 400;
+            transform: translateY(-50%);
+        }
+    }
+    .services{
+        
+        .list{
+            display: flex;
+            flex-wrap: wrap;
+            @media (max-width : 420px){
+                justify-content: center;
+            }
+            .service{
+                position: relative;
+                margin : 0.3em;
+                border-radius: 10px;
+                height : 150px;
+                @media (max-width : 420px){
+                    height : 100px;
+                }
+                overflow: hidden;
+                @include card_shadow($black);
+                img{
+                    width : 200px;
+                    height : 150px;
+                    object-fit: cover;
+                    @media (max-width : 420px){
+                        width : 140px;
+                        height : 100px;
+                    }
+                }
+                h4{
+                    position : absolute;
+                    top : 75px;
+                    @media (max-width : 420px){
+                        top : 50px
+                    }
+                    left : 0;
+                    font-family: $oswald;
+                    background-color: white;
+                    width : 200px;
+                    @media (max-width : 420px){
+                        width : 140px;
+                        
+                    }
+                    text-align: center;
+                    transform: translateY(-50%);
+                    a{
+                        text-decoration: none;
+                        color : $green;
+                        font-weight: 400;
+                        padding : 0.3em 0;
+                        font-size: 1.3em;
+                        @media (max-width : 420px){
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

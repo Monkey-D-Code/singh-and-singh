@@ -1,0 +1,65 @@
+@layout('admin-master')
+
+@section('title')
+    <title>Admin Login | Singh & Singh</title>
+@endsection
+
+@section('extra_style')
+  <style>
+      .container{
+          margin-top : 10em;
+      }
+  </style>
+@endsection
+
+@section('content')
+    <div class="container form-body">
+        <h1>Admin Login</h1>
+        <form method='POST' to="{{ route('admin.admin_login') }}">
+            {{ csrfField() }}
+            @if(flashMessage( 'adminLoginErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'adminLoginErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                <input 
+                    type="number"
+                    name="phone"
+                    @if(hasErrorFor('phone'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    min = 0
+                    placeholder = 'Phone Number'
+                    value={{ old('phone') }}
+                />
+                @if(hasErrorFor( 'phone' ))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('phone') }}
+                    </div>
+                @endif
+                
+            </div>
+            <div class="form-group">
+                <input 
+                    type="password" 
+                    name='password'
+                    @if(hasErrorFor('password'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    placeholder = 'Password'
+                >
+                @if(hasErrorFor( 'password' ))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('password') }}
+                    </div>
+                @endif
+            </div>
+            <button class="btn btn-success" type='submit'><i class="fa fa-sign-in" aria-hidden="true"></i> Login as Admin</button>
+        </form>
+    </div>
+@endsection

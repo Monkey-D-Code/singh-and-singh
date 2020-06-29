@@ -1,0 +1,74 @@
+.profile{
+    margin : 2em 0;
+    .user{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width : 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right : 10px;
+        }
+        h4{
+            font-family: $nunito;
+            font-size: 1.5em;
+            color: $green;
+        }
+        .info{
+            p{
+                font-family: $oswald;
+                font-size: 0.8em;
+                color: $blue;
+            }
+        }
+    }
+    .options{
+        margin : 1em 0;
+        display: flex;
+        justify-content: center;
+        a{
+            margin : 0 0.5em;
+            text-decoration: none;
+            font-family: $oswald;
+            border: 1px solid $green;
+            padding : 0.2em 0.3em;
+            border-radius: 3px;
+            transition: all 0.3s;
+            @include click_1;
+            color: $green;
+            
+        }
+    }
+    .pages{
+        margin : 0.5em auto;
+        width: fit-content;
+        background-color: rgba($green, 0.4);
+        padding : 1em;
+        border-radius: 5px;
+        display: flex;
+        @media (max-width : 420px){
+            width : 300px;
+            flex-flow: column;
+        }
+        flex-wrap: wrap;
+        a{
+            margin : 0 1em;
+            text-decoration: none;
+            font-family: $nunito;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $green;
+            transition: all 0.3s;
+            @media (max-width : 420px){
+                border-bottom: 1px solid $green;
+                margin : 0.5em 0;
+            }
+            &:hover{
+                color : darken($yellow,15%);
+            }
+
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@layout( 'admin-master' )
+
+@section( 'title' )
+    <title>All Categories | Singh & Singh</title>
+@endsection
+
+
+@section( 'content' )
+    <div class="container">
+        <div class="row mt-2">
+            <h2 class="mr-2">Categories</h2>
+            <a href="/admin/category/add" class='btn btn-success'>&plus; Add Category</a> 
+        </div>
+        <hr />
+        <div class="row">
+            @each(cat in category_list)
+                <div class="card mb-3 mr-3" style="width: 45%;">
+                    <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img 
+                            src="{{ cat.cover_image }}" 
+                            class="card-img" 
+                            alt="{{ cat.category_name }}"
+                            style="height: 100%;object-fit:cover;"
+                        >
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cat.category_name }}</h5>
+                            <p class="card-text">
+                                {{ clip_words(cat.description) }} ...
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    {{ format_date(cat.created_at) }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ route( 'category.details' , { id : cat.id } ) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            @else
+                <h3 class="alert alert-warning">
+                    No Categories Found.
+                </h3>
+            @endeach
+        </div>
+    </div>
+@endsection
