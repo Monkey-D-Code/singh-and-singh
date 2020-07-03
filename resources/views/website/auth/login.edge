@@ -5,61 +5,44 @@
     <section class="login" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) ,url(https://images.pexels.com/photos/933964/pexels-photo-933964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
         <div class="login-container" id="login-app">
             <h1>Login</h1>
-            <form @submit.prevent="login()">
+            <form method="POST" action="">
                 <input 
                     type="text" 
                     name="name" 
                     placeholder="Your Name"
-                    :disabled="loading"
-                    v-model="form_data.name"
                 >
                 <input 
                     type="number" 
                     name="pincode"  
                     placeholder="Pincode"
-                    :disabled="loading"
-                    v-model="form_data.pincode"
                 >
                 <input 
                     type="number" 
                     name="phone" 
                     placeholder="Phone Number"
-                    :disabled="loading"
-                    v-model="form_data.phone"
                 >
                 {{ csrfField() }}
-                <button type="submit" :disabled="loading">
-                    <span v-if="loading">Logging you in</span>
-                    <span v-else><i class="fa fa-sign-in" aria-hidden="true"></i> Login | Get OTP</span>
+                <button type="submit">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login | Get OTP
                 </button>
             </form>
-            <div class="server-msg" v-if="show_server_error">
-                <div class="heading">
-                    <h3>Error</h3>
-                    <h3 id='close' v-on:click="show_server_error = false">&times;</h3>
-                </div>
-                <h4 class="msg" v-for="msg in server_error_msgs">@{{ msg }}</h4>
-            </div>
+            
         </div>
     </section>
 
     <section class="features">
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/006-medicine.png" alt="">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
             <h4>Pharmacy 24/7</h4>
         </div>
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/013-ambulance.png" alt="">
+            <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
             <h4>Free Home Delivery</h4>
         </div>
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/023-nurse.png" alt="">
+            <img src="/assets/icons/blood-donation/023-nurse.png" alt="">
             <h4>24/7 Customer Service</h4>
         </div>
     </section>
 @endsection
 
-@section( 'vue' )
-    {{ script( 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js' ) }}
-    {{ script ( 'vue/login.js' ) }}
-@endsection

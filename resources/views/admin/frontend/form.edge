@@ -1,0 +1,200 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        @if(add_mode)
+            Add Website details | Singh & singh
+        @endif
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container form-body">
+        <h2>
+            @if(add_mode)
+                Add Website Details
+            @endif
+        </h2>
+        <form 
+            @if(add_mode)
+                action="{{ route( 'frontend.add' ) }}"
+            @endif
+            @if(edit_mode)
+                action="{{ route( 'frontend.edit' , {id : frontend.id } ) }}"
+            @endif
+            enctype="multipart/form-data"
+            method="POST"
+            
+        >
+            {{ csrfField() }}
+            @if(flashMessage( 'logoImgUploadErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'logoImgUploadErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'addFrontendErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'addFrontendErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                <input 
+                    type="text"
+                    name="company_name"
+                    placeholder="Company Name"
+                    @if(hasErrorFor('company_name'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('company_name') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('company_name') || frontend.company_name }}"
+                    @endif
+                >
+                @if(hasErrorFor('company_name'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('company_name') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                @if(edit_mode)
+                    <img 
+                        src="{{ frontend.logo_url }}" 
+                        style="width:100%;"
+                    >
+                @endif
+                <input 
+                    type="file"
+                    name="logo"
+                    
+                    @if(hasErrorFor('logo'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                >
+                @if(hasErrorFor('logo'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('logo') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="text"
+                    name="email"
+                    placeholder="Email address"
+                    @if(hasErrorFor('email'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('email') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('email') || frontend.email }}"
+                    @endif
+                >
+                @if(hasErrorFor('email'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('email') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="number"
+                    min=0
+                    name="phone"
+                    placeholder="Phone Number"
+                    @if(hasErrorFor('phone'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('phone') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('phone') || frontend.phone }}"
+                    @endif
+                >
+                @if(hasErrorFor('phone'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('phone') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                <textarea 
+                    rows="8"
+                    name='address'
+                    placeholder="Company address"
+                    style="resize: none;"
+                    @if(hasErrorFor('address'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    
+                >{{ old('address') || frontend.address || '' }}</textarea>
+                @if(hasErrorFor('address'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('address') }}
+                    </div>
+                @endif 
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="text"
+                    name="facebook_link"
+                    placeholder="Facebook page link"
+                    @if(hasErrorFor('facebook_link'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    @if(add_mode)
+                        value="{{ old('facebook_link') }}"
+                    @endif
+
+                    @if(edit_mode)
+                        value="{{ old('facebook_link') || frontend.facebook_link || '' }}"
+                    @endif
+                >
+                @if(hasErrorFor('facebook_link'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('facebook_link') }}
+                    </div>
+                @endif 
+            </div>
+            
+            <button class="btn btn-success btn-block" type="submit">
+                @if(add_mode)
+                    &plus; Add Website details
+                @endif
+                @if(edit_mode)
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ frontend.company_name }}
+                @endif
+            </button>
+
+        </form>
+
+    </div>
+  
+@endsection

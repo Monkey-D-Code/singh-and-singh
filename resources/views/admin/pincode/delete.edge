@@ -1,0 +1,25 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ pincode.area }} ?
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mb-3">
+        <h2>Confirm delete {{ pincode.area }} ?</h2>
+        <p class='alert alert-warning'>This will permanently delete this ! </p>
+        @if(flashMessage( 'pincodeDeleteErr' ))
+            <h5 class="alert alert-danger">
+                {{ flashMessage( 'pincodeDeleteErr' ) }}
+            </h5>
+        @endif
+        <form method='POST' to='{{ route('pincode.delete',{ id:pincode.id }) }}'>
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</button>
+        </form>
+    </div>
+@endsection

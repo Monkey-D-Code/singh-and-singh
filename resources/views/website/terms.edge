@@ -1,0 +1,27 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Terms & Conditions | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="terms">
+        <h1>Terms & Conditions</h1>
+        <div class="term-list">
+            @each(term in terms)
+                <div class="single-term">
+                    <h4>{{ term.heading }}</h4>
+                    <p>{{ term.desc }}</p>
+                </div>
+            @else
+                <div class="no-term">
+                    <h4>No Terms Yet</h4>
+                </div>
+            @endeach
+        </div>
+    </div>
+@endsection

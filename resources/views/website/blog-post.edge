@@ -1,0 +1,20 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        {{ blogpost.title }} | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="blogpost-details">
+        <div class="heading" style="background-image:url({{ blogpost.image_url }})">
+            <h1>{{ blogpost.title }}</h1>
+        </div>
+        <div class="post-body">
+            {{{ blogpost.post_body }}}
+        </div>
+    </div>
+@endsection

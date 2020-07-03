@@ -1,0 +1,66 @@
+@layout('admin-master')
+
+
+
+@section('title')
+    <title>
+        {{ brand.name }} | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .heading{
+            display: flex;
+            align-items: center;
+        }
+        .heading img{
+            width : 50%;
+            max-height: 90vh;
+            object-fit: cover;
+        }
+    </style>
+@endsection
+
+
+@section('content')
+    <div class="container">
+        <div class="heading">
+            <img 
+                src="{{ brand.cover_image }}" 
+                alt=""
+                class="mr-3"
+            >
+            <div class="info">
+                <h2>{{ brand.name }}</h2>
+                <p>{{ brand.about }}</p>
+                <div class="options">
+                    <a href="{{ route( 'brand.edit_page',{id:brand.id} ) }}" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <a href="{{ route( 'brand.delete_page',{id:brand.id} ) }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a>
+                </div>
+            </div>
+        </div>
+        <div class=" container medicine-list mt-5 mb-5">
+            <ul class="list-group">
+                @each(med in medicines)
+                    <a href="{{ route( 'medicine.details' , { id : med.id } ) }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            @if(med.front_page)
+                                <p class="badge badge-success">Front Page</p>
+                            @endif
+                            <h5 class="mb-1">{{ med.name }}</h5>
+                            <small><i class="fa fa-inr" aria-hidden="true"></i> {{ med.selling_price }}</small>
+                        </div>
+                        <p class="mb-1">{{ clip_words(med.description) }} ...</p>
+                        <small></small>
+                    </a>
+                @else
+                    <h6 class="alert alert-warning">
+                        No Medicines yet in {{ brand.name }}
+                    </h6>
+                @endeach
+            </ul>
+            
+        </div>
+    </div>
+@endsection

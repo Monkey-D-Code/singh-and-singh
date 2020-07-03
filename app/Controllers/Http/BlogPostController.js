@@ -60,7 +60,7 @@ class BlogPostController {
         const new_blogpost          =   new BlogPost();
         new_blogpost.title          =   title;
         new_blogpost.image_url      =   `/uploads/blogpost_images/${postimg_filename}`;
-        new_blogpost.post_body      =   sanitizeHtml( post_body );
+        new_blogpost.post_body      =   post_body;
         new_blogpost.published      =   1;
 
         try{
@@ -97,7 +97,7 @@ class BlogPostController {
         }
 
         old_blogpost.title      =   title;
-        old_blogpost.post_body  =   sanitizeHtml( post_body );
+        old_blogpost.post_body  =   post_body ;
 
         try{
             await old_blogpost.save();

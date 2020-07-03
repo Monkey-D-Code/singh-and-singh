@@ -1,0 +1,108 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        @if(add_mode)
+            Add New Slider Image | Singh & Singh
+        @endif
+    </title>
+@endsection
+
+@section('extra_script')
+    <script type="text/javascript">
+        
+    </script>
+@endsection
+
+
+@section('content')
+    <div class="form-body" style="margin-top:10%;">
+        <h2>
+            @if(add_mode)
+                &plus; Add New Slider Image
+            @endif
+        </h2>
+        <form 
+            @if(add_mode)
+                action="{{ route( 'slider_image.add' )  }}"
+            @endif
+            enctype="multipart/form-data"
+            method="POST"
+        >
+            {{ csrfField() }}
+            @if(flashMessage( 'sliderImageUploadErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'sliderImageUploadErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'sliderImageSaveErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'sliderImageSaveErr' ) }}
+                </h5>
+            @endif
+            <div class="form-group">
+                
+                <input 
+                    type="file"  
+                    name='slider_image'
+                    @if(hasErrorFor('slider_image'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    placeholder="Select an Image"
+                    
+                >
+                @if(hasErrorFor('slider_image'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('slider_image') }}
+                    </div>
+                @endif
+            </div>
+            
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    placeholder="Heading"
+                    name="heading"
+                    @if(hasErrorFor('heading'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    value="{{ old( 'heading' ) }}"
+                >
+                @if(hasErrorFor('heading'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('heading') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    placeholder="Caption"
+                    name="caption"
+                    @if(hasErrorFor('caption'))
+                        class="form-control is-invalid"
+                    @else
+                        class="form-control"
+                    @endif
+                    value="{{ old( 'caption' ) }}"
+                >
+                @if(hasErrorFor('caption'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('caption') }}
+                    </div>
+                @endif
+            </div>
+            <button class="btn btn-success btn-block" type='submit'>
+                @if(add_mode)
+                    &plus; Add Slider Image
+                @endif
+            </button>
+        </form>
+    </div>
+@endsection

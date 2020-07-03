@@ -1,0 +1,76 @@
+@layout('master')
+
+
+
+@section('title')
+    <title>
+        {{ search_query }} | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <!-- ******************** SEARCH RESULTS ******************************** -->
+    <section class="search-results">
+        <form class="search-box" action="{{ route( 'search_results_page' ) }}" method="POST">
+            {{ csrfField() }}
+            <div class="pincode">
+                <input type="number" min=0 placeholder="Pincode" value="{{ pincode }}" name="pincode">
+                @if(pincode)
+                    @if(pinData)
+                        <p class="pincode-result">Home Delivery available at {{ pincode }}</p>
+                    @else
+                        <p class="pincode-result"style="color:#ac3931;">Delivery not available at {{ pincode }}</p>
+                    @endif
+                @else
+                    <p class="pincode-result">Enter your Pincode</p>
+                @endif
+            </div>
+            <div class="search-query">
+                <input type="text" placeholder="Search Brands or Products" value="{{ search_query }}" name="search_query">
+                <p class="query-result">Showing all results for <span>{{ search_query }}</span></p>
+            </div>
+            <button class="search"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        </form>
+        <div class="results-container">
+            @each(med in medicines )
+                <div class="single-result">
+                    @each(img in med.images)
+                        @if($loop.first)
+                            <img src="{{ img.image_url }}" alt="">
+                        @endif
+                    @else
+                        <img src="https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png" alt="">
+                    @endeach
+                    <div class="info">
+                        <h4><a href="{{ route('medicine_details_page',{id:med.id}) }}">{{ med.name }}</a></h4>
+                        <div class="prescription">
+                            @if(med.prescription_required)
+                                <div class="yes"><i class="fa fa-info-circle" aria-hidden="true"></i> Requires Prescription</div>
+                            @else
+                                <div class="no"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> No Prescription Required</div>
+                            @endif  
+                        </div>
+                        <h3 class="packet">{{ frontend.company_name }}</h3>
+                        <div class="price">
+                            <div class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.selling_price) }}</div>
+                            <div class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.market_price) }}</div>
+                            <div class="discount">{{ round_up(((med.market_price - med.selling_price) * 100)/med.market_price) }}% off</div>
+                        </div>
+                        @if(!med.prescription_required)
+                            <div class="cart-controls">
+                                <button class="plus">+</button>
+                                <input type="number" class="quantity" min=0 placeholder="Quantity">
+                                <button class="minus">-</button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @else
+                <h2 class="no-results-found">
+                    No results found for {{ search_query }}
+                </h2>
+            @endeach
+        </div>
+    </section>
+@endsection

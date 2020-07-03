@@ -20,9 +20,11 @@
     <div class="form-body" style="margin-top:10%;">
         <h2>
             @if(add_mode)
-                &plus; Add New Medicine
+                &plus; Add New Medicine Image
             @endif
         </h2>
+        <a href="{{ route('medicine.details',{id:medicine_id}) }}" class="badge badge-info">&larr; Back to medicine</a>
+        <hr>
         <form 
             @if(add_mode)
                 action="{{ route( 'medicine_image.add' , { medicine_id : medicine_id } )  }}"

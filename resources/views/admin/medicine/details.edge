@@ -81,10 +81,20 @@
             </div>
         </div>
         <div class="info">
+            <a href="{{ route('category.details' , { id : medicine.category_id }) }}" class="btn btn-info">&larr; Back to category</a>
+            <a href="{{ route('brand.details' , { id : medicine.brand_id }) }}" class="btn btn-primary">&larr; Back to brand</a>
             <h3>{{ medicine.name }}</h3>
+            @if(brand_info)
+                <p class="badge badge-success">{{ brand_info.name }}</p>
+            @else
+                <p class="badge badge-warning">No Brand</p>
+            @endif
             <div class="price">
+                @if(medicine.front_page)
+                    <h5><span class="badge badge-success mr-1"><i class="fa fa-eye" aria-hidden="true"></i> On front page</span></h5>
+                @endif
                 @if(medicine.active)
-                    <h5><span class="badge badge-success mr-1">Visible to Public</span></h5>
+                    <h5><span class="badge badge-primary mr-1">Visible to Public</span></h5>
                 @else
                     <h5><span class="badge badge-secondary mr-1">Not Visible to Public</span></h5>
                 @endif

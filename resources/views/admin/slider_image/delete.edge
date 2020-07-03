@@ -1,0 +1,43 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ slider_image.heading }} ? 
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .container{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            
+        }
+        img{
+            width : 50%;
+        }
+    </style>
+@endsection
+
+
+@section('content')
+    <div class="container mb-5">
+        <img src="{{ slider_image.image_url }}" alt="">
+        <h2>Are you sure to delete <a href="{{ route( 'frontend.details',{id:1} ) }}">{{ slider_image.heading }}</a> ?</h2>
+        <p class="alert alert-warning">This will be permanent !</p>
+        @if(flashMessage( 'sliderImgDeleteErr' ))
+            <h5 class="alert alert-danger">
+                {{ flashMessage( 'sliderImgDeleteErr' ) }}
+            </h5>
+        @endif
+        <form
+            method="POST"
+            action="{{ route( 'slider_image.delete' , {id : slider_image.id } ) }}"
+        >
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+@endsection

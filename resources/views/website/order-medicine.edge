@@ -1,0 +1,126 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Order Medicine | Singh & Singh
+    </title>
+@endsection
+
+@section('content')
+    <section class="order-medinices">
+        <div class="heading">
+            <img src="/assets/images/order-medicine.gif" alt="">
+            <h1>Order Medicines Online</h1>
+        </div>
+        <div class="search-medicine">
+            <div class="our-features">
+                <div class="one-feature">
+                    <img src="/assets/icons/blood-donation/016-hospital.png" alt="">
+                    <h5>Pharmacy on Phone</h5>
+                </div>
+                <div class="one-feature">
+                    <img src="/assets/icons/blood-donation/020-medical kit.png" alt="">
+                    <h5>Range of Products</h5>
+                </div>
+                <div class="one-feature">
+                    <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
+                    <h5>Free Home Delivery</h5>
+                </div>
+            </div>
+            <div class="search-input-container">
+                <h4>Search for Medicines or Healthcare Products</h4>
+                <form class="search-field" action="{{ route( 'search_results_page' ) }}" method="POST">
+                    {{ csrfField() }}
+                    <input type="number" class="pincode" placeholder="Pincode" name="pincode">
+                    <input type="text" class="medicine" placeholder="e.g Ecosprin, Telma or Colgate" name="search_query">
+                    <button class="search-med"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="order-by-prescription">
+                <img src="/assets/icons/blood-donation/024-stethoscope.png" alt="">
+                <h4><a href="{{ route('order_by_prescription_page') }}">Order by Prescription &rarr;</a></h4>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="testimonials">
+        <div class="heading">
+            <img src="./assets/icons/blood-donation/009-health report.png" alt="">
+            <h1>What People Say</h1>
+        </div>
+        <div class="testimonial-list">
+            @each(message in testimonials)
+                <div class="single-testimonial">
+                    <div class="message">
+                        <p class="text">
+                            {{ message.message }}
+                        </p>
+                        <p class="datetime">{{ format_date(message.created_at) }}</p>
+                    </div>
+                    <div class="user">
+                        <img src="./assets/images/male-avatar.png" alt="">
+                        <h4>{{ message.name }}</h4>
+                    </div>
+                </div>
+            @else
+                <div class="single-testimonial">
+                    <div class="message">
+                        <p class="text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quisquam aspernatur aut rem! Eaque ipsum sequi natus rem, autem corporis dolor.
+                        </p>
+                        <p class="datetime">20 May, 2020</p>
+                    </div>
+                    <div class="user">
+                        <img src="./assets/images/male-avatar.png" alt="">
+                        <h4>Varun Grover</h4>
+                    </div>
+                </div>
+
+                <div class="single-testimonial">
+                    <div class="message">
+                        <p class="text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quisquam aspernatur aut rem! Eaque ipsum sequi natus rem, autem corporis dolor.
+                        </p>
+                        <p class="datetime">20 May, 2020</p>
+                    </div>
+                    <div class="user">
+                        <img src="./assets/images/female-avatar.png" alt="">
+                        <h4>Ananya Pandey</h4>
+                    </div>
+                </div>
+
+                <div class="single-testimonial">
+                    <div class="message">
+                        <p class="text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quisquam aspernatur aut rem! Eaque ipsum sequi natus rem, autem corporis dolor.
+                        </p>
+                        <p class="datetime">20 May, 2020</p>
+                    </div>
+                    <div class="user">
+                        <img src="./assets/images/male-avatar.png" alt="">
+                        <h4>Kunal Kamra</h4>
+                    </div>
+                </div>
+
+                <div class="single-testimonial">
+                    <div class="message">
+                        <p class="text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                            Quisquam aspernatur aut rem! Eaque ipsum sequi natus rem, autem corporis dolor.
+                        </p>
+                        <p class="datetime">20 May, 2020</p>
+                    </div>
+                    <div class="user">
+                        <img src="./assets/images/female-avatar.png" alt="">
+                        <h4>Greta thunberg</h4>
+                    </div>
+                </div>
+            @endeach
+        </div>
+    </section>
+@endsection

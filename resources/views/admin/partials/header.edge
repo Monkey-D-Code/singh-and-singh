@@ -35,15 +35,31 @@
           >
               <a class="nav-link" href="/admin/category/list">Categories</a>
           </li>
+          <li 
+            @if(brands)
+              class="nav-item active"
+            @else
+              class="nav-item"
+            @endif
+          >
+              <a class="nav-link" href="{{ route( 'brand.list' ) }}">Brands</a>
+          </li>
           <li class="nav-item">
               <a class="nav-link" href="#">Prescriptions</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#">Orders</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Website</a>
+          <li 
+            @if(website)
+              class="nav-item active"
+            @else
+              class="nav-item"
+            @endif
+          >
+              <a class="nav-link" href="{{ route( 'frontend.details',{id : 1} ) }}">Website</a>
           </li>
+          
           <li 
             @if(blog)
               class="nav-item active"

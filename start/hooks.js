@@ -12,4 +12,7 @@ hooks.after.providersBooted(()=>{
     View.global('clip_words' , ( paragraph ) => {
         return paragraph.substring(0 , 100);
     });
+    View.global('round_up' , ( number )=>{
+        return Math.ceil(number);
+    })
 })

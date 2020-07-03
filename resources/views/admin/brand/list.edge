@@ -1,0 +1,49 @@
+@layout('admin-master')
+
+@section('title')
+    <title>
+        All Brands | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .heading{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1em;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="container">
+        <div class="heading">
+            <h3 class="mr-3">Brands</h3>
+            <a href="{{ route( 'brand.add_page' ) }}" class="btn btn-success">&plus; New Brand</a>
+        </div>
+        <hr> 
+        <div class="brand-list row">
+            @each(brand in brands)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img 
+                            src="{{ brand.cover_image }}" 
+                            class="card-img-top"
+                            style="height:200px;object-fit:cover;object-position:center;"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">{{ brand.name }}</h5>
+                            <a href="{{ route( 'brand.details',{id:brand.id} ) }}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <h4 class="alert alert-warning text-center col-md-12">
+                    No Brands Yet !
+                </h4>
+            @endeach
+        </div>
+    </div>
+@endsection

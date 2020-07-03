@@ -9,7 +9,8 @@
     "test": "node ace test",
     "website:sass": "node-sass resources/scss/website/main.scss public/css/style.css -w",
     "run-migration": "adonis migration:run",
-    "run-seed": "adonis seed"
+    "run-seed": "adonis seed",
+    "migration-status" : "adonis migration:status"
   },
   "keywords": [
     "adonisjs",

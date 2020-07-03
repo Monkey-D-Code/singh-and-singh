@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singh & Singh</title>
+
+    @!section( 'title' )
+
     {{ style( 'css/style' ) }}
     {{ style( 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min' ) }}
+    @!section('extra_style')
 </head>
 <body>
     
@@ -20,12 +23,59 @@
     <!-- ********************** LIBRARIES ******************************* -->
     {{ script( 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js' ) }}
     {{ script('scripts/lib/gsap-public/minified/gsap.min.js') }}
-
+    {{ script( 'https://code.jquery.com/jquery-3.5.1.min.js' ) }}
     <!-- **************************************************************** -->
     {{ script( 'scripts/animations.js' ) }}
     {{ script( 'scripts/interaction.js' ) }}
     {{ script( 'scripts/script.js' ) }}
 
     @!section( 'vue' )
+    @!section('extra_script')
+    <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+            }
+            return "";
+        }
+
+        const pincode       =   document.querySelector("#pincode-input");
+        const pincodeBtn    =   document.querySelector("#pincode-btn");
+        const opPincode     =   document.querySelector("#op-pincode");
+
+        pincodeBtn.addEventListener('click' , function(){
+            if(pincode.value.length === 6){
+                pincodeBtn.disabled     =   true;
+                pincodeBtn.innerHTML    =   'WAIT..';
+                $.ajax({
+                    url     : '/search-pin',
+                    headers : { 'X-XSRF-TOKEN' : getCookie('XSRF-TOKEN') },
+                    data    : { pin : pincode.value },
+                    type    :  "POST",
+
+                }).then(function(response){
+                    opPincode.innerHTML     =  response.msg; 
+                    pincodeBtn.disabled     =   false;
+                    pincodeBtn.innerHTML    =   'Apply';
+                    
+                }).catch(function(error){
+                    console.log(error);
+                    pincodeBtn.disabled     =   false;
+                    pincodeBtn.innerHTML    =   'Apply';
+                })
+            }else{
+                opPincode.innerHTML     =   'Enter a valid Pin'
+            }
+        })
+    </script>
 </body>
 </html>

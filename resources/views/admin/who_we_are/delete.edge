@@ -1,0 +1,20 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ who_we_are.heading }} ?
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mb-3">
+        <h2>Confirm delete {{ who_we_are.heading }} ?</h2>
+        <p class='alert alert-warning'>This will permanently delete this ! </p>
+        <form method='POST' to='{{ route('who_we_are.delete',{ id:who_we_are.id }) }}'>
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</button>
+        </form>
+    </div>
+@endsection

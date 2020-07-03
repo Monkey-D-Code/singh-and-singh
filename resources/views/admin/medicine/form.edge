@@ -46,6 +46,33 @@
                     {{ flashMessage( 'medicineUpdateErr' ) }}
                 </h5>
             @endif
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="brand">Brand</label>
+                </div>
+                <select class="custom-select" id="brand" name='brand_id'>
+                    @if(add_mode)
+                        <option value="null" selected>Choose Brand</option>
+                        @each(brand in brands)
+                            <option value="{{ brand.id }}">{{ brand.name }}</option>
+                        @endeach
+                    @endif
+                    
+                    @if(edit_mode)
+                        <option value="" selected>Choose Brand</option>
+                        @each(brand in brands)
+                        <option 
+                            value="{{ brand.id }}" 
+                            @if(medicine.brand_id == brand.id)
+                                selected
+                            @endif
+                        >{{ brand.name }}</option>
+
+                        @endeach
+                    @endif
+                </select>
+            </div>
+
             <div class="form-group">
                 <input 
                     type="text"
@@ -127,7 +154,7 @@
                 <textarea 
                     rows="10"
                     name='description'
-                    placeholder="Describe your category"
+                    placeholder="Describe your medicine"
                     style="resize: none;"
                     @if(hasErrorFor('description'))
                         class="form-control is-invalid"
@@ -197,6 +224,34 @@
                     <label class="input-group-text" for="prescription-required">Prescription</label>
                 </div>
             </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="front_page">Frontpage</label>
+                </div>
+                <select class="custom-select" id="front_page" name='front_page'>
+                    @if(add_mode)
+                        <option value="0" selected>Not displayed on frontpage</option>
+                        <option value="1">Displayed on Front page</option>
+                    @endif
+                    
+                    @if(edit_mode)
+                        <option 
+                            value="1" 
+                            @if(medicine.front_page)
+                                selected
+                            @endif
+                        >Displayed on Front page</option>
+                        <option 
+                            value="0"
+                            @if(!medicine.front_page)
+                                selected
+                            @endif
+                        >Not displayed on frontpage</option>
+                    @endif
+                </select>
+            </div>
+
             <button class="btn btn-success btn-block">
                 @if(add_mode)
                     &plus; Add Medicine

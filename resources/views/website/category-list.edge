@@ -1,0 +1,49 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Shop by category | Singh & Singh
+    </title>
+@endsection
+
+@section('content')
+    <section class="category-list">
+        <div class="heading">
+            <img src="https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+            <h1>Categories</h1>
+        </div>
+        <div class="all-categories">
+            @each(cat in categories)
+                <div class="single-category">
+                    <img src="{{ cat.cover_image }}" alt="">
+                    <h4><a href="{{ route('category_details_page',{id:cat.id}) }}">{{ cat.category_name }}</a></h4>
+                    
+                </div>
+            @else
+                <div class="single-category">
+                    <img src="https://levohealth.com/wp-content/uploads/2018/12/levo-health-why-is-healthcare-marketing-important-1-1200x801.jpg" alt="">
+                    <h4><a href="./category-details.html">Personal Care</a></h4>
+                    
+                </div>
+
+                <div class="single-category">
+                    <img src="https://www.sundayguardianlive.com/wp-content/uploads/2020/04/Kundan-ayurveda-edited.jpg" alt="">
+                    <h4><a href="./category-details.html">Ayurvedic Store</a></h4>
+                    
+                </div>
+
+                <div class="single-category">
+                    <img src="https://media.defense.gov/2019/Nov/26/2002217311/780/780/0/191126-F-F3494-0002.JPG" alt="">
+                    <h4><a href="./category-details.html">Diabetic Care</a></h4>
+                    
+                </div>
+
+                <div class="single-category">
+                    <img src="https://www.naturalproductsinsider.com/sites/naturalproductsinsider.com/files/food%20groups%20620x350_0.jpg" alt="">
+                    <h4><a href="./category-details.html">Daily Essentials</a></h4>
+                </div>
+            @endeach
+        </div>
+    </section>
+@endsection

@@ -1386,6 +1386,29 @@ footer {
       .medicine-details .product-information .options .buy-now {
         background-color: #0D59A3;
         border-radius: 0px 5px 5px 0px; }
+    .medicine-details .product-information .upload-prescription {
+      margin: 1em 0;
+      border: 1px solid #4d8b31;
+      width: fit-content;
+      padding: 0.5em;
+      border-radius: 5px; }
+      .medicine-details .product-information .upload-prescription h4 {
+        font-family: "Nunito";
+        color: #4d8b31;
+        font-size: 1.1em;
+        margin-bottom: 0.3em; }
+      .medicine-details .product-information .upload-prescription a {
+        font-family: "Oswald";
+        text-decoration: none;
+        color: white;
+        background-color: #0D59A3;
+        padding: 0.2em 0.5em;
+        font-size: 0.9em;
+        border-radius: 5px; }
+        .medicine-details .product-information .upload-prescription a:hover {
+          transform: translateY(-5px); }
+        .medicine-details .product-information .upload-prescription a:active {
+          transform: translateY(5px); }
 
 .related-products {
   position: relative;
@@ -2193,6 +2216,8 @@ footer {
         background-color: #ac3931; }
       .search-results .results-container .single-result .info .cart-controls .quantity {
         width: 80px; }
+  .search-results .results-container .no-results-found h2 {
+    font-family: "Nunito"; }
 
 .brand-details .heading {
   display: flex;
@@ -2896,3 +2921,62 @@ footer {
       transform: translateY(5px); }
     .order-by-prescription .upload-container .upload-prescription::-webkit-file-upload-button {
       display: none; }
+
+.terms h1 {
+  font-family: "Nunito";
+  text-transform: uppercase;
+  margin: 1em auto;
+  background-image: linear-gradient(to right, #ffc800, #4d8b31);
+  width: fit-content;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  color: transparent; }
+  @media (max-width: 320px) {
+    .terms h1 {
+      font-size: 1.5em; } }
+
+.terms .term-list {
+  width: 80%;
+  margin: 0.5em auto; }
+  .terms .term-list .single-term {
+    margin: 1em auto;
+    border: 1px solid #0D59A3;
+    padding: 1em;
+    border-radius: 5px; }
+    .terms .term-list .single-term h4 {
+      font-family: "Nunito";
+      font-size: 1.6em;
+      color: #4d8b31; }
+    .terms .term-list .single-term p {
+      font-family: "Oswald";
+      font-size: 0.8em;
+      color: rgba(0, 0, 0, 0.6); }
+
+.blogpost-details .heading {
+  position: relative;
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; }
+  @media (max-width: 420px) {
+    .blogpost-details .heading {
+      height: 30vh; } }
+  .blogpost-details .heading h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0D59A3;
+    padding: 0.5em;
+    border-radius: 5px;
+    color: white;
+    font-family: "Oswald"; }
+
+.blogpost-details .post-body {
+  width: 80%;
+  margin: 0.5em auto; }
+  @media (max-width: 420px) {
+    .blogpost-details .post-body {
+      width: 95%; } }

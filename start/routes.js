@@ -1,5 +1,7 @@
 'use strict'
 
+const { route } = require('@adonisjs/framework/src/Route/Manager');
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -18,11 +20,74 @@ const Route = use('Route')
 
 
 // website routes
-Route.on('/').render('website/home')
-Route.on('/login').render('website/login')
+Route
+    .get('/' , 'WebsiteController.home_page' )
+    .as( 'home' )
+    .middleware(['frontend_data']);
+Route
+    .get('order-medicine' , 'WebsiteController.order_medicine_page' )
+    .as( 'order_medicine_page' )
+    .middleware(['frontend_data']);
+Route
+    .get('order-by-prescription' , 'WebsiteController.order_by_prescription_page')
+    .as( 'order_by_prescription_page' )
+    .middleware(['frontend_data']);
+Route
+    .get('category-list' , 'WebsiteController.category_list_page')
+    .as( 'category_list_page' )
+    .middleware(['frontend_data']);
+Route
+    .get(':id/category-details' , 'WebsiteController.category_details_page')
+    .as('category_details_page')
+    .middleware(['frontend_data']);
+Route
+    .get(':id/brand-details' , 'WebsiteController.brand_details_page')
+    .as('brand_details_page')
+    .middleware(['frontend_data']);
+Route
+    .get(':id/medicine-details' , 'WebsiteController.medicine_details_page')
+    .as('medicine_details_page')
+    .middleware(['frontend_data']);
+Route
+    .get(':id/blogpost' , 'WebsiteController.blopost_details_page' )
+    .as( 'blogpost_details_page' )
+    .middleware(['frontend_data']);
+
+Route
+    .get('terms' , 'WebsiteController.terms_page' )
+    .as( 'terms_page' )
+    .middleware(['frontend_data']);
+
+Route
+    .get( 'search-results'  , ({response})=>{return response.redirect('back')});
+Route
+    .post( 'search-results' , 'WebsiteController.search_results_page' )
+    .as('search_results_page')
+    .middleware(['frontend_data']);
+
+Route.group(()=>{
+    Route.get('login' , 'UserAuthController.login_page')
+         .as( 'auth.login' );
 
 
-// Admin Routes
+}).prefix('auth').middleware(['frontend_data']);
+
+
+
+
+
+// API routes
+Route
+    .post('search-pin' , 'WebsiteController.search_pin_api' );
+
+
+
+
+
+// **********************************************************************************
+// *************************** Admin Routes *****************************************
+// **********************************************************************************
+
 Route.group(()=>{
     Route.get('login' , 'AdminController.login_page').as('admin.login_page');
     Route.post('login' , 'AdminController.admin_login' )
@@ -57,6 +122,35 @@ Route.group(()=>{
     
 
 }).prefix('admin/category').middleware(['is_admin_auth']);
+
+// BRAND ROUTES
+Route.group(()=>{
+    Route.get('list' , 'BrandController.list').as('brand.list');
+    Route.get(':id/details' , 'BrandController.details').as( 'brand.details' );
+    Route
+        .get('add' , 'BrandController.add_page' )
+        .as('brand.add_page');
+    Route
+        .get(':id/edit' , 'BrandController.edit_page')
+        .as( 'brand.edit_page' );
+    Route
+        .get(':id/delete' , 'BrandController.delete_page')
+        .as( 'brand.delete_page' );
+
+    Route
+        .post('add' , 'BrandController.add' )
+        .validator( 'StoreBrand' )
+        .as('brand.add');
+    Route
+        .post(':id/edit' , 'BrandController.edit' )
+        .validator( 'StoreBrand' )
+        .as( 'brand.edit' );
+    Route
+        .post(':id/delete' , 'BrandController.delete')
+        .as( 'brand.delete' );
+
+
+}).prefix('admin/brand').middleware(['is_admin_auth']);
 
 // MEDICINE
 Route.group( ()=>{
@@ -131,6 +225,161 @@ Route.group(()=>{
 
 // WEBSITE ROUTES
 Route.group(()=>{
+    Route
+        .get( ':id/details' , 'FrontendController.details' )
+        .as( 'frontend.details' );
+    Route
+        .get('add' , 'FrontendController.add_page' )
+        .as( 'frontend.add_page' )
+        .middleware(['frontend_exist']);
+    Route
+        .get(':id/edit' , 'FrontendController.edit_page' )
+        .as( 'frontend.edit_page' );
+
+    Route
+        .post('add' , 'FrontendController.add' )
+        .validator( 'StoreFrontend' )
+        .middleware(['frontend_exist'])
+        .as( 'frontend.add' );
+    Route
+        .post( ':id/edit' , 'FrontendController.edit' )
+        .validator( 'EditFrontend' )
+        .as( 'frontend.edit' );
     
 
-}).prefix('frontend').middleware(['is_admin_auth']);
+}).prefix('admin/frontend').middleware(['is_admin_auth']);
+
+
+// SLIDER IMAGE ROUTES
+Route.group(()=>{
+    Route
+        .get( 'add' , 'SliderImageController.add_page' )
+        .as( 'slider_image.add_page' );
+    Route
+        .get( ':id/delete' , 'SliderImageController.delete_page' )
+        .as('slider_image.delete_page');
+
+
+    Route
+        .post( 'add' , 'SliderImageController.add' )
+        .validator( 'AddSliderImage' )
+        .as( 'slider_image.add' );
+    Route
+        .post( ':id/delete' , 'SliderImageController.delete' )
+        .as( 'slider_image.delete' );
+
+}).prefix('admin/sliderimage').middleware(['is_admin_auth']);
+
+
+// WHO WE ARE ROUTES
+Route.group(()=>{
+    Route
+        .get('add' , 'WhoWeAreController.add_page' )
+        .as( 'who_we_are.add_page' );
+    Route
+        .get(':id/edit' , 'WhoWeAreController.edit_page' )
+        .as('who_we_are.edit_page');
+    Route
+        .get(':id/delete' , 'WhoWeAreController.delete_page')
+        .as( 'who_we_are.delete_page' )
+        
+    Route
+        .post( 'add' , 'WhoWeAreController.add' )
+        .validator( 'WhoWeAre' )
+        .as( 'who_we_are.add' );
+    Route
+        .post(':id/edit' , 'WhoWeAreController.edit')
+        .validator( 'WhoWeAre' )
+        .as( 'who_we_are.edit' );
+    Route
+        .post(':id/delete' , 'WhoWeAreController.delete')
+        .as( 'who_we_are.delete' );
+
+
+}).prefix('admin/whoweare').middleware(['is_admin_auth']);
+
+// TESTIMONIAL
+Route.group(()=>{
+    Route
+        .get('add' , 'TestimonialController.add_page' )
+        .as( 'testimonial.add_page' );
+    Route
+        .get(':id/edit' , 'TestimonialController.edit_page' )
+        .as('testimonial.edit_page');
+    Route
+        .get(':id/delete' , 'TestimonialController.delete_page')
+        .as( 'testimonial.delete_page' )
+        
+    Route
+        .post( 'add' , 'TestimonialController.add' )
+        .validator( 'StoreTestimonial' )
+        .as( 'testimonial.add' );
+    Route
+        .post(':id/edit' , 'TestimonialController.edit')
+        .validator( 'StoreTestimonial' )
+        .as( 'testimonial.edit' );
+    Route
+        .post(':id/delete' , 'TestimonialController.delete')
+        .as( 'testimonial.delete' );
+
+
+}).prefix('admin/testimonial').middleware(['is_admin_auth']);
+
+// TERMS & CONDITIONS 
+Route.group(()=>{
+    Route
+        .get('add' , 'TermController.add_page' )
+        .as( 'term.add_page' );
+
+    Route
+        .get(':id/edit' , 'TermController.edit_page' )
+        .as('term.edit_page');
+    Route
+        .get(':id/delete' , 'TermController.delete_page')
+        .as( 'term.delete_page' )
+        
+    Route
+        .post( 'add' , 'TermController.add' )
+        .validator( 'StoreTerm' )
+        .as( 'term.add' );
+    Route
+        .post(':id/edit' , 'TermController.edit')
+        .validator( 'StoreTerm' )
+        .as( 'term.edit' );
+    Route
+        .post(':id/delete' , 'TermController.delete')
+        .as( 'term.delete' );
+
+}).prefix('admin/term').middleware(['is_admin_auth']);
+
+// PINCODE ROUTES
+Route.group(()=>{
+    Route
+        .get('add' , 'PincodeController.add_page' )
+        .as( 'pincode.add_page' );
+    Route
+        .get(':id/edit' , 'PincodeController.edit_page' )
+        .as( 'pincode.edit_page' );
+    Route
+        .get(':id/delete' , 'PincodeController.delete_page' )
+        .as( 'pincode.delete_page' );
+
+    Route
+        .post('add' , 'PincodeController.add' )
+        .validator( 'StorePincode' )
+        .as( 'pincode.add' );
+    Route
+        .post(':id/edit' , 'PincodeController.edit' )
+        .validator( 'StorePincode' )
+        .as( 'pincode.edit' );
+    Route
+        .post(':id/delete' , 'PincodeController.delete' )
+        .as( 'pincode.delete' ); 
+    
+
+}).prefix('admin/pincode').middleware(['is_admin_auth']);
+
+
+// ****************************************************************************
+// ****************************************************************************
+// ****************************************************************************

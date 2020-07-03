@@ -3,30 +3,40 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffff" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,176C960,160,1200,96,1320,64L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
     <div class="information">
         <div class="company">
-            <h3>Singh & Singh</h3>
-            <div class="phone"> +91 1122334455</div>
-            <div class="email">singh&singh@gmail.com</div>
+            @if( frontend )
+                <h3>{{ frontend.company_name }}</h3>
+                <div class="phone"> +91 {{ frontend.phone }}</div>
+                <div class="email">{{ frontend.email }}</div>
+            @else
+                <h3>Singh & Singh</h3>
+                <div class="phone"> +91 1122334455</div>
+                <div class="email">singh&singh@gmail.com</div>
+            @endif
         </div>
         <div class="policy">
             <h3>Policy Info</h3>
             <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="{{ route('terms_page') }}">Terms & Conditions</a></li>
             </ul>
         </div>
         <div class="need-help">
             <h3>Need Help ?</h3>
             <ul>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#">FAQ</a></li>
             </ul>
         </div>
         <div class="follow-us">
             <h3>Follow Us</h3>
             <ul>
-                <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+                @if( frontend )
+                    @if( frontend.facebook_link )
+                        <li><a href="{{ frontend.facebook_link }}" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                    @else
+                        <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                    @endif
+                @else
+                    <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                @endif 
             </ul>
         </div>
     </div>

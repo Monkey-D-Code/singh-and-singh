@@ -8,5 +8,14 @@ module.exports = {
             )
         }
         return text;
+    },
+    generate_otp    :  () => {
+        let otp     =   "";
+        const possible  =   "1234567890";
+        for(let i = 0 ; i < 6 ; i++){
+            otp += possible.charAt(
+                Math.floor( Math.random() * possible.length )
+            )
+        }
     }
 }

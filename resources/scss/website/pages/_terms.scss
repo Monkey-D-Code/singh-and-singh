@@ -1,0 +1,31 @@
+.terms{
+    h1{
+        font-family: $nunito;
+        text-transform: uppercase;
+        margin : 1em auto;
+        @media (max-width : 320px){
+            font-size : 1.5em;
+        }
+        @include gradient_text($yellow,$green);
+    }
+    .term-list{
+        width : 80%;
+        margin : 0.5em auto;
+        .single-term{
+            margin : 1em auto;
+            border : 1px solid $blue;
+            padding : 1em;
+            border-radius: 5px;
+            h4{
+                font-family : $nunito;
+                font-size: 1.6em;
+                color: $green;
+            }
+            p{
+                font-family: $oswald;
+                font-size: 0.8em;
+                color: rgba( black , 0.6 );
+            }
+        }
+    }
+}

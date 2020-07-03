@@ -43,6 +43,9 @@ const namedMiddleware = {
 
   is_admin_auth : 'App/Middleware/IsAdminAuth',
   admin_logged_in : 'App/Middleware/AdminLoggedIn',
+  frontend_exist : 'App/Middleware/FrontendExist',
+
+  frontend_data :   'App/Middleware/FrontendDatum',
 }
 
 /*

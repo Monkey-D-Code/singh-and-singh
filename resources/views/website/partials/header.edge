@@ -1,26 +1,39 @@
 <!-- Navigation Bar -->
 <nav class="navigation-2">
     <div class="search-bar">
-        <a href="./index.html" class="brand">
-            <img src="./assets/images/logo.png" alt="">
+        <a href="{{ route( 'home' ) }}" class="brand">
+            @if(frontend)
+                <img src="{{ frontend.logo_url }}" alt="">
+            @else
+                <img src="./assets/images/logo.png" alt="">
+            @endif
         </a>
-        <div class="search">
-            <input type="text" placeholder="Search for a product or brand">
-            <button><i class="fa fa-search" aria-hidden="true"></i></button>
-        </div>
+        
+        <form action="{{ route( 'search_results_page' ) }}" class="search" method="POST">
+            {{ csrfField() }}
+            <input type="text" placeholder="Search for a product or brand" name="search_query" value="{{ search_query || '' }}">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+        
         <div class="options">
             <ul>
                 <li class='pincode-toggle'><i class="fa fa-map-marker" aria-hidden="true"></i> Pincode</li>
-                <li><i class="fa fa-phone-square" aria-hidden="true"></i> 1122334455</li>
-                <li><i class="fa fa-tags" aria-hidden="true"></i> Offers</li>
-                <li><a href="./login.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+                <li><i class="fa fa-phone-square" aria-hidden="true"></i>
+                    @if(frontend)
+                        {{ frontend.phone }}
+                    @else
+                        1122334455
+                    @endif
+                </li>
+                {{--  <li><i class="fa fa-tags" aria-hidden="true"></i> Offers</li>  --}}
+                <li><a href="{{ route('auth.login') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
                 <li class='cart-toggle'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
             </ul>
             <div class="enter-pincode">
-                <h4>Where do you want the delivery ?</h4>
+                <h4 id="op-pincode">Where do you want the delivery ?</h4>
                 <div class="input-box">
-                    <input type="number" min=0 placeholder="Enter Pincode">
-                    <button>Apply</button>
+                    <input type="number" min=0 placeholder="Enter Pincode" id='pincode-input'>
+                    <button id="pincode-btn">Apply</button>
                 </div>
             </div>
             <div class="cart-popup">
@@ -73,9 +86,9 @@
     </div>
     <div class="main-menu">
         <ul>
-            <li><a href="./order-medicines.html">Order Medicine</a></li>
-            <li><a href="./order-by-prescription.html">Order By Prescription</a></li>
-            <li><a href="./category-list.html">Shop by Category</a></li>
+            <li><a href="{{ route('order_medicine_page') }}">Order Medicine</a></li>
+            <li><a href="{{ route('order_by_prescription_page') }}">Order By Prescription</a></li>
+            <li><a href="{{ route('category_list_page') }}">Shop by Category</a></li>
 
         </ul>
     </div>
@@ -97,16 +110,14 @@
                     </div>
                 </div>
             </li>
-            <li class='small-screen'><a href="#"><i class="fa fa-tags" aria-hidden="true"></i> Offers</a></li>
+            
             <li class='small-screen'><a href="./login.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
             <li class='small-screen'><a href="./cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
             <hr>
-            <li><a href="./index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-            <li><a href="./order-medicines.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> Order Medicine</a></li>
-            <li><a href="./category-list.html"><i class="fa fa-th-list" aria-hidden="true"></i> All Categories</a></li>
-            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> Our Blog</a></li>
-            <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i> Privacy Policy</a></li>
-            <li><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Terms & Conditions</a></li>
+            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+            <li><a href="{{ route('order_medicine_page') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Order Medicine</a></li>
+            <li><a href="{{ route('category_list_page') }}"><i class="fa fa-th-list" aria-hidden="true"></i> All Categories</a></li>
+            <li><a href="{{ route('terms_page') }}"><i class="fa fa-file-text" aria-hidden="true"></i> Terms & Conditions</a></li>
             
             
 

@@ -1,0 +1,25 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ testimonial.name }} ?
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mb-3">
+        <h2>Confirm delete {{ testimonial.message }} ?</h2>
+        <p class='alert alert-warning'>This will permanently delete this ! </p>
+        @if(flashMessage( 'testimonialDeleteErr' ))
+            <h5 class="alert alert-danger">
+                {{ flashMessage( 'testimonialDeleteErr' ) }}
+            </h5>
+        @endif
+        <form method='POST' to='{{ route('testimonial.delete',{ id:testimonial.id }) }}'>
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</button>
+        </form>
+    </div>
+@endsection

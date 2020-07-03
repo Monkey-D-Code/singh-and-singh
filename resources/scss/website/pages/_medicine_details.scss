@@ -156,6 +156,29 @@
                 border-radius: 0px 5px 5px 0px;
             }
         }
+        .upload-prescription{
+            margin : 1em 0;
+            border : 1px solid $green;
+            width : fit-content;
+            padding : 0.5em;
+            border-radius: 5px;
+            h4{
+                font-family: $nunito;
+                color: $green;
+                font-size: 1.1em;
+                margin-bottom: 0.3em;
+            }
+            a{
+                font-family: $oswald;
+                text-decoration: none;
+                color: white;
+                background-color: $blue;
+                padding : 0.2em 0.5em;
+                font-size: 0.9em;
+                border-radius: 5px;
+                @include click_1;
+            }
+        }
     }
 
 }

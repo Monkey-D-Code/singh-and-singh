@@ -1,0 +1,138 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        {{ medicine.name }} | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <!-- ************************ MEDICINE DETAILS ***************************** -->
+    <div class="medicine-details">
+        <div class="product-image-gallery">
+            <div class="big-image">
+                @each(img in images)
+                    @if($loop.first)
+                        <img src="{{ img.image_url }}" alt="">
+                    @endif
+                @else
+                    <img src="https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png" alt="">
+                @endeach
+            </div>
+            <div class="thumbnails">
+                @each(img in images)
+                    <img src="{{ img.image_url }}" alt="">
+                @else
+                    <img src="https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png" alt="">
+                @endeach
+            </div>
+        </div>
+        <div class="product-information">
+            <div class="name-rating">
+                <h1>{{ medicine.name }}</h1>
+                <div class="brand">Singh & Singh</div>
+                @if(medicine.prescription_required)
+                    <p class="write-review"><i class="fa fa-file-text-o" aria-hidden="true"></i> Prescription Required</p>
+                @else
+                    <p class="write-review"><i class="fa fa-eye-slash" aria-hidden="true"></i> No Prescription</p>
+                @endif
+            </div>
+            <div class="price">
+                <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(medicine.selling_price) }}</p>
+                <p class="market-price">MRP*: Rs. {{ round_up(medicine.market_price) }} | You Save {{ round_up(((medicine.market_price - medicine.selling_price) * 100)/medicine.market_price) }}%</p>
+            </div>
+            @if(medicine.prescription_required)
+                <div class="upload-prescription">
+                    <h4>To order this medicine you need to upload a prescription</h4>
+                    <a href="{{ route( 'order_by_prescription_page' ) }}" class="go-to-upload">Upload Here &rarr;</a>
+                </div>
+            @else
+                <div class="quantity">
+                    <span class='plus'><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    <input type="number" min=0 placeholder="Enter Quantity">
+                    <span class='minus'><i class="fa fa-minus" aria-hidden="true"></i></span>
+                </div>
+                <div class="options">
+                    
+                    <a href="#" class="add-to-cart">Add To Cart</a>
+                    <a href="./cart.html" class="buy-now">Buy Now</a>
+                </div>
+            @endif
+        </div>
+
+
+    </div>
+    <!-- *********************************************************************** -->
+
+    <!-- *********************** RELATED PRODUCTS ******************************* -->
+    <div class="related-products" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) , url(https://images.pexels.com/photos/3652750/pexels-photo-3652750.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffff" fill-opacity="1" d="M0,192L120,192C240,192,480,192,720,165.3C960,139,1200,85,1320,58.7L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+        <h1>People also buy</h1>
+        <div class="product-list">
+            @each(med in related_meds)
+                @if(med.id != medicine.id)
+                    <div class="product-card">
+                        <h4><a href="{{ route('medicine_details_page',{id:med.id}) }}">{{ med.name }}</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.selling_price) }}</p>
+                            <p class="market-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.market_price) }}</p>
+                        </div>
+                    </div>
+                @endif
+            @else
+            <div class="product-card">
+                <img src="https://res.sastasundar.com/incom/images/product/NICOGUM-FRESHMINT-1420028528-10008275.jpg" alt="">
+                <h4><a href="#">Nicogum Freshmint Sugar Free Chewing Gum 4 mg (10 Pcs)</a></h4>
+                <div class="price">
+                    <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 88</p>
+                    <p class="market-price"><i class="fa fa-inr" aria-hidden="true"></i> 99</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.sastasundar.com/incom/images/product/Nicotex-Classic-Freshmint-Flavour-Sugar-Free-Chewing-Gum-9-Pcs-1466079840-10025555.jpg" alt="">
+                <h4><a href="#">Nicotex Classic Freshmint Flavour Sugar Free Chewing Gum 4 mg (9 Gums)</a></h4>
+                <div class="price">
+                    <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 88</p>
+                    <p class="market-price"><i class="fa fa-inr" aria-hidden="true"></i> 99</p>
+                </div>
+            </div>
+            
+            @endeach
+        </div>
+    </div>
+
+    <!-- ************************ CUSTOMER REVIEWS ******************************** -->
+    <div class="ratings">
+        <h1>Ratings & Reviews</h1>
+        <div class="messages">
+            <div class="one-review">
+                <div class="user">
+                    <img src="https://ui-avatars.com/api/?name=Victor+Pramanik&size=500" alt="">
+                    <h4>Victor Pramanik</h4>
+                </div>
+                <div class="response">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi quas saepe laudantium 
+                        quam, dignissimos voluptatibus reprehenderit pariatur unde tenetur aperiam?
+                    </p>
+                    <div class="timestamp">16th May, 2020</div>
+                </div>
+            </div>
+            <div class="one-review">
+                <div class="user">
+                    <img src="https://ui-avatars.com/api/?name=Leonardo+DaVinci&size=500" alt="">
+                    <h4>Leonardo da Vinci</h4>
+                </div>
+                <div class="response">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi quas saepe laudantium 
+                        quam, dignissimos voluptatibus reprehenderit pariatur unde tenetur aperiam?
+                    </p>
+                    <div class="timestamp">16th May, 2020</div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

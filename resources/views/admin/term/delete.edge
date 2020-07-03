@@ -1,0 +1,25 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Delete {{ term.heading }} ?
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mb-3">
+        <h2>Confirm delete {{ term.heading }} ?</h2>
+        <p class='alert alert-warning'>This will permanently delete this ! </p>
+        @if(flashMessage( 'termDeleteErr' ))
+            <h5 class="alert alert-danger">
+                {{ flashMessage( 'termDeleteErr' ) }}
+            </h5>
+        @endif
+        <form method='POST' to='{{ route('term.delete',{ id:term.id }) }}'>
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Trash</button>
+        </form>
+    </div>
+@endsection

@@ -5,6 +5,12 @@ const Model = use('Model')
 
 class Medicine extends Model {
 
+    static boot(){
+        super.boot();
+        this.addTrait('RandomMedImage');
+    }
+    
+
     images ( ) {
         return this.hasMany( 'App/Models/MedicineImage' , 'id' , 'medicine_id');
     }

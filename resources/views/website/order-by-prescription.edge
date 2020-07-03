@@ -1,0 +1,42 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Order by Prescription | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <section class="order-by-prescription">
+        <div class="heading">
+            <img src="./assets/icons/blood-donation/014-microscope.png" alt="">
+            <h1>Order By Prescription</h1>
+        </div>
+        <div class="capture-container">
+            <p class="label"><i class="fa fa-camera" aria-hidden="true"></i> Capture Image</p>
+            <input type="file" accept="image" capture="camera" class='capture-prescription'>
+        </div>
+        <div class="upload-container">
+            <p class="label"><i class="fa fa-upload" aria-hidden="true"></i> Upload Image</p>
+            <input type="file" accept="image" class='upload-prescription'>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="single-feature">
+            <img src="./assets/icons/blood-donation/006-medicine.png" alt="">
+            <h4>Pharmacy 24/7</h4>
+        </div>
+        <div class="single-feature">
+            <img src="./assets/icons/blood-donation/013-ambulance.png" alt="">
+            <h4>Free Home Delivery</h4>
+        </div>
+        <div class="single-feature">
+            <img src="./assets/icons/blood-donation/023-nurse.png" alt="">
+            <h4>24/7 Customer Service</h4>
+        </div>
+    </section>
+  
+@endsection

@@ -21,7 +21,7 @@ class CategoryController {
     async details(context){
         const { view , params } = context;
         const category = await Category.find( params.id );
-        const medicines = await category.medicines().fetch();
+        const medicines = await category.medicines().with('images').fetch();
         return view.render('admin/category/details' , { 
             category : category.toJSON(),
             medicines : medicines.toJSON(), 

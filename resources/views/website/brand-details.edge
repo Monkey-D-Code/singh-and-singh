@@ -1,0 +1,114 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        {{ brand.name }} | Singh & Singh
+    </title>
+@endsection
+
+
+
+@section('content')
+    <!-- ************************ BRAND DETAILS ***************************** -->
+    <section class="brand-details">
+        <div class="heading">
+            <img src="{{ brand.cover_image }}" alt="">
+            <h1>{{ brand.name }}</h1>
+        </div>
+        <div class="products-listing">
+            @each(med in medicines)
+                <div class="single-product">
+                    @each(img in med.images)
+                        @if($loop.first)
+                            <img src="{{ img.image_url }}" alt="">
+                        @endif
+                    @else
+                        <img src="https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png" alt="">
+                    @endeach
+                    <div class="info">
+                        <h4><a href="{{ route('medicine_details_page',{id:med.id}) }}">{{ med.name }}</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.selling_price) }}</p>
+                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.market_price) }}</p>
+                            <p class="offer">{{ round_up(((med.market_price - med.selling_price) * 100)/med.market_price) }}% off</p>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="plus">&plus;</button>
+                            <input type="number" min=0 class="quantity" value=2>
+                            <button class="minus">&minus;</button>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="single-product">
+                    <img src="https://res.sastasundar.com/incom/images/product/Horlicks-Classic-Malt-Refill-Powder-1532434169-10016114-1.jpg" alt="">
+                    <div class="info">
+                        <h4><a href="./medicine-details.html">Horlicks Classic Malt Refill Powder 500 g</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
+                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
+                            <p class="offer">20% off</p>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="plus">&plus;</button>
+                            <input type="number" min=0 class="quantity" value=2>
+                            <button class="minus">&minus;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-product">
+                    <img src="https://res.sastasundar.com/incom/images/product/Horlicks-Protein-Plus-Chocolate-Jar-powder-1533376120-10047845.jpg" alt="">
+                    <div class="info">
+                        <h4><a href="./medicine-details.html">Horlicks Protein Plus Chocolate Jar powder 400 g</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
+                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
+                            <p class="offer">20% off</p>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="plus">&plus;</button>
+                            <input type="number" min=0 class="quantity" value=2>
+                            <button class="minus">&minus;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-product">
+                    <img src="https://res.sastasundar.com/incom/images/product/Dove-Intense-Repair-Shampoo-1560591279-10006889-1.jpg" alt="">
+                    <div class="info">
+                        <h4><a href="./medicine-details.html">Dove Intense Repair Shampoo 650 ml</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
+                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
+                            <p class="offer">20% off</p>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="plus">&plus;</button>
+                            <input type="number" min=0 class="quantity" value=2>
+                            <button class="minus">&minus;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-product">
+                    <img src="https://res.sastasundar.com/incom/images/product/Patanjali-Saundarya-Cream-Body-Cleanser-1567581872-10027959-1.jpg" alt="">
+                    <div class="info">
+                        <h4><a href="./medicine-details.html">Patanjali Saundarya Cream Body Cleanser 75 g</a></h4>
+                        <div class="price">
+                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
+                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
+                            <p class="offer">20% off</p>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="plus">&plus;</button>
+                            <input type="number" min=0 class="quantity" value=2>
+                            <button class="minus">&minus;</button>
+                        </div>
+                    </div>
+                </div>
+            @endeach
+        </div>
+    </section>
+@endsection
