@@ -24,9 +24,9 @@
             padding-bottom: 8px;
         }
         display : flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
-        border-radius: 0 0 60px 0;
+        border-radius: 0 0 40px 0;
         img{
             width : 200px;
             
@@ -88,6 +88,12 @@
                 display: flex;
                 align-items: center;
                 user-select: none;
+                font-family: $oswald;
+                background-color: $yellow;
+                padding: 0.3em 0.4em;
+                border-radius: 3px;
+                font-size: 0.9em;
+                color: darken($yellow , 20%);
                 button { 
                     font-size: 1.5em;
                     border: none;

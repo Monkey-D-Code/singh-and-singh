@@ -1,0 +1,129 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Select Payment Method | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_script')
+    <script>
+
+        function renderInvoiceItem(item){
+            return '<div class="invoice-item">' +
+                        '<h4>' + item.name + '</h4>' +
+                        '<h5>x <span>' + item.quantity + '</span></h5>' +
+                        '<p>INR : <span>' + item.price * item.quantity + '</span></p>' +
+                    '</div>'
+        }
+
+        function submitConfirmOrder(){
+            const user_id   =   {{ auth.user.id }};
+            const cart      =   localStorage.getItem('cart');
+            const el_orderErr       =   document.querySelector(".order-error");
+            const el_orderSuccess   =   document.querySelector(".order-success");
+            const payment_method    =   document.querySelector("#payment-method");
+
+            if(cart){
+                const cartObj       =   JSON.parse(cart);
+                if(cartObj.length > 0){
+                    const orderitems    =   [];
+                    let grand_total     =   0;
+                    cartObj.forEach( item => {
+                        grand_total     +=  parseInt(item.quantity) * parseInt(item.price);
+                        const oneOrder = {
+                            medicine_id :   parseInt(item.id),
+                            quantity    :   parseInt(item.quantity),
+                            total       :   parseInt(item.quantity) * parseInt(item.price),
+                        }
+                        orderitems.push(oneOrder);
+                    })
+                    const newOrderObj = {
+                        user_id     :   user_id,
+                        paid_online :   payment_method.value,
+                        items       :   orderitems,
+                        grand_total :   grand_total,
+                    }
+                    $.ajax({
+                        url     : '/payment/confirm-order',
+                        headers : { 'X-XSRF-TOKEN' : getCookie('XSRF-TOKEN') },
+                        data    : newOrderObj,
+                        type    :  "POST",
+
+                    }).then( response =>{
+                        console.log(response);
+                        if(response.success){
+                            el_orderSuccess.style.display   =   "block";
+                            el_orderSuccess.innerHTML       =   response.message;
+                            localStorage.setItem("cart" , "[]");
+                            location.pathname   =   '/auth/your-orders';
+                        }else{
+                            el_orderErr.style.display       =   "block";
+                            el_orderErr.innerHTML           =   response.message;
+                        }
+                        
+                    }).catch( err => {
+                        console.log(err);
+                        el_orderErr.style.display       =   "block";
+                        el_orderErr.innerHTML           =   response.message;
+                    })
+                }   
+            }
+        }
+
+        const cart  =   localStorage.getItem('cart');
+        if(cart){
+            const cartObj       =   JSON.parse(cart);
+            let   invoiceHTML   =   '';
+            let   total         =   0;
+            cartObj.forEach(item => {
+                invoiceHTML +=  renderInvoiceItem(item);
+                total       +=  parseInt(item.price) * parseInt(item.quantity);
+            });
+            if(cartObj.length === 0){
+                window.location.pathname    =   "/cart"
+            }
+            document.querySelector('.choose-method .total h4 span').innerHTML   =   total;
+            document.querySelector('.choose-method .invoice').innerHTML         =   invoiceHTML;
+        }
+        const confirmOrderBtn   =   document.querySelector(".method .confirm-order");
+        confirmOrderBtn.addEventListener( 'click' , function(){
+            submitConfirmOrder();
+        } )
+    </script>
+@endsection
+
+@section('content')
+    <div class="choose-method">
+        <div class="heading">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
+            <h1>Choose Payment Method</h1>
+        </div>
+        <div class="invoice">
+            
+        </div>
+        <div class="total">
+            <h4>Amount to be paid <i class="fa fa-inr" aria-hidden="true"></i> <span>000</span></h4>
+        </div>
+        <div class="method">
+            
+            @if(delivery)
+                <div class="delivery-available">
+                    <h4>Choose Payment Method</h4>
+                    <select id="payment-method">
+                        <option value="0">Cash on Delivery</option>
+                        <option value="1" disabled>Online Payment</option>
+                    </select>
+                    <button class="confirm-order">Confirm Order</button>
+                    <h4 class="order-error">Failed to confirm your order</h4>
+                    <h4 class="order-success">Successfully Placed Order</h4>
+                </div>
+            @else
+                <div class="delivery-not-available">
+                    <h4>Sorry ! Home delivery not available @ {{ auth.user.pincode }}</h4>
+                </div>
+            @endif
+        </div>
+    </div>
+@endsection

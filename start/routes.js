@@ -32,6 +32,12 @@ Route
     .get('order-by-prescription' , 'WebsiteController.order_by_prescription_page')
     .as( 'order_by_prescription_page' )
     .middleware(['frontend_data']);
+
+// api routes
+Route
+    .post('upload-prescription' , 'WebsiteController.upload_prescription' );
+
+
 Route
     .get('category-list' , 'WebsiteController.category_list_page')
     .as( 'category_list_page' )
@@ -52,6 +58,10 @@ Route
     .get(':id/blogpost' , 'WebsiteController.blopost_details_page' )
     .as( 'blogpost_details_page' )
     .middleware(['frontend_data']);
+Route
+    .get('cart' , 'WebsiteController.cart_page' )
+    .as('cart_page')
+    .middleware(['frontend_data']);
 
 Route
     .get('terms' , 'WebsiteController.terms_page' )
@@ -65,14 +75,57 @@ Route
     .as('search_results_page')
     .middleware(['frontend_data']);
 
+
+
 Route.group(()=>{
     Route.get('login' , 'UserAuthController.login_page')
-         .as( 'auth.login' );
+         .as( 'auth.login' )
+         .middleware(['no_auth']);
+    Route.get('profile' , 'UserAuthController.profile_page' )
+         .as('auth.profile')
+         .middleware(['is_auth']);
+    Route.get('your-orders' , 'UserAuthController.your_orders_page' )
+         .as( 'auth.your_orders' )
+         .middleware(['is_auth']);
+    Route.get('order/:id/details' , 'UserAuthController.order_details_page' )
+         .as( 'auth.order_details' )
+         .middleware(['is_auth']);
 
+    Route.get('your-prescriptions' , 'UserAuthController.your_prescriptions_page')
+         .as('auth.prescriptions')
+         .middleware(['is_auth']);
+    
+    Route.get('prescription/:id/details' , 'UserAuthController.single_prescription' )
+         .as( 'auth.prescription_details' )
+         .middleware(['is_auth']);
+
+    Route.get('logout' , 'UserAuthController.logout' )
+         .as( 'auth.user_logout' );
+    
+    Route
+        .post('verify-otp' , 'UserAuthController.verify_otp_page' )
+        .validator( 'GenerateOtp' )
+        .as( 'auth.verify_otp' )
+        .middleware(['no_auth']);
+    Route
+        .post( 'confirm-otp' , 'UserAuthController.confirm_login')
+        .as('auth.confirm_otp')
+        .middleware(['no_auth']);
 
 }).prefix('auth').middleware(['frontend_data']);
 
 
+Route.group(()=>{
+    Route
+        .get('choose-method' , 'PaymentController.choose_method_page' )
+        .as('payment.choose_method_page')
+        .middleware(['is_auth']);
+
+    // api routes
+    Route
+        .post('confirm-order' , 'PaymentController.confirm_order_api' );
+    
+}).prefix('payment').middleware(['frontend_data']);
 
 
 
@@ -96,11 +149,22 @@ Route.group(()=>{
 }).prefix('admin').middleware(['admin_logged_in']);
 
 Route.group(()=>{
-    Route.get('/', 'AdminController.home');
-    
+    Route.get('/', 'AdminController.home')
+         .as( 'admin.home' );
+
     Route.get('logout' , 'AdminController.logout' ).as( 'admin.admin_logout' );
         
 }).prefix('admin').middleware(['is_admin_auth']);
+
+
+// USER
+Route.group(()=>{
+    Route
+        .get('list' , 'UserinfoController.list_page' )
+        .as( 'user.list_page' );
+
+
+}).prefix('admin/user').middleware(['is_admin_auth']);
 
 // CATEGORY
 Route.group(()=>{
@@ -188,6 +252,38 @@ Route.group(()=>{
         .as( 'medicine_image.delete' );
 
 }).prefix('admin/medicine-image').middleware(['is_admin_auth']);
+
+// ORDER
+Route.group(()=>{
+    Route
+        .get('list' , 'OrderController.list' )
+        .as('order.list');
+    Route
+        .get(':id/details' , 'OrderController.details_page')
+        .as('order.details_page');
+
+    Route
+        .post(':id/edit' , 'OrderController.edit_order' )
+        .as('order.edit');
+
+}).prefix('admin/order').middleware(['is_admin_auth']);
+
+
+// PRESCRIPTION
+Route.group(()=>{
+    Route
+        .get('list' , 'PrescriptionController.list' )
+        .as('prescription.list');
+    Route
+        .get(':id/details' , 'PrescriptionController.details' )
+        .as('prescription.details');
+        
+    Route
+        .post(':id/details' , 'PrescriptionController.edit' )
+        .as('prescription.edit');
+
+
+}).prefix('admin/prescription').middleware(['is_admin_auth']);
 
 // BLOG POST
 Route.group(()=>{

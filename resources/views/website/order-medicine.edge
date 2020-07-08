@@ -32,7 +32,15 @@
                 <h4>Search for Medicines or Healthcare Products</h4>
                 <form class="search-field" action="{{ route( 'search_results_page' ) }}" method="POST">
                     {{ csrfField() }}
-                    <input type="number" class="pincode" placeholder="Pincode" name="pincode">
+                    <input 
+                        type="number" 
+                        class="pincode" 
+                        placeholder="Pincode" 
+                        name="pincode"
+                        @loggedIn
+                           value="{{ auth.user.pincode }}"
+                        @endloggedIn
+                    >
                     <input type="text" class="medicine" placeholder="e.g Ecosprin, Telma or Colgate" name="search_query">
                     <button class="search-med"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>

@@ -137,7 +137,7 @@
             margin : 0.8em 0;
             display: flex;
             
-            a{
+            a , button {
                 width : 200px;
                 padding : 0.4em 0.6em;
                 text-align: center;
@@ -146,6 +146,7 @@
                 color : white;
                 @include click_1;
                 transition: all 0.5s;
+                border : none;
             }
             .add-to-cart{
                 background-color: $green;
@@ -177,6 +178,18 @@
                 font-size: 0.9em;
                 border-radius: 5px;
                 @include click_1;
+            }
+        }
+        h3{
+            font-family: $oswald;
+            background-color: $blue;
+            padding: 0.3em 0.5em;
+            width : fit-content;
+            border-radius: 3px;
+            color: lighten($blue , 30%);
+            a{
+                text-decoration: none;
+                color: white;
             }
         }
     }

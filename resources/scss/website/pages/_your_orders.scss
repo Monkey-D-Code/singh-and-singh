@@ -15,7 +15,18 @@
             @include gradient_text($green,$yellow);
         }
     }
-
+    .back-to-profile{
+        width: fit-content;
+        padding: 0.5em;
+        margin : 1em auto;
+        border : 1px solid $green;
+        border-radius: 3px;
+        a{
+            text-decoration: none;
+            font-family: $nunito;
+            color: $green;
+        }
+    }
     .filters{
         display: flex;
         align-items: center;
@@ -54,6 +65,8 @@
         .single-order{
             width : 300px;
             margin : 1em;
+            display: flex;
+            flex-flow: column;
             .info{
                 display: flex;
                 align-items: center;
@@ -141,7 +154,18 @@
                 transition: all 0.3s;
                 @include click_1;
                 text-transform: uppercase;
+                text-decoration: none;
+                text-align: center;
             }
+        }
+        .no-orders-found{
+            font-family: $nunito;
+            margin : 1em 0;
+            font-size: 1.5em;
+            background-color: darken($yellow , 20%);
+            padding : 0.3em 0.5em;
+            color: white;
+            border-radius: 3px;
         }
     }
 }

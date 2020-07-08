@@ -1,0 +1,125 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Order Details | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="container mt-3">
+        <div class="back">
+            <a href="/admin/order/list?date={{ date_only(order.created_at) }}" class="btn btn-info">&leftarrow; Back to Orders</a>
+        </div>
+        <div class="heading row mt-3 text-success">
+            <div class="col-md-4">
+                <div><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.name }}</div>
+                <div><i class="fa fa-phone-square" aria-hidden="true"></i> {{ user.phone }}</div>
+                <div><i class="fa fa-map-marker" aria-hidden="true"></i> {{ user.pincode }}</div>
+            </div>
+            <div class="col-md-4">
+                <h4>{{ format_date( order.created_at ) }}</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Total <i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(order.grand_total) }}</h4>
+                @if(order.paid_online)
+                    <div class="badge badge-success">Paid Online</div>
+                @else   
+                    <div class="badge badge-info">Cash On Delivery</div>
+                @endif
+            </div>
+        </div>
+        <hr>
+        <form action="{{ route( 'order.edit',{id:order.id} ) }}" method="POST" class="row">
+            @if(flashMessage( 'orderEditErr' ))
+                <h5 class="alert alert-danger">
+                    {{ flashMessage( 'orderEditErr' ) }}
+                </h5>
+            @endif
+            @if(flashMessage( 'orderEditSuccess' ))
+                <h5 class="alert alert-success">
+                    {{ flashMessage( 'orderEditSuccess' ) }}
+                </h5>
+            @endif
+            {{ csrfField() }}
+            <div class="form-group col-md-3">
+                <select name="dispatched" class="form-control">
+                    <option 
+                        value="0"
+                        @if(!order.dispatched)
+                            selected
+                        @endif
+                    >
+                        Not Out for delivery
+                    </option>
+                    <option 
+                        value="1" 
+                        @if(order.dispatched)
+                            selected
+                        @endif
+                    >
+                        Out for delivery
+                    </option>  
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <select name="delivered" class="form-control">
+                    <option 
+                        value="0"
+                        @if(!order.delivered)
+                            selected
+                        @endif
+                    >
+                        Not Delivered
+                    </option>
+                    <option 
+                        value="1" 
+                        @if(order.delivered)
+                            selected
+                        @endif
+                    >
+                        Delivered
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <select name="cancelled" class="form-control">
+                    <option 
+                        value="0"
+                        @if(!order.cancelled)
+                            selected
+                        @endif
+                    >
+                        Not Cancelled
+                    </option>
+                    <option 
+                        value="1" 
+                        @if(order.cancelled)
+                            selected
+                        @endif
+                    >
+                        Cancelled
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success col-md-1"> Save</button>
+        </form>
+        <hr>
+        <div class="row">
+            @each( item in items )
+                <div class="card text-white bg-success col-lg-3" style="margin:0.5em;">
+                    <div class="card-header"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(item.total) }}</div>
+                    <div class="card-body">
+                    <h5 class="card-title">{{ item.medicine.name }}</h5>
+                    <p class="card-text">Quantity &times;{{ item.quantity }}</p>
+                    </div>
+                </div>
+            @else
+              
+            @endeach
+        </div>
+        
+    </div>
+@endsection

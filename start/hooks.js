@@ -8,6 +8,12 @@ hooks.after.providersBooted(()=>{
     View.global('format_date', ( timestamp ) => {
         return moment( timestamp ).format( 'MMMM Do YYYY, h:mm a' )
     });
+    View.global('readable_date', ( timestamp ) => {
+        return moment( timestamp ).format( 'MMMM Do YYYY' )
+    });
+    View.global('date_only', ( timestamp ) => {
+        return timestamp.split(' ')[0];
+    });
 
     View.global('clip_words' , ( paragraph ) => {
         return paragraph.substring(0 , 100);

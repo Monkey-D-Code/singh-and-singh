@@ -5,12 +5,15 @@
             @if(frontend)
                 <img src="{{ frontend.logo_url }}" alt="">
             @else
-                <img src="./assets/images/logo.png" alt="">
+                <img src="/assets/images/logo.png" alt="">
             @endif
         </a>
         
         <form action="{{ route( 'search_results_page' ) }}" class="search" method="POST">
             {{ csrfField() }}
+            @loggedIn
+                <input type="hidden" name="pincode" value="{{ auth.user.pincode }}">
+            @endloggedIn
             <input type="text" placeholder="Search for a product or brand" name="search_query" value="{{ search_query || '' }}">
             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
         </form>
@@ -25,14 +28,29 @@
                         1122334455
                     @endif
                 </li>
-                {{--  <li><i class="fa fa-tags" aria-hidden="true"></i> Offers</li>  --}}
-                <li><a href="{{ route('auth.login') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+                @loggedIn
+                    @if(auth.user.is_admin)
+                        <li><a href="{{ route('admin.home') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a></li>
+                    @else
+                        <li><a href="{{ route( 'auth.profile' ) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                    @endif
+                @else
+                    <li><a href="{{ route('auth.login') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+                @endloggedIn
                 <li class='cart-toggle'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
             </ul>
             <div class="enter-pincode">
                 <h4 id="op-pincode">Where do you want the delivery ?</h4>
                 <div class="input-box">
-                    <input type="number" min=0 placeholder="Enter Pincode" id='pincode-input'>
+                    <input 
+                        type="number" 
+                        min=0 
+                        placeholder="Enter Pincode" 
+                        id='pincode-input'
+                        @loggedIn
+                           value="{{ auth.user.pincode }}"
+                        @endloggedIn
+                    >
                     <button id="pincode-btn">Apply</button>
                 </div>
             </div>
@@ -77,8 +95,8 @@
                         </div>
                     </div>
                     <div class="cart-link">
-                        <a href="./cart.html">View Cart &rarr;</a>
-                        <p class="total"><i class="fa fa-inr" aria-hidden="true"></i> 20000</p>
+                        <a href="{{ route( 'cart_page' ) }}">View Cart &rarr;</a>
+                        <p class="total"><i class="fa fa-inr" aria-hidden="true"></i> <span>20000</span></p>
                     </div>
                 </div>
             </div>

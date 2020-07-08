@@ -1,0 +1,48 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        {{ auth.user.name }} | Profile | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <section class="profile">
+        <div class="user">
+            <img src="/uploads/assets/default-dp.png" alt="">
+            <div class="info">
+                <h4>{{ auth.user.name }}</h4>
+                <p class="phone-number"><i class="fa fa-phone-square" aria-hidden="true"></i> +91 {{ auth.user.phone }}</p>
+                <p class="pincode"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ auth.user.pincode }}</p>
+            </div>
+            
+        </div>
+        <div class="options">
+            <a href="{{ route( 'order_medicine_page' ) }}">Shop Now</a>
+            <a href="{{ route( 'order_by_prescription_page' ) }}">Order by Prescription</a>
+            <a href="{{ route( 'auth.user_logout' ) }}">Logout</a>
+        </div>
+        <div class="pages">
+            <a href="{{ route('auth.prescriptions') }}">Your Prescriptions</a>
+            <a href="{{ route( 'auth.your_orders' ) }}">Your Orders</a>
+        </div>
+    </section>
+
+
+    <section class="features">
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
+            <h4>Pharmacy 24/7</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
+            <h4>Free Home Delivery</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/023-nurse.png" alt="">
+            <h4>24/7 Customer Service</h4>
+        </div>
+    </section>
+@endsection

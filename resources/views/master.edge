@@ -30,7 +30,7 @@
     {{ script( 'scripts/script.js' ) }}
 
     @!section( 'vue' )
-    @!section('extra_script')
+    
     <script>
         function getCookie(cname) {
             var name = cname + "=";
@@ -75,7 +75,35 @@
             }else{
                 opPincode.innerHTML     =   'Enter a valid Pin'
             }
-        })
+        });
+
+        function renderSingleItem(item){
+            return '<div class="single-item">' +
+                            '<img src="' + item.image + '" alt="">' +
+                            '<div class="info">' +
+                                '<h4>' + item.name + '</h4>' +
+                                '<p class="price">MRP : <i class="fa fa-inr" aria-hidden="true"></i> ' + item.price + '</p>' +
+                                '<p class="quantity">&times; ' + item.quantity + '</p>' +
+                            '</div>' +
+                    '</div>' ;
+        }
+
+        function renderPopupCart(){
+            const cart      =   localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                let itemListHTMl    =   '';
+                let total           =   0;
+                cartObj.forEach(item => {
+                    itemListHTMl += renderSingleItem(item);
+                    total   +=  parseInt(item.quantity) * parseInt(item.price);
+                })
+                document.querySelector('.cart-popup .cart-content .cart-link .total span').innerHTML     = total;
+                document.querySelector('.cart-popup .cart-content .item-list').innerHTML            = itemListHTMl;
+            }
+        }
+        renderPopupCart();
     </script>
+    @!section('extra_script')
 </body>
 </html>

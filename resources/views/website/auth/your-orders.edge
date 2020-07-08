@@ -1,0 +1,74 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Orders | {{ auth.user.name }} | Singh & Singh
+    </title>
+@endsection
+
+
+
+@section('content')
+    <section class="your-orders">
+        <div class="heading">
+            <img src="/assets/icons/blood-donation/009-health report.png" alt="">
+            <h1>Orders</h1>
+        </div>
+        <!--<div class="filters">
+            <h4>Confirmed Oders</h4>
+            <h4>Dispatched Orders</h4>
+            <h4>Delivered Orders</h4>
+        </div>-->
+        <div class="back-to-profile">
+            <a href="{{ route('auth.profile') }}">&leftarrow; Back To Profile</a>
+        </div>
+        <div class="order-list">
+            @each(order in orders)
+                <div class="single-order">
+                    <div class="info">
+                        <h4>{{ format_date( order.created_at ) }}</h4>
+                        <h4><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(order.grand_total) }}</h4>
+                    </div>
+                    
+                    <div class="order-status">
+                        @if(order.new)
+                            <button>Placed</button>
+                        @else
+                            <button>Confirmed</button>
+                        @endif
+                        @if(order.dispatched)
+                            <button>Dispatched</button>
+                        @endif
+                        @if(order.delivered)
+                            <button>Delivered</button>
+                        @endif
+                        
+                    </div>
+                    
+                    <a href="/auth/order/{{ order.id }}/details" class="cancel-order">View Details</a>
+                    
+                </div>
+            @else
+                <h4 class="no-orders-found">
+                    You have no Orders
+                </h4>   
+            @endeach
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
+            <h4>Pharmacy 24/7</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
+            <h4>Free Home Delivery</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/023-nurse.png" alt="">
+            <h4>24/7 Customer Service</h4>
+        </div>
+    </section>
+@endsection

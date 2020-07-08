@@ -4,6 +4,9 @@
 const   Category        =   use('App/Models/Category');
 const   Medicine        =   use('App/Models/Medicine');
 
+const   Prescription    =   use('App/Models/Prescription');
+
+
 const   SliderImage     =   use('App/Models/SliderImage');
 const   Brand           =   use('App/Models/Brand');
 const   BlogPost        =   use('App/Models/BlogPost');
@@ -11,6 +14,8 @@ const   WhoWeAre        =   use('App/Models/WhoWeAre');
 const   Testimonial     =   use('App/Models/Testimonial');
 const   Term            =   use('App/Models/Term');
 const   Pincode         =   use('App/Models/Pincode');
+
+const Helpers           =   use('Helpers');
 
 class WebsiteController {
     async home_page({ view }){
@@ -36,9 +41,14 @@ class WebsiteController {
             orderMedicine   :   true,
         })
     }
-    async order_by_prescription_page({ view }){
-        return view.render('website/order-by-prescription',{
-
+    async order_by_prescription_page({ view , auth }){
+        let available   =   false;
+        if(auth.user){
+            const user      =   await auth.getUser();
+            available =   await Pincode.query().where( 'pincode' , user.pincode ).first();
+        }
+        return view.render('website/order-by-prescription',{    
+            available   :  available ?  available.toJSON() : false,
         })
     }
     async category_list_page({ view }){
@@ -90,9 +100,12 @@ class WebsiteController {
             terms   :   terms.toJSON(),
         })
     }
+    async cart_page({ view }){
+        return view.render('website/cart');
+    }
 
     // post controllers
-    async search_results_page({ request , view , response}){
+    async search_results_page({ request , view , response , auth}){
         const { search_query , pincode }  =   request.post();
         if(search_query){
             const medicines     =   await Medicine
@@ -101,6 +114,7 @@ class WebsiteController {
                                             .with('images')
                                             .fetch();
             let pinData =   false;
+
             if(pincode){
                 pinData   =   await Pincode
                                         .query()
@@ -136,6 +150,42 @@ class WebsiteController {
             return response.json({
                 msg :  'Delivery not available',
             })
+        }
+    }
+
+    async upload_prescription({ request }){
+        const resObj    =   {
+            success     :   true,
+            message     :   'Prescription Uploaded successfully',
+        }
+        const timestamp =   new Date().getTime();
+        const { user_id }   =   request.post();
+        const image_file    =   request.file('image_file',{
+            types   :   ['image'],
+            size    :   '6mb',
+        })
+        const filename  =   `${timestamp}_prescription.${image_file.clientName.split('.').pop()}`;
+        await image_file.move( Helpers.publicPath('uploads/prescriptions'),{
+            name    :   filename,
+        });
+        if( !image_file.moved() ){
+            resObj.success  =   false;
+            resObj.message  =   'Uploading Prescription Failed';
+            return resObj;
+        }
+        const new_prescription      =   new Prescription();
+        new_prescription.user_id    =   user_id;
+        new_prescription.image_url  =   `/uploads/prescriptions/${filename}`;
+        new_prescription.new        =   true;
+
+        try{
+            await new_prescription.save();
+            return resObj;
+        }catch(e){
+            console.log(e);
+            resObj.success  =   false;
+            resObj.message  =   'Prescription Saving Failed';
+            return resObj;
         }
     }
 

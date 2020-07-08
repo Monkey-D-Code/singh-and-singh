@@ -44,11 +44,21 @@ class ExistsValidationProvider extends ServiceProvider {
       if(!row) throw message;
   }
   
+  async _delivery_available( data , field , message , args , get){
+    const value     =   get(data,field);
+    const Database  =   use('Database');
+    if(!value) return;
+    const row   =   await Database.table('pincodes')
+                                  .where('pincode' , value)
+                                  .first()
+    if(!row) throw message;
+  }
 
   boot () {
     const Validator = use('Validator');
     Validator.extend('exists', this._exists.bind(this));
     Validator.extend('checkAdmin',this._is_admin.bind(this));
+    Validator.extend('deliveryAvailable',this._delivery_available.bind(this));
   }
 }
 

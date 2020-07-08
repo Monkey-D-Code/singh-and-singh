@@ -28,83 +28,33 @@
                     @endeach
                     <div class="info">
                         <h4><a href="{{ route('medicine_details_page',{id:med.id}) }}">{{ med.name }}</a></h4>
+                        
                         <div class="price">
                             <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.selling_price) }}</p>
                             <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.market_price) }}</p>
                             <p class="offer">{{ round_up(((med.market_price - med.selling_price) * 100)/med.market_price) }}% off</p>
                         </div>
-                        <div class="cart-controls">
+                        <!--<div class="cart-controls">
                             <button class="plus">&plus;</button>
                             <input type="number" min=0 class="quantity" value=2>
                             <button class="minus">&minus;</button>
-                        </div>
+                        </div>-->
+                        @if(med.prescription_required)
+                            <div class="cart-controls">
+                                Prescription Required
+                            </div>
+                        @endif
                     </div>
                 </div>
             @else
                 <div class="single-product">
-                    <img src="https://res.sastasundar.com/incom/images/product/Horlicks-Classic-Malt-Refill-Powder-1532434169-10016114-1.jpg" alt="">
+                    <img src="https://semantic-ui.com/images/wireframe/image.png" alt="">
                     <div class="info">
-                        <h4><a href="./medicine-details.html">Horlicks Classic Malt Refill Powder 500 g</a></h4>
+                        <h4><a href="#">No products in {{ brand.name }}</a></h4>
                         <div class="price">
                             <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
                             <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
                             <p class="offer">20% off</p>
-                        </div>
-                        <div class="cart-controls">
-                            <button class="plus">&plus;</button>
-                            <input type="number" min=0 class="quantity" value=2>
-                            <button class="minus">&minus;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-product">
-                    <img src="https://res.sastasundar.com/incom/images/product/Horlicks-Protein-Plus-Chocolate-Jar-powder-1533376120-10047845.jpg" alt="">
-                    <div class="info">
-                        <h4><a href="./medicine-details.html">Horlicks Protein Plus Chocolate Jar powder 400 g</a></h4>
-                        <div class="price">
-                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
-                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
-                            <p class="offer">20% off</p>
-                        </div>
-                        <div class="cart-controls">
-                            <button class="plus">&plus;</button>
-                            <input type="number" min=0 class="quantity" value=2>
-                            <button class="minus">&minus;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-product">
-                    <img src="https://res.sastasundar.com/incom/images/product/Dove-Intense-Repair-Shampoo-1560591279-10006889-1.jpg" alt="">
-                    <div class="info">
-                        <h4><a href="./medicine-details.html">Dove Intense Repair Shampoo 650 ml</a></h4>
-                        <div class="price">
-                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
-                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
-                            <p class="offer">20% off</p>
-                        </div>
-                        <div class="cart-controls">
-                            <button class="plus">&plus;</button>
-                            <input type="number" min=0 class="quantity" value=2>
-                            <button class="minus">&minus;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-product">
-                    <img src="https://res.sastasundar.com/incom/images/product/Patanjali-Saundarya-Cream-Body-Cleanser-1567581872-10027959-1.jpg" alt="">
-                    <div class="info">
-                        <h4><a href="./medicine-details.html">Patanjali Saundarya Cream Body Cleanser 75 g</a></h4>
-                        <div class="price">
-                            <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> 100</p>
-                            <p class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> 200</p>
-                            <p class="offer">20% off</p>
-                        </div>
-                        <div class="cart-controls">
-                            <button class="plus">&plus;</button>
-                            <input type="number" min=0 class="quantity" value=2>
-                            <button class="minus">&minus;</button>
                         </div>
                     </div>
                 </div>

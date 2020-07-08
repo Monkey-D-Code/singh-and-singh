@@ -213,9 +213,13 @@
             }
         }
         .no-results-found{
-            h2{
-                font-family: $nunito;
-            }
+            font-family: $nunito;
+            background-color: $red;
+            padding : 0.4em 0.6em;
+            border-radius: 4px;
+            color: white;
+
         }
+
     }
 }

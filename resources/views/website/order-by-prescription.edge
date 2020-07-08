@@ -8,33 +8,147 @@
 @endsection
 
 
+@section('extra_script')
+    @loggedIn
+        @if(!auth.user.is_admin)
+            @if( available )
+                <script>
+                    $(document).ready(function(){
+                        var input       =   $('.upload-prescription');
+                        var btn         =   $('.upload-file-btn button');
+                        var errMsg      =   $('.client-err-msg');
+                        var fileNameh5  =   $('.file-name');
+                        var msgList     =   [];
+                        btn.attr("disabled" , true);
+                        btn.css("display","none");
+
+                        input.on('change',function(){
+                            var file    =   this.files[0];
+                            var size    =   Math.ceil(file.size/1024);
+                            var name    =   file.name;
+                            var ext     =   file.name.split('.').pop().toLowerCase();
+                            
+                            fileNameh5.html(name);
+                            msgList     =   [];
+                            errMsg.html('');
+
+
+                            if(size > 6000 ){ 
+                                msgList.push('File size too big, must be below 6 Mb');
+                            }
+                            if(ext !== 'jpg' && ext !== 'png' && ext !== 'jpeg'){
+                                msgList.push('Not an image file. Must be .png .jpeg .jpg format');
+                            }
+
+                            if(msgList.length > 0){
+                                var errHtml = '';
+                                msgList.forEach(function(msg){
+                                    errHtml += '<li>' + msg + '</li>'
+                                });
+                                errMsg.html(errHtml);
+                                btn.attr("disabled" , true);
+                                btn.css("display","none");
+                            }else{
+                                btn.attr("disabled" , false);
+                                btn.css("display","inline-block");
+                            }
+                        })
+
+                        btn.on('click',function(event){
+                            event.preventDefault();
+                            var formdata    =   new FormData();
+
+                            formdata.append( 'user_id' , {{ auth.user.id }});
+                            formdata.append( 'image_file' , $("input[type=file]").prop('files')[0]);
+
+                            btn.attr('disabled',true);
+                            btn.html('Uploading. Please Wait');
+
+                            $.ajax({
+                                url         :   '/upload-prescription',
+                                headers : { 'X-XSRF-TOKEN' : getCookie('XSRF-TOKEN') },
+                                data        :   formdata,
+                                type        :   "POST",
+                                cache       :   false,
+                                contentType :   false,
+                                processData :   false,
+
+                            }).then(function(response){
+                                console.log(response)
+                                if(response.success){
+                                    location.pathname = '/auth/your-prescriptions';
+                                }else{
+                                    errHtml.html('<li>' + response.message + '</li>');
+                                    btn.attr('disabled',false);
+                                    btn.html('Upload');
+                                }
+                                
+
+                            }).catch(function(err){
+                                console.log(err);
+                                btn.attr('disabled',false);
+                                btn.html('Upload');
+
+                            })
+                        })
+                    })
+                </script>
+            @endif
+        @endif
+    @endloggedIn
+@endsection
+
 @section('content')
     <section class="order-by-prescription">
         <div class="heading">
-            <img src="./assets/icons/blood-donation/014-microscope.png" alt="">
+            <img src="/assets/icons/blood-donation/014-microscope.png" alt="">
             <h1>Order By Prescription</h1>
         </div>
-        <div class="capture-container">
-            <p class="label"><i class="fa fa-camera" aria-hidden="true"></i> Capture Image</p>
-            <input type="file" accept="image" capture="camera" class='capture-prescription'>
-        </div>
-        <div class="upload-container">
-            <p class="label"><i class="fa fa-upload" aria-hidden="true"></i> Upload Image</p>
-            <input type="file" accept="image" class='upload-prescription'>
-        </div>
+        @loggedIn
+            @if(!auth.user.is_admin)
+                @if( available )
+                    <form action="" enctype="multipart/form-data" method="POST" class="upload-form">
+                        <!--<div class="capture-container">
+                            <p class="label"><i class="fa fa-camera" aria-hidden="true"></i> Capture Image</p>
+                            <input type="file" accept="image" capture="camera" class='capture-prescription'>
+                        </div> -->
+                        <h5 class="file-name"></h5>
+                        <div class="upload-container">
+                            <p class="label"><i class="fa fa-upload" aria-hidden="true"></i> Choose Prescription</p>
+                            <input type="file" accept="image/*" class='upload-prescription' capture>
+                        </div>
+                        <div class="client-err-msg">
+
+                        </div>
+                        <div class="upload-file-btn">
+                            <button type="submit" >Upload</button>
+                        </div>
+                    </form>       
+                @else
+                    <div class="delivery-not-available">
+                        <h4>Home Delivery not available @ {{ auth.user.pincode }}</h4>
+                    </div>
+                @endif
+            @else
+                <h3>You are logged in as <a href="{{ route('admin.home') }}">Admin</a></h3>
+            @endif   
+        @else
+            <h3><a href="{{ route( 'auth.login' ) }}">Login</a> to upload your prescription</h3>
+        @endloggedIn
+        
     </section>
 
     <section class="features">
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/006-medicine.png" alt="">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
             <h4>Pharmacy 24/7</h4>
         </div>
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/013-ambulance.png" alt="">
+            <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
             <h4>Free Home Delivery</h4>
         </div>
         <div class="single-feature">
-            <img src="./assets/icons/blood-donation/023-nurse.png" alt="">
+            <img src="/assets/icons/blood-donation/023-nurse.png" alt="">
             <h4>24/7 Customer Service</h4>
         </div>
     </section>

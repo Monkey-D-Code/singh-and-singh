@@ -1,0 +1,85 @@
+.single-prescription{
+    .info{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1em;
+        img{
+            margin-right : 1em;
+            height: 85vh;
+            @media (max-width : 420px){
+                margin-bottom: 1em;
+                margin-right : 0;
+                width : 100%;
+                height: auto;
+            }
+        }
+        .details{
+            width : 300px;
+            .date{
+                font-family: $nunito;
+                background-color: rgba($green , 0.5);
+                padding : 0.3em 0.5em;
+                text-align: center;
+                color: $green;
+                border-radius: 3px;
+            }
+            .total{
+                font-family: $nunito;
+                border: 1px solid rgba($green,0.7);
+                text-align: center;
+                padding : 0.3em 0.5em;
+                border-radius: 3px;
+                margin : 0.5em 0;
+                text-transform: uppercase;
+                color: $green;
+            }
+            .status{
+                h5{
+                    margin : 0.3em 0;
+                    font-family: $oswald;
+                    padding : 0.2em 0.4em;
+                    text-transform: uppercase;
+                    text-align: center;
+                    border-radius: 3px;
+                }
+                .confirmed{
+                    background-color: $blue;
+                    color: white;
+                }
+                .dispatched{
+                    background-color: $yellow;
+                    color: darken($yellow , 25%);
+                }
+                .delivered{
+                    background-color: $green;
+                    color: white;
+                }
+                .cancelled{
+                    background-color: $red;
+                    color: white;
+                }
+                .not{
+                    background-color: rgba($black , 0.4);
+                    
+                    color: rgba($black , 0.6);
+                    
+                }
+            }
+            .back-to-prescriptions{
+                margin : 1em auto;
+                border : 1px solid $green;
+                text-align: center;
+                padding : 0.5em;
+                width: fit-content;
+                border-radius: 3px;
+                a{
+                    text-decoration: none;
+                    font-family: $nunito;
+                    color: $green;
+                }
+            }
+        }
+    }
+}

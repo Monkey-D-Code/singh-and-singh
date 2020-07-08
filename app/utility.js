@@ -17,5 +17,6 @@ module.exports = {
                 Math.floor( Math.random() * possible.length )
             )
         }
+        return otp;
     }
 }

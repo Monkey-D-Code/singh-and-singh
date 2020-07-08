@@ -1,0 +1,70 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        All Users | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        h2{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        h2 input{
+            width : 10em;
+            margin-left : 4em;
+        }
+    </style>
+@endsection
+
+@section('extra_script')
+    <script>
+        $(document).ready(()=>{
+            $("#user-search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#user-list tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+@endsection
+
+@section('content')
+    <div class="container mt-5">
+        <h2>Users <input type="text" class="form-control" placeholder="Search" id="user-search"></h2>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Pincode</th>
+                    <th>Last OTP</th>
+                </tr>
+            </thead>
+            <tbody id="user-list">
+                @each( user in users)
+                    @if(!user.is_admin)
+                        <tr>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.pincode }}</td>
+                            <td>{{ user.last_otp }}</td>
+                        </tr>
+                    @endif
+                @else
+                    <tr>
+                        <td>
+                            <p class="alert">No Users Found</p>
+                        </td>
+                    </tr>
+                @endeach
+            </tbody>
+        </table>
+    </div>
+@endsection

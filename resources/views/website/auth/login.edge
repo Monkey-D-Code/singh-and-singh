@@ -5,22 +5,46 @@
     <section class="login" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) ,url(https://images.pexels.com/photos/933964/pexels-photo-933964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
         <div class="login-container" id="login-app">
             <h1>Login</h1>
-            <form method="POST" action="">
+            @if(flashMessage( 'userLoginErr' ))
+                <h5 class="invalid-feedback">
+                    {{ flashMessage( 'userLoginErr' ) }}
+                </h5>
+            @endif
+            <form method="POST" action="{{ route( 'auth.verify_otp' ) }}">
                 <input 
                     type="text" 
                     name="name" 
                     placeholder="Your Name"
+                    value="{{ old('name') }}"
                 >
+                @if(hasErrorFor('name'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('name') }}
+                    </div>
+                @endif 
+                
                 <input 
                     type="number" 
                     name="pincode"  
                     placeholder="Pincode"
+                    value="{{ old('pincode') }}"
                 >
+                @if(hasErrorFor('pincode'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('pincode') }}
+                    </div>
+                @endif
                 <input 
                     type="number" 
                     name="phone" 
                     placeholder="Phone Number"
+                    value="{{ old('phone') }}"
                 >
+                @if(hasErrorFor('phone'))
+                    <div class="invalid-feedback">
+                        {{ getErrorFor('phone') }}
+                    </div>
+                @endif
                 {{ csrfField() }}
                 <button type="submit">
                     <i class="fa fa-sign-in" aria-hidden="true"></i> Login | Get OTP

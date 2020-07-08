@@ -1,0 +1,157 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Cart | Singh & Singh
+    </title>
+@endsection
+
+
+@section('extra_script')
+    <script>
+        function cartItem(id,name,imageUrl,price,quantity){ 
+            return  '<div class="single-item"><div class="product">' +
+                            '<img src="' + imageUrl + '" alt="">' +
+                            '<div class="info">' +
+                                '<h4><a href="/' + id + '/medicine-details">' + name + '</a></h4>' +
+                                '<p class="mrp">INR : <i class="fa fa-inr" aria-hidden="true"></i>' + price + '</p>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="options">' +
+                            '<div class="quantity-controls">' +
+                                
+                                '<input type="text" value="' + quantity + '" disabled/>' +
+                            '</div>' +
+                            '<div class="total"><i class="fa fa-inr" aria-hidden="true"></i>' + (price * quantity) + '</div>' +
+                            '<div class="trash"><button data-id="' + id + '"><i class="fa fa-trash" aria-hidden="true"></i></button></div>' +
+                        '</div>' +
+                    '</div>';
+        
+        };
+        function renderCart(){
+            const cart  =   localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                let cartItemsHTML   =   '';
+                cartObj.forEach(item => {
+                    cartItemsHTML   +=  cartItem(
+                        item.id,
+                        item.name,
+                        item.image,
+                        item.price,
+                        item.quantity,
+                    )
+                });
+                if(cartObj.length === 0 ){
+                    document.querySelector(".cart-body .checkout").style.display  = "none";
+                }else{
+                    document.querySelector(".cart-body .checkout").style.display  = "block";
+                }
+                document.querySelector(".cart-items .item-list").innerHTML =   cartItemsHTML;
+            }
+        }
+        function grandTotal(){
+            const cart  =   localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                let total   =   0;
+                cartObj.forEach(item => {
+                    total += parseInt(item.quantity) * parseInt(item.price);
+                })
+                document.querySelector(".total-price span").innerHTML =   total;
+                document.querySelector(".no-items span").innerHTML    =   cartObj.length;
+            }
+        }
+
+        function remove_from_cart(med_id){
+            const cart      =       localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                const medIndex  =   cartObj.findIndex( i => parseInt(i.id) === parseInt(med_id));
+                if(medIndex > -1){
+                    cartObj.splice(medIndex , 1);
+                    localStorage.setItem("cart" , JSON.stringify(cartObj));
+                    renderCart();
+                    renderPopupCart();
+                    grandTotal();
+                }
+            }
+        }
+        renderCart();
+        grandTotal();
+
+        const trashBtns  =   document.querySelectorAll(".trash button").forEach( btn =>{
+            btn.addEventListener('click' , function(){
+                remove_from_cart(btn.dataset.id);
+                
+            })
+        })
+        
+        
+    </script>
+@endsection
+
+
+@section('content')
+    <section class="cart-body">
+        <div class="heading">
+            <img src="/assets/images/med-bottle.gif" alt="">
+            <h1>Shopping Cart</h1>
+        </div>
+        <!--<div class="offers">
+            <div class="single-offer">
+                <h4>You have got 20% Extra off for this Order</h4>
+            </div>
+            <div class="single-offer">
+                <h4>Get 10% Extra off when you share</h4>
+            </div>
+        </div> -->
+        <div class="cart-items">
+            <div class="title-bar">
+
+            </div>
+            <div class="item-list">
+                <div class="single-item">
+                    <div class="product">
+                        <img src="https://media.giphy.com/media/WSxyc3kHnD9GvVbWDO/source.gif" alt="">
+                        <div class="info">
+                            <h4><a href="#">No Items in cart</a></h4>
+                            <p class="mrp">MRP : <i class="fa fa-inr" aria-hidden="true"></i>00</p>
+                        </div>
+                    </div>
+                    <div class="options">
+                        <div class="quantity-controls">
+                            
+                            <input type="number" min=0 value="0" disabled/>
+                            
+                        </div>
+                        <div class="total"><i class="fa fa-inr" aria-hidden="true"></i>000</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="grand-total">
+                <div class="text">
+                    <h4>Order Total</h4>
+                    <p>(Incl of all taxes)</p>
+                </div>
+                <div class="info">
+                    <p class="no-items"><span>0</span> Items</p>
+                    <div class="total-price"><i class="fa fa-inr" aria-hidden="true"></i><span>00000</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout">
+            @loggedIn
+                @if(auth.user.is_admin)
+                    <a href="{{ route( 'admin.home' ) }}">You are an Admin &rarr;</a>
+                @else
+                    <a href="{{ route('payment.choose_method_page') }}">Proceed To Checkout &rarr;</a>
+                @endif
+            @else
+                <a href="{{ route('auth.login') }}">Login to checkout &rarr;</a>
+            @endloggedIn
+        </div>
+    </section>
+@endsection

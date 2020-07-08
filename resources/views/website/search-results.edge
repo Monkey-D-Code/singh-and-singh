@@ -15,7 +15,17 @@
         <form class="search-box" action="{{ route( 'search_results_page' ) }}" method="POST">
             {{ csrfField() }}
             <div class="pincode">
-                <input type="number" min=0 placeholder="Pincode" value="{{ pincode }}" name="pincode">
+                <input 
+                    type="number" 
+                    min=0 
+                    placeholder="Pincode" 
+                    name="pincode"
+                    @loggedIn
+                        value="{{ pincode || auth.user.pincode }}"
+                    @else
+                        value="{{ pincode }}" 
+                    @endloggedIn
+                >
                 @if(pincode)
                     @if(pinData)
                         <p class="pincode-result">Home Delivery available at {{ pincode }}</p>
@@ -57,18 +67,11 @@
                             <div class="mrp"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(med.market_price) }}</div>
                             <div class="discount">{{ round_up(((med.market_price - med.selling_price) * 100)/med.market_price) }}% off</div>
                         </div>
-                        @if(!med.prescription_required)
-                            <div class="cart-controls">
-                                <button class="plus">+</button>
-                                <input type="number" class="quantity" min=0 placeholder="Quantity">
-                                <button class="minus">-</button>
-                            </div>
-                        @endif
                     </div>
                 </div>
             @else
                 <h2 class="no-results-found">
-                    No results found for {{ search_query }}
+                    No results found for <span>{{ search_query }}<span>
                 </h2>
             @endeach
         </div>

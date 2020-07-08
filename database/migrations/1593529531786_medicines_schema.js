@@ -10,7 +10,6 @@ class MedicinesSchema extends Schema {
       table.boolean('front_page').defaultTo(false);
       table.integer( 'brand_id' ).nullable();
       table.integer('offer_id').nullable();
-
     })
   }
 

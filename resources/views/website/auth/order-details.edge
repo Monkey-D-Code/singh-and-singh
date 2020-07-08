@@ -1,0 +1,62 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Order Details | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <div class="order-details">
+        <div class="info">
+            This order was placed at <b>{{ format_date( order.created_at ) }}</b> with total <b>INR : {{ order.grand_total }}</b>
+        </div>
+        <h3 class="method">
+            @if(order.paid_online)
+                This order is already <b>paid online</b>
+            @else
+                This order is to be paid by <b>cash on delivery</b>
+            @endif
+        </h3>
+        <div class="med-list">
+            @each(item in items)
+                <div class="single-item">
+                    <h4>{{ item.medicine.name }}</h4>
+                    <hr>
+                    <h5>x {{ item.quantity }}</h5>
+                    <h5>INR : {{ round_up(item.total) }}</h5>
+                </div>
+            @endeach
+        </div>
+        <div class="status">
+            @if(order.new)
+                <div class="new">
+                    Order is confirmed
+                </div>
+            @endif
+            
+            @if(order.dispatched)
+                <div class="dispatched">
+                    Your order is on its way
+                </div>
+            @endif
+            
+            @if(order.delivered)
+                <div class="delivered">
+                    Order delivered successfully
+                </div>
+            @endif
+            
+            @if(order.cancelled)
+                <div class="cancelled">
+                    This order was cancelled
+                </div>
+            @endif
+        </div>
+        <div class="back-to-orders">
+            <a href="{{ route('auth.your_orders') }}" >&leftarrow; Back to Orders</a>
+        </div>
+    </div>
+@endsection

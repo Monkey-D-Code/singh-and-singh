@@ -7,6 +7,83 @@
     </title>
 @endsection
 
+@section('extra_script')
+    <script>
+        const plus              =   document.querySelector("#plus");
+        const minus             =   document.querySelector("#minus");
+        const inputQuantity     =   document.querySelector("#quantity");
+
+        const addToCart         =   document.querySelector(".add-to-cart");
+        const buyNow            =   document.querySelector(".buy-now");
+
+        
+
+        const medicine  =   {
+            id          :   document.querySelector(".name-rating h1").dataset.id,
+            name        :   document.querySelector(".name-rating h1").innerHTML,
+            image       :   document.querySelector(".big-image img").src,
+            price       :   document.querySelector(".selling-price span").innerHTML,
+            quantity    :   0,
+        }
+
+        function read_cart( med_id ){
+            const cart      =       localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                const medIndex  =   cartObj.findIndex( i => parseInt(i.id) === parseInt(med_id) );
+                if(medIndex > -1){
+                    inputQuantity.value     =   cartObj[medIndex].quantity;
+                    medicine.quantity       =   cartObj[medIndex].quantity;
+                }
+            }
+        }
+
+        function add_to_cart( med ){
+            const cart              =   localStorage.getItem("cart");
+            if(cart){
+                const cartObj   =   JSON.parse(cart);
+                const medIndex  =   cartObj.findIndex(i => parseInt(i.id) === parseInt(med.id));
+                if(medIndex > -1){
+                    cartObj[medIndex].quantity  =   parseInt(med.quantity);
+                }else{
+                    cartObj.push(med);
+                }
+                localStorage.setItem("cart" , JSON.stringify(cartObj));
+            }else{
+                const new_cart  =   [];
+                new_cart.push(med);
+                localStorage.setItem("cart" , JSON.stringify(new_cart));
+            }
+        }
+
+        read_cart(document.querySelector(".name-rating h1").dataset.id);
+
+
+        plus.addEventListener('click', function(){
+            medicine.quantity   =   parseInt(medicine.quantity) + 1;
+            inputQuantity.value =   medicine.quantity;
+            buyNow.style.display    = 'none';
+        });
+
+        minus.addEventListener( 'click' , function(){
+            if(parseInt(medicine.quantity) > 0){
+                medicine.quantity     =   parseInt(medicine.quantity) - 1;
+                inputQuantity.value =   medicine.quantity;
+                buyNow.style.display    = 'none';
+            }
+        });
+
+        addToCart.addEventListener( 'click' , function() {
+            if(medicine.quantity > 0){
+                add_to_cart(medicine);
+                renderPopupCart();
+                buyNow.style.display    = 'block';
+            }
+        } )
+        
+    </script>
+@endsection
+
 
 @section('content')
     <!-- ************************ MEDICINE DETAILS ***************************** -->
@@ -31,7 +108,7 @@
         </div>
         <div class="product-information">
             <div class="name-rating">
-                <h1>{{ medicine.name }}</h1>
+                <h1 data-id={{ medicine.id }}>{{ medicine.name }}</h1>
                 <div class="brand">Singh & Singh</div>
                 @if(medicine.prescription_required)
                     <p class="write-review"><i class="fa fa-file-text-o" aria-hidden="true"></i> Prescription Required</p>
@@ -40,7 +117,7 @@
                 @endif
             </div>
             <div class="price">
-                <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(medicine.selling_price) }}</p>
+                <p class="selling-price"><i class="fa fa-inr" aria-hidden="true"></i> <span>{{ round_up(medicine.selling_price) }}</span></p>
                 <p class="market-price">MRP*: Rs. {{ round_up(medicine.market_price) }} | You Save {{ round_up(((medicine.market_price - medicine.selling_price) * 100)/medicine.market_price) }}%</p>
             </div>
             @if(medicine.prescription_required)
@@ -49,16 +126,24 @@
                     <a href="{{ route( 'order_by_prescription_page' ) }}" class="go-to-upload">Upload Here &rarr;</a>
                 </div>
             @else
-                <div class="quantity">
-                    <span class='plus'><i class="fa fa-plus" aria-hidden="true"></i></span>
-                    <input type="number" min=0 placeholder="Enter Quantity">
-                    <span class='minus'><i class="fa fa-minus" aria-hidden="true"></i></span>
-                </div>
-                <div class="options">
-                    
-                    <a href="#" class="add-to-cart">Add To Cart</a>
-                    <a href="./cart.html" class="buy-now">Buy Now</a>
-                </div>
+                @loggedIn
+                    @if(auth.user.is_admin)
+                        <h3>You are <a href="{{ route('admin.home') }}">Admin</a></h3>
+                    @else
+                        <div class="quantity" id="quantity-control">
+                            <span class='plus' id="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            <input type="number" min=0 placeholder="Enter Quantity" id="quantity" value=0>
+                            <span class='minus' id="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="options">
+                            
+                            <button href="#" class="add-to-cart">Add To Cart</button>
+                            <a href="{{ route( 'cart_page' )  }}" class="buy-now" style="display:none;">Go To Cart</a>
+                        </div> 
+                    @endif
+                @else
+                    <h3><a href="{{ route('auth.login') }}">Login</a> to order</h3>  
+                @endloggedIn
             @endif
         </div>
 

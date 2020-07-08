@@ -5,9 +5,44 @@
     <title>Admin | Singh & Singh</title>
 @endsection
 
+@section('extra_style')
+    <style>
+        form{
+            display: flex;
+        }
+    </style>
+@endsection
+
+@section('extra_script')
+    <script>
+        const dateInput     =   document.querySelector('#date');
+        const dateBtn       =   document.querySelector('#date-btn');
+        dateBtn.addEventListener('click' , function(event){
+            if(!dateInput.value) event.preventDefault();
+        })
+    </script>
+@endsection
+
 @section( 'content' )
-    <div class="container">
-        <h1>Singh & Singh admin home page</h1>
-        
+    <div class="container mt-3">
+        <h2 class="row">
+            <div class="col-md-7">Dashboard</div>
+            <form class="col-md-5" method="GET" action="/admin">
+                <div class="badge badge-info">{{ choosen_date ? readable_date(choosen_date) : 'Today'}}</div>
+                <input type="date" class="form-control" id="date" name='date' value={{ choosen_date }}>
+                <button type="submit" class="btn btn-info" id='date-btn'><i class="fa fa-calendar-check-o" aria-hidden="true"></i></button>
+            </form>
+        </h2>
+        <hr>
+        <div class="row text-center">
+            <h4 class="col-md-5 alert alert-success">
+                Orders Total : <i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(orders_sum) }}
+            </h4>
+            <div class="col-md-2"></div>
+            <h4 class="col-md-5 alert alert-success">
+                Prescriptions Total : <i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(pres_sum) }}
+            </h4>
+        </div>
+        <hr>
     </div>
 @endsection

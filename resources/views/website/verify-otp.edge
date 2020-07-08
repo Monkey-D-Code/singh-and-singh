@@ -1,0 +1,43 @@
+@layout('master')
+
+
+@section('title')
+    <title>
+        Verify OTP | Singh & Singh
+    </title>
+@endsection
+
+
+@section('content')
+    <section class="verify-otp" style="background-image: linear-gradient(to right, rgba(255, 200, 0 , 0.6),rgba(77, 139, 49,0.6)) ,url(https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
+        <div class="verify-otp-container">
+            <h1>Verify OTP</h1>
+            <form action="{{ route( 'auth.confirm_otp' ) }}" method="POST">
+                {{ csrfField() }}
+                <input type="hidden"  name="phone" value={{phone}}>
+                <input type="number" placeholder="Enter OTP" name="otp">
+                <button type="submit"><i class="fa fa-check" aria-hidden="true"></i> Verify</button>
+            </form>
+            @if(otpError)
+                <div class="message">
+                    <h4>{{ otpError }} <button><i class="fa fa-refresh" aria-hidden="true"></i> Resend</button></h4>
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/006-medicine.png" alt="">
+            <h4>Pharmacy 24/7</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/013-ambulance.png" alt="">
+            <h4>Free Home Delivery</h4>
+        </div>
+        <div class="single-feature">
+            <img src="/assets/icons/blood-donation/023-nurse.png" alt="">
+            <h4>24/7 Customer Service</h4>
+        </div>
+    </section>
+@endsection

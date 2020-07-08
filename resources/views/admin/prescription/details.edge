@@ -1,0 +1,190 @@
+@layout('admin-master')
+
+
+@section('title')
+    <title>
+        Prescription Details | Singh & Singh
+    </title>
+@endsection
+
+@section('extra_style')
+    <style>
+        .date{
+            font-size: 1.5em;
+            background-color: green;
+            border-radius: 4px;
+            padding : 0.3em 0.5em;
+            color: white;
+            text-align: center;
+        }
+        h5{
+            text-align: center;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="container mt-3 mb-3">
+        <div class="back">
+            <a href="/admin/prescription/list?date={{ date_only(prescription.created_at) }}" class="btn btn-info">&leftarrow; Back to Prescriptions</a>
+        </div>
+        <hr>
+        <div class="user row" style="color:green;">
+            <h6 class="col-md-6">
+                <div><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.name }}</div>
+                <div><i class="fa fa-phone-square" aria-hidden="true"></i> {{ user.phone }}</div>
+                <div><i class="fa fa-map-marker" aria-hidden="true"></i> {{ user.pincode }}</div>
+            </h6>
+            @if(prescription.total)
+                <h4 class="col-md-6">
+                    Total : <i class="fa fa-inr" aria-hidden="true"></i> {{ prescription.total }}
+                </h4>
+            @endif
+        </div>
+
+        <hr>
+        <div class="details row">
+            <div class="col-md-6">
+                <img src="{{ prescription.image_url }}" alt="" style="width : 100%;">
+            </div>
+            <div class="col-md-6">
+                <div class="date">{{ format_date(prescription.created_at) }}</div>
+                <hr>
+                @if(prescription.confirmed)
+                    <h5 class="alert alert-info">Confirmed</h5>
+                @else
+                    <h5 class="alert alert-secondary">Not Confirmed</h5>
+                @endif
+
+                @if(prescription.dispatched)
+                    <h5 class="alert alert-warning">Dispatched</h5>
+                @else
+                    <h5 class="alert alert-secondary">Not Dispatched</h5>
+                @endif
+
+                @if(prescription.delivered)
+                    <h5 class="alert alert-success">Delivered</h5>
+                @else
+                    <h5 class="alert alert-secondary">Not Delivered</h5>
+                @endif
+
+                @if(prescription.cancelled)
+                    <h5 class="alert alert-danger">This order is cancelled</h5>
+                @endif
+                <hr>
+                <form action="{{ route('prescription.edit',{id:prescription.id}) }}" method="POST">
+                    <h4 class="mb-3">Update</h4>
+                    @if(flashMessage( 'presSaveSuccess' ))
+                        <h5 class="alert alert-success">
+                            {{ flashMessage( 'presSaveSuccess' ) }}
+                        </h5>
+                    @endif
+                    @if(flashMessage( 'presSaveErr' ))
+                        <h5 class="alert alert-danger">
+                            {{ flashMessage( 'presSaveErr' ) }}
+                        </h5>
+                    @endif
+                    {{ csrfField() }}
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <select name="confirmed" class="form-control">
+                                <option 
+                                    value="0"
+                                    @if(!prescription.confirmed)
+                                        selected
+                                    @endif
+                                >
+                                    Not Confirmed
+                                </option>
+                                <option 
+                                    value="1"
+                                    @if(prescription.confirmed)
+                                        selected
+                                    @endif
+                                >
+                                    Confirmed
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="dispatched" class="form-control">
+                                <option 
+                                    value="0"
+                                    @if(!prescription.dispatched)
+                                        selected
+                                    @endif
+                                >
+                                    Not Dispatched
+                                </option>
+                                <option 
+                                    value="1"
+                                    @if(prescription.dispatched)
+                                        selected
+                                    @endif
+                                >
+                                    Dispatched
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <select name="delivered" class="form-control">
+                                <option 
+                                    value="0"
+                                    @if(!prescription.delivered)
+                                        selected
+                                    @endif
+                                >
+                                    Not Delivered
+                                </option>
+                                <option 
+                                    value="1"
+                                    @if(prescription.delivered)
+                                        selected
+                                    @endif
+                                >
+                                    Delivered
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="cancelled" class="form-control">
+                                <option 
+                                    value="0"
+                                    @if(!prescription.cancelled)
+                                        selected
+                                    @endif
+                                >
+                                    Not Cancelled
+                                </option>
+                                <option 
+                                    value="1"
+                                    @if(prescription.cancelled)
+                                        selected
+                                    @endif
+                                >
+                                    Cancelled
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                placeholder="Total" 
+                                name='total' 
+                                value={{ prescription.total }}
+                            >
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection

@@ -1,0 +1,62 @@
+@layout('master');
+
+
+@section('title')
+    <title>Your Prescriptions | Singh & Singh</title>
+@endsection
+
+
+@section('content')
+    <section class="your-prescription">
+        <div class="heading">
+            <img src="/assets/icons/blood-donation/020-medical kit.png" alt="">
+            <h1>Prescription</h1>
+        </div>
+        <!--<div class="filters">
+            <h4>Uploaded Prescription</h4>
+            <h4>Confirmed Prescription</h4>
+        </div>-->
+        <div class="back-to-profile">
+            <a href="{{ route('auth.profile') }}">&leftarrow; Back To Profile</a>
+        </div>
+        <div class="prescription-list">
+            @each(pres in prescriptions)
+                @if(pres.confirmed)
+                    <div class="confirmed">
+                        <div class="details">
+                            <a href="{{ route( 'auth.prescription_details',{id:pres.id} ) }}"><img src="{{ pres.image_url}}" alt=""></a>
+                            <div class="info">
+                                <p class="date">{{ readable_date(pres.created_at) }}</p>
+                                <div class="total">Total : <i class="fa fa-inr" aria-hidden="true"></i> {{ round_up(pres.total) }}</div>
+                                <div class="quant">Confirmed</div>
+                            </div>
+                        </div>
+                        
+                        <div class="options">
+                            @if(pres.delivered)
+                                <button>Delivered</button>
+                            @endif
+                            @if(pres.cancelled)
+                                <button class="delete">Cancelled</button>
+                            @endif
+                        </div>
+                    </div>
+
+                @else
+                <div class="uploaded">
+                    <a href="{{ route( 'auth.prescription_details',{id:pres.id} ) }}"><img src="{{ pres.image_url }}" alt=""></a>
+                    <div class="info">
+                        <p class="date">{{ readable_date(pres.created_at) }}</p>
+                        @if(pres.cancelled)
+                            <button class="delete">Cancelled</button>
+                        @endif
+                    </div>
+                </div>
+                @endif
+            @else
+              
+            @endeach
+            
+        </div>
+    </section>
+@endsection

@@ -41,6 +41,8 @@ const namedMiddleware = {
   auth: 'Adonis/Middleware/Auth',
   guest: 'Adonis/Middleware/AllowGuestOnly',
 
+  is_auth       : 'App/Middleware/IsAuth',
+  no_auth       : 'App/Middleware/NoAuth',
   is_admin_auth : 'App/Middleware/IsAdminAuth',
   admin_logged_in : 'App/Middleware/AdminLoggedIn',
   frontend_exist : 'App/Middleware/FrontendExist',

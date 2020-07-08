@@ -1,7 +1,7 @@
 @loggedIn
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-      <a class="navbar-brand" href="/admin">Singh & Singh</a>
+      <a class="navbar-brand" href="{{ route( 'home' ) }}">Singh & Singh</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,13 +18,13 @@
               <a class="nav-link" href="/admin">Home</a>
           </li>
           <li 
-            @if(users)
+            @if(user_list)
               class="nav-item active"
             @else
               class="nav-item"
             @endif
           >
-              <a class="nav-link" href="#">Users</a>
+              <a class="nav-link" href="{{ route( 'user.list_page' ) }}">Users</a>
           </li>
           <li 
             @if(categories)
@@ -44,11 +44,23 @@
           >
               <a class="nav-link" href="{{ route( 'brand.list' ) }}">Brands</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Prescriptions</a>
+          <li 
+            @if(prescription_page)
+              class="nav-item active"
+            @else
+              class="nav-item"
+            @endif
+          >
+              <a class="nav-link" href="{{ route('prescription.list') }}">Prescriptions</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Orders</a>
+          <li 
+            @if(order_page)
+              class="nav-item active"
+            @else
+              class="nav-item"
+            @endif
+          >
+              <a class="nav-link" href="/admin/order/list">Orders</a>
           </li>
           <li 
             @if(website)
@@ -81,10 +93,7 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        
       </div>
     </nav>
 @endloggedIn
