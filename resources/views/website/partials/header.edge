@@ -128,9 +128,17 @@
                     </div>
                 </div>
             </li>
+            @loggedIn
+                @if(auth.user.is_admin)
+                    <li><a href="{{ route('admin.home') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> Admin</a></li>
+                @else
+                    <li class='small-screen'><a href="{{ route( 'auth.profile' ) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                @endif
+            @else
+                <li class='small-screen'><a href="{{ route('auth.login') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
+            @endloggedIn
             
-            <li class='small-screen'><a href="./login.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login</a></li>
-            <li class='small-screen'><a href="./cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
+            <li class='small-screen'><a href="{{ route( 'cart_page' ) }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
             <hr>
             <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
             <li><a href="{{ route('order_medicine_page') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Order Medicine</a></li>

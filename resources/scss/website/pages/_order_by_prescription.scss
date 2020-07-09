@@ -73,7 +73,7 @@
             left : 50%;
             transform: translate(-50%,-50%);
             font-size: 1.5em;
-            @media (max-width : 320px){
+            @media (max-width : 420px){
                 font-size: 1.2em;
             }
             color: white;
@@ -157,7 +157,10 @@
         font-family: $nunito;
         text-align: center;
         font-size: 1.2em;
-        color: $green;
+        @media (max-width : 420px){
+            font-size: 1em;
+        }
+        color: $blue;
     }
     .upload-percentage{
         font-family: $nunito;

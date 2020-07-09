@@ -2963,7 +2963,7 @@ footer {
     z-index: 2;
     font-family: "Oswald";
     user-select: none; }
-    @media (max-width: 320px) {
+    @media (max-width: 420px) {
       .order-by-prescription .upload-container .label {
         font-size: 1.2em; } }
   .order-by-prescription .upload-container .upload-prescription {
@@ -3040,7 +3040,10 @@ footer {
   font-family: "Nunito";
   text-align: center;
   font-size: 1.2em;
-  color: #4d8b31; }
+  color: #0D59A3; }
+  @media (max-width: 420px) {
+    .order-by-prescription .file-name {
+      font-size: 1em; } }
 
 .order-by-prescription .upload-percentage {
   font-family: "Nunito";
