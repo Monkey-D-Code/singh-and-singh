@@ -162,7 +162,7 @@ class WebsiteController {
         const { user_id }   =   request.post();
         const image_file    =   request.file('image_file',{
             types   :   ['image'],
-            size    :   '6mb',
+            size    :   '10mb',
         })
         const filename  =   `${timestamp}_prescription.${image_file.clientName.split('.').pop()}`;
         await image_file.move( Helpers.publicPath('uploads/prescriptions'),{
