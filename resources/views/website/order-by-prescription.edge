@@ -14,11 +14,13 @@
             @if( available )
                 <script>
                     $(document).ready(function(){
-                        var input       =   $('.upload-prescription');
-                        var btn         =   $('.upload-file-btn button');
-                        var errMsg      =   $('.client-err-msg');
-                        var fileNameh5  =   $('.file-name');
-                        var msgList     =   [];
+                        var input           =   $('.upload-prescription');
+                        var btn             =   $('.upload-file-btn button');
+                        var errMsg          =   $('.client-err-msg');
+                        var fileNameh5      =   $('.file-name');
+                        var msgList         =   [];
+                        var uploadDisplay   =   $('.upload-percentage');
+                        
                         btn.attr("disabled" , true);
                         btn.css("display","none");
 
@@ -28,7 +30,7 @@
                             var name    =   file.name;
                             var ext     =   file.name.split('.').pop().toLowerCase();
                             
-                            fileNameh5.html(name);
+                            fileNameh5.html(name + ' | ' + Math.ceil(size/1024) + 'Mb');
                             msgList     =   [];
                             errMsg.html('');
 
@@ -56,7 +58,8 @@
 
                         btn.on('click',function(event){
                             event.preventDefault();
-                            var formdata    =   new FormData();
+                            var formdata        =   new FormData();
+                            var currentProgress =   0;
 
                             formdata.append( 'user_id' , {{ auth.user.id }});
                             formdata.append( 'image_file' , $("input[type=file]").prop('files')[0]);
@@ -72,6 +75,20 @@
                                 cache       :   false,
                                 contentType :   false,
                                 processData :   false,
+                                xhr         :   function(){
+                                    var appXhr  =   $.ajaxSettings.xhr();
+                                    if(appXhr.upload){
+                                        appXhr.upload.addEventListener('progress',function(e){
+                                            if(e.lengthComputable){
+                                                currentProgress = (e.loaded / e.total) * 100;
+                                                uploadDisplay.html(currentProgress+'%');
+                                                if( currentProgress == 100 )
+                                                console.log('Progress : 100%');
+                                            }
+                                        },false);
+                                    }
+                                    return appXhr;
+                                }
 
                             }).then(function(response){
                                 console.log(response)
@@ -113,6 +130,7 @@
                             <input type="file" accept="image" capture="camera" class='capture-prescription'>
                         </div> -->
                         <h5 class="file-name"></h5>
+                        <h5 class="upload-percentage"></h5>
                         <div class="upload-container">
                             <p class="label"><i class="fa fa-upload" aria-hidden="true"></i> Choose Prescription</p>
                             <input type="file" accept="image/*" class='upload-prescription' capture>
