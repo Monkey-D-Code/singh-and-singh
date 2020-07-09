@@ -153,10 +153,18 @@
             
         }
     }
-    .file-name , .upload-percentage{
+    .file-name {
         font-family: $nunito;
         text-align: center;
-        font-size: 1.3em;
+        font-size: 1.2em;
         color: $green;
+    }
+    .upload-percentage{
+        font-family: $nunito;
+        text-align: center;
+        color: $green;
+        width: fit-content;
+        margin : 0.2em auto;
+        font-size: 2em;
     }
 }

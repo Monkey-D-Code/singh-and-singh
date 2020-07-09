@@ -65,7 +65,8 @@
                             formdata.append( 'image_file' , $("input[type=file]").prop('files')[0]);
 
                             btn.attr('disabled',true);
-                            btn.html('Uploading. Please Wait');
+                            btn.html('Don\'t close this page.');
+                            $("input[type=file]").attr('disabled' , true);
 
                             $.ajax({
                                 url         :   '/upload-prescription',
@@ -81,7 +82,7 @@
                                         appXhr.upload.addEventListener('progress',function(e){
                                             if(e.lengthComputable){
                                                 currentProgress = (e.loaded / e.total) * 100;
-                                                uploadDisplay.html(currentProgress+'%');
+                                                uploadDisplay.html('Uploading '+Math.round(currentProgress)+'%');
                                                 if( currentProgress == 100 )
                                                 console.log('Progress : 100%');
                                             }
@@ -97,10 +98,9 @@
                                 }else{
                                     errHtml.html('<li>' + response.message + '</li>');
                                     btn.attr('disabled',false);
+                                    $("input[type=file]").attr('disabled' , false);
                                     btn.html('Upload');
                                 }
-                                
-
                             }).catch(function(err){
                                 console.log(err);
                                 btn.attr('disabled',false);
